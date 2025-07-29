@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #333;
+}
+
+.sign-up-btn {
+    background: white;
+    border: 2px solid #ddd;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.sign-up-btn:hover {
+    border-color: #999;
+}
+
+/* Main Content */
+main {
+    padding: 3rem 0;
+}
+
+.signup-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.signup-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-header {
+    margin-bottom: 2rem;
+}
+
+.form-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.login-link {
+    color: #666;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 0.25rem;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.checkbox-group a {
+    color: #333;
+}
+
+.create-btn {
+    width: 100%;
+    background: #999;
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+.create-btn:hover {
+    background: #777;
+}
+
+.divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #999;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e1e5e9;
+    z-index: 1;
+}
+
+.divider span {
+    background: white;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.google-btn {
+    width: 100%;
+    background: white;
+    border: 2px solid #e1e5e9;
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.google-btn:hover {
+    border-color: #999;
+}
+
+.illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* Footer */
+footer {
+    background: white;
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid #e1e5e9;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-brand h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 0.5rem;
+    color: aqua;
+}
+
+.app-btn {
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-section ul li a:hover {
+    color: #333;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+ 
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.social-link:hover {
+    color: #333;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid #e1e5e9;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .signup-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}

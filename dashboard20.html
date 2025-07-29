@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeatMatrix - Inventory Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #b1a4c8 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-card.low-stock .number {
+            color: #f39c12;
+        }
+
+        .stat-card.expired .number {
+            color: #e74c3c;
+        }
+
+        .inventory-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-header {
+            background: #34495e;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .add-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .add-btn:hover {
+            background: #219a52;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .meat-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .amount {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status.in-stock {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.low-stock {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.expired {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #2980b9;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+
+        .edit-form {
+            display: none;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        .edit-form input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            width: 80px;
+        }
+
+        .edit-form .btn-save {
+            background: #27ae60;
+            color: white;
+        }
+
+        .edit-form .btn-cancel {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #f39c12;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #e74c3c;
+            color: #721c24;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🥩 MeatMatrix</h1>
+            <p>Inventory Management Dashboard</p>
+        </div>
+
+        <!-- Alerts -->
+        <div class="alert alert-warning">
+            <strong>⚠️ Low Stock Alert:</strong> Chicken and Duck are running low on stock!
+        </div>
+
+        <div class="alert alert-danger">
+            <strong>🚨 Expired Items:</strong> 2kg of Beef has expired and needs immediate attention!
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total Items</h3>
+                <div class="number">4</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Stock</h3>
+                <div class="number">47kg</div>
+            </div>
+            <div class="stat-card low-stock">
+                <h3>Low Stock</h3>
+                <div class="number">2</div>
+            </div>
+            <div class="stat-card expired">
+                <h3>Expired</h3>
+                <div class="number">2kg</div>
+            </div>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="inventory-table">
+            <div class="table-header">
+                <h2>Meat Inventory</h2>
+                <button class="add-btn" onclick="addNewItem()">+ Add New Item</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Meat Type</th>
+                        <th>Current Stock (kg)</th>
+                        <th>Expired Amount (kg)</th>
+                        <th>Status</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="beef-row">
+                        <td class="meat-name">🥩 Beef</td>
+                        <td class="amount" id="beef-amount">15</td>
+                        <td class="expired-amount" id="beef-expired">2</td>
+                        <td><span class="status in-stock">In Stock</span></td>
+                        <td>2024-01-15 10:30</td>
+                        <td class="actions">
+                            <button class="btn btn-edit" onclick="editItem('beef')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteItem('beef')">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="edit-form" id="beef-edit">
+                        <td colspan="6">
+                            <strong>Edit Beef Stock:</strong>
+                            <input type="number" id="beef-new-amount" placeholder="Stock (kg)">
+                            <input type="number" id="beef-new-expired" placeholder="Expired (kg)">
+                            <button class="btn btn-save" onclick="saveItem('beef')">Save</button>
+                            <button class="btn btn-cancel" onclick="cancelEdit('beef')">Cancel</button>
+                        </td>
+                    </tr>
+
+                    <tr id="chicken-row">
+                        <td class="meat-name">🐔 Chicken</td>
+                        <td class="amount" id="chicken-amount">8</td>
+                        <td class="expired-amount" id="chicken-expired">0</td>
+                        <td><span class="status low-stock">Low Stock</span></td>
+                        <td>2024-01-15 09:15</td>
+                        <td class="actions">
+                            <button class="btn btn-edit" onclick="editItem('chicken')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteItem('chicken')">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="edit-form" id="chicken-edit">
+                        <td colspan="6">
+                            <strong>Edit Chicken Stock:</strong>
+                            <input type="number" id="chicken-new-amount" placeholder="Stock (kg)">
+                            <input type="number" id="chicken-new-expired" placeholder="Expired (kg)">
+                            <button class="btn btn-save" onclick="saveItem('chicken')">Save</button>
+                            <button class="btn btn-cancel" onclick="cancelEdit('chicken')">Cancel</button>
+                        </td>
+                    </tr>
+
+                    <tr id="duck-row">
+                        <td class="meat-name">🦆 Duck</td>
+                        <td class="amount" id="duck-amount">5</td>
+                        <td class="expired-amount" id="duck-expired">0</td>
+                        <td><span class="status low-stock">Low Stock</span></td>
+                        <td>2024-01-14 16:45</td>
+                        <td class="actions">
+                            <button class="btn btn-edit" onclick="editItem('duck')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteItem('duck')">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="edit-form" id="duck-edit">
+                        <td colspan="6">
+                            <strong>Edit Duck Stock:</strong>
+                            <input type="number" id="duck-new-amount" placeholder="Stock (kg)">
+                            <input type="number" id="duck-new-expired" placeholder="Expired (kg)">
+                            <button class="btn btn-save" onclick="saveItem('duck')">Save</button>
+                            <button class="btn btn-cancel" onclick="cancelEdit('duck')">Cancel</button>
+                        </td>
+                    </tr>
+
+                    <tr id="mutton-row">
+                        <td class="meat-name">🐑 Mutton</td>
+                        <td class="amount" id="mutton-amount">19</td>
+                        <td class="expired-amount" id="mutton-expired">0</td>
+                        <td><span class="status in-stock">In Stock</span></td>
+                        <td>2024-01-15 08:20</td>
+                        <td class="actions">
+                            <button class="btn btn-edit" onclick="editItem('mutton')">Edit</button>
+                            <button class="btn btn-delete" onclick="deleteItem('mutton')">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="edit-form" id="mutton-edit">
+                        <td colspan="6">
+                            <strong>Edit Mutton Stock:</strong>
+                            <input type="number" id="mutton-new-amount" placeholder="Stock (kg)">
+                            <input type="number" id="mutton-new-expired" placeholder="Expired (kg)">
+                            <button class="btn btn-save" onclick="saveItem('mutton')">Save</button>
+                            <button class="btn btn-cancel" onclick="cancelEdit('mutton')">Cancel</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function editItem(meatType) {
+            // Hide the row and show edit form
+            document.getElementById(meatType + '-row').style.display = 'none';
+            document.getElementById(meatType + '-edit').style.display = 'table-row';
+            
+            // Pre-fill current values
+            const currentAmount = document.getElementById(meatType + '-amount').textContent;
+            const currentExpired = document.getElementById(meatType + '-expired').textContent;
+            document.getElementById(meatType + '-new-amount').value = currentAmount;
+            document.getElementById(meatType + '-new-expired').value = currentExpired;
+        }
+
+        function saveItem(meatType) {
+            const newAmount = document.getElementById(meatType + '-new-amount').value;
+            const newExpired = document.getElementById(meatType + '-new-expired').value;
+            
+            if (newAmount && newExpired !== '') {
+                // Update the display
+                document.getElementById(meatType + '-amount').textContent = newAmount;
+                document.getElementById(meatType + '-expired').textContent = newExpired;
+                
+                // Update status based on stock level
+                const statusElement = document.querySelector('#' + meatType + '-row .status');
+                if (parseInt(newAmount) < 10) {
+                    statusElement.textContent = 'Low Stock';
+                    statusElement.className = 'status low-stock';
+                } else {
+                    statusElement.textContent = 'In Stock';
+                    statusElement.className = 'status in-stock';
+                }
+                
+                // Update timestamp
+                const now = new Date();
+                const timestamp = now.getFullYear() + '-' + 
+                    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                    String(now.getDate()).padStart(2, '0') + ' ' +
+                    String(now.getHours()).padStart(2, '0') + ':' +
+                    String(now.getMinutes()).padStart(2, '0');
+                
+                document.querySelector('#' + meatType + '-row td:nth-child(5)').textContent = timestamp;
+                
+                cancelEdit(meatType);
+                updateStats();
+                alert('Stock updated successfully!');
+            } else {
+                alert('Please enter valid amounts');
+            }
+        }
+
+        function cancelEdit(meatType) {
+            document.getElementById(meatType + '-row').style.display = 'table-row';
+            document.getElementById(meatType + '-edit').style.display = 'none';
+        }
+
+        function deleteItem(meatType) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                document.getElementById(meatType + '-row').remove();
+                document.getElementById(meatType + '-edit').remove();
+                updateStats();
+                alert('Item deleted successfully!');
+            }
+        }
+
+        function addNewItem() {
+            const meatType = prompt('Enter meat type:');
+            const amount = prompt('Enter stock amount (kg):');
+            const expired = prompt('Enter expired amount (kg):');
+            
+            if (meatType && amount && expired !== null) {
+                alert('New item would be added: ' + meatType + ' with ' + amount + 'kg stock');
+                // In a real application, you would add the new row to the table
+            }
+        }
+
+        function updateStats() {
+            // This would recalculate the dashboard statistics
+            // In a real application, you would update the stat cards
+            console.log('Stats updated');
+        }
+
+        // Auto-refresh every 30 seconds (in a real app, this would fetch from server)
+        setInterval(function() {
+            console.log('Auto-refreshing data...');
+        }, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Icon Sidebar -->
+        <div class="sidebar-icons">
+            <div class="logo">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon active">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+            </div>
+            
+            <div class="nav-icon" style="margin-top: auto;">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Extended Sidebar -->
+        <div class="sidebar-extended">
+            <div class="dashboard-btn">Dashboard</div>
+            
+            <div class="nav-item active">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+                <span>Dashboard</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Profile</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+                <span>Leaderboard</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <span>Order</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+                <span>Product</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                </svg>
+                <span>Sales Report</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                <span>Message</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <span>Settings</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                </svg>
+                <span>Favourite</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                <span>History</span>
+            </div>
+            
+            <div class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                <span>Signout</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="search-container">
+                    <svg class="search-icon icon-sm" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search here...">
+                </div>
+                
+                <div class="header-right">
+                    <div class="notification">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="avatar"></div>
+                        <svg class="icon-sm" viewBox="0 0 24 24">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div>
+                    <!-- Today's Sales -->
+                    <div class="section-title">Today's Sales</div>
+                    <div class="section-subtitle">Sales Summary</div>
+                    
+                    <div class="sales-cards">
+                        <div class="sales-card">
+                            <div class="card-icon yellow">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                                </svg>
+                            </div>
+                            <div class="card-value">$5k</div>
+                            <div class="card-label">Total Sales</div>
+                            <div class="card-change positive">+10% from yesterday</div>
+                        </div>
+                        
+                        <div class="sales-card">
+                            <div class="card-icon blue">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <line x1="18" y1="20" x2="18" y2="10"/>
+                                    <line x1="12" y1="20" x2="12" y2="4"/>
+                                    <line x1="6" y1="20" x2="6" y2="14"/>
+                                </svg>
+                            </div>
+                            <div class="card-value">500</div>
+                            <div class="card-label">Total Order</div>
+                            <div class="card-change positive">+8% from yesterday</div>
+                        </div>
+                        
+                        <div class="sales-card">
+                            <div class="card-icon teal">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                </svg>
+                            </div>
+                            <div class="card-value">9</div>
+                            <div class="card-label">Product Sold</div>
+                            <div class="card-change positive">+2% from yesterday</div>
+                        </div>
+                        
+                        <div class="sales-card">
+                            <div class="card-icon blue">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="card-value">12</div>
+                            <div class="card-label">New Customer</div>
+                            <div class="card-change blue">+3% from yesterday</div>
+                        </div>
+                    </div>
+
+                    <!-- Meat Inventory Dashboard -->
+                    <div class="inventory-dashboard">
+                        <h3 class="section-title">Meat Inventory Dashboard</h3>
+                        
+                        <div class="inventory-table">
+                            <div class="table-header">
+                                <div>#</div>
+                                <div>Name</div>
+                                <div>Quantity</div>
+                                <div>Sales</div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div style="color: white; font-weight: 500;">01</div>
+                                <div style="color: white;">Inventory Overview (Total Stock)</div>
+                                <div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill orange" style="width: 46%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="sales-percentage">46%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div style="color: white; font-weight: 500;">02</div>
+                                <div style="color: white;">Expiring Soon Items</div>
+                                <div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill gray" style="width: 17%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="sales-percentage">17%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="table-row">
+                                <div style="color: white; font-weight: 500;">03</div>
+                                <div style="color: white;">Low Stock Alerts</div>
+                                <div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill blue" style="width: 19%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="sales-percentage">19%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Charts -->
+                    <div class="bottom-grid">
+                        <div class="chart-container">
+                            <h3 class="section-title">Total Stock</h3>
+                            <div class="donut-chart">
+                                <svg width="200" height="200" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#171821" stroke-width="16"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#58428b" stroke-width="16" 
+                                            stroke-dasharray="125.6" stroke-dashoffset="31.4" transform="rotate(-90 100 100)"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#42848b" stroke-width="16" 
+                                            stroke-dasharray="125.6" stroke-dashoffset="62.8" transform="rotate(-90 100 100)"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#20aef3" stroke-width="16" 
+                                            stroke-dasharray="125.6" stroke-dashoffset="94.2" transform="rotate(-90 100 100)"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#8b6d42" stroke-width="16" 
+                                            stroke-dasharray="125.6" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3 class="section-title">Inventory Categories</h3>
+                            <div class="category-grid">
+                                <div class="category-item">
+                                    <div class="category-icon">🐔</div>
+                                </div>
+                                <div class="category-item">
+                                    <div class="category-icon">🐐</div>
+                                </div>
+                                <div class="category-item">
+                                    <div class="category-icon">🦆</div>
+                                </div>
+                                <div class="category-item">
+                                    <div class="category-icon">🐄</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="right-sidebar">
+                    <!-- Level Chart -->
+                    <div class="level-chart">
+                        <h3 class="section-title">Level</h3>
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 60%;"></div>
+                            <div class="bar" style="height: 80%;"></div>
+                            <div class="bar" style="height: 70%;"></div>
+                            <div class="bar" style="height: 50%;"></div>
+                            <div class="bar" style="height: 90%;"></div>
+                            <div class="bar" style="height: 100%;"></div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot teal"></div>
+                                <span style="color: white;">Volume</span>
+                            </div>
+                            <span style="color: #87888c;">Service</span>
+                        </div>
+                    </div>
+
+                    <!-- Customer Fulfillment -->
+                    <div class="fulfillment-chart">
+                        <h3 class="section-title">Customer Fulfillment</h3>
+                        <div class="line-chart">
+                            <svg width="100%" height="128" viewBox="0 0 300 128">
+                                <polyline fill="none" stroke="#a9dfd8" stroke-width="2" 
+                                         points="0,100 50,80 100,90 150,70 200,60 250,50 300,40"/>
+                                <polyline fill="none" stroke="#f2c8ed" stroke-width="2" 
+                                         points="0,110 50,105 100,100 150,95 200,90 250,85 300,80"/>
+                            </svg>
+                        </div>
+                        <div class="chart-stats">
+                            <div class="stat-row">
+                                <div class="legend-item">
+                                    <div class="legend-dot teal"></div>
+                                    <span style="color: #87888c; font-size: 14px;">Last Month</span>
+                                </div>
+                                <span style="color: white; font-size: 14px;">$4,087</span>
+                            </div>
+                            <div class="stat-row">
+                                <div class="legend-item">
+                                    <div class="legend-dot pink"></div>
+                                    <span style="color: #87888c; font-size: 14px;">This Month</span>
+                                </div>
+                                <span style="color: white; font-size: 14px;">$5,506</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Visitors -->
+                    <div class="new-visitors">
+                        <div class="visitors-indicator">
+                            <div class="legend-dot yellow"></div>
+                            <span style="color: white; font-size: 14px;">New Visitors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
