@@ -17,7 +17,7 @@
                 </svg>
             </div>
             
-            <div class="nav-icon active">
+            <div class="nav-icon active" id="dashboardToggle" style="cursor: pointer;">
                 <svg class="icon" viewBox="0 0 24 24">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 </svg>
@@ -92,7 +92,7 @@
         </div>
 
         <!-- Extended Sidebar -->
-        <div class="sidebar-extended">
+        <div class="sidebar-extended" id="extendedSidebar">
             <div class="dashboard-btn">Dashboard</div>
             
             <div class="nav-item active">
@@ -181,6 +181,7 @@
         </div>
 
         <!-- Main Content -->
+        <!-- Main Content -->
         <div class="main-content">
             <!-- Header -->
             <div class="header">
@@ -217,7 +218,7 @@
                     <div class="section-subtitle">Sales Summary</div>
                     
                     <div class="sales-cards">
-                        <div class="sales-card">
+                        <div class="sales-card" onclick="window.location.href='totalsale.html'" style="cursor: pointer;">
                             <div class="card-icon yellow">
                                 <svg class="icon" viewBox="0 0 24 24">
                                     <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
@@ -228,7 +229,7 @@
                             <div class="card-change positive">+10% from yesterday</div>
                         </div>
                         
-                        <div class="sales-card">
+                        <div class="sales-card" onclick="window.location.href='totalorder.html'" style="cursor: pointer;">
                             <div class="card-icon blue">
                                 <svg class="icon" viewBox="0 0 24 24">
                                     <line x1="18" y1="20" x2="18" y2="10"/>
@@ -280,8 +281,8 @@
                             </div>
                             
                             <div class="table-row">
-                                <div style="color: white; font-weight: 500;">01</div>
-                                <div style="color: white;">Inventory Overview (Total Stock)</div>
+                                <div style="font-weight: 500;">01</div>
+                                <div>Inventory Overview (Total Stock)</div>
                                 <div>
                                     <div class="progress-bar">
                                         <div class="progress-fill orange" style="width: 46%;"></div>
@@ -293,8 +294,8 @@
                             </div>
                             
                             <div class="table-row">
-                                <div style="color: white; font-weight: 500;">02</div>
-                                <div style="color: white;">Expiring Soon Items</div>
+                                <div style="font-weight: 500;">02</div>
+                                <div>Expiring Soon Items</div>
                                 <div>
                                     <div class="progress-bar">
                                         <div class="progress-fill gray" style="width: 17%;"></div>
@@ -306,8 +307,8 @@
                             </div>
                             
                             <div class="table-row">
-                                <div style="color: white; font-weight: 500;">03</div>
-                                <div style="color: white;">Low Stock Alerts</div>
+                                <div style="font-weight: 500;">03</div>
+                                <div>Low Stock Alerts</div>
                                 <div>
                                     <div class="progress-bar">
                                         <div class="progress-fill blue" style="width: 19%;"></div>
@@ -322,18 +323,18 @@
 
                     <!-- Bottom Charts -->
                     <div class="bottom-grid">
-                        <div class="chart-container">
+                        <div class="chart-container" onclick="window.location.href='totalstock.html'" style="cursor: pointer;">
                             <h3 class="section-title">Total Stock</h3>
                             <div class="donut-chart">
                                 <svg width="200" height="200" viewBox="0 0 200 200">
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#171821" stroke-width="16"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#58428b" stroke-width="16" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="16"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#5a1a23" stroke-width="16" 
                                             stroke-dasharray="125.6" stroke-dashoffset="31.4" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#42848b" stroke-width="16" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#6b2332" stroke-width="16" 
                                             stroke-dasharray="125.6" stroke-dashoffset="62.8" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#20aef3" stroke-width="16" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="16" 
                                             stroke-dasharray="125.6" stroke-dashoffset="94.2" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#8b6d42" stroke-width="16" 
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="16" 
                                             stroke-dasharray="125.6" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
                                 </svg>
                             </div>
@@ -375,9 +376,9 @@
                         <div class="chart-legend">
                             <div class="legend-item">
                                 <div class="legend-dot teal"></div>
-                                <span style="color: white;">Volume</span>
+                                <span>Volume</span>
                             </div>
-                            <span style="color: #87888c;">Service</span>
+                            <span>Service</span>
                         </div>
                     </div>
 
@@ -396,16 +397,16 @@
                             <div class="stat-row">
                                 <div class="legend-item">
                                     <div class="legend-dot teal"></div>
-                                    <span style="color: #87888c; font-size: 14px;">Last Month</span>
+                                    <span style="font-size: 14px;">Last Month</span>
                                 </div>
-                                <span style="color: white; font-size: 14px;">$4,087</span>
+                                <span style="font-size: 14px;">$4,087</span>
                             </div>
                             <div class="stat-row">
                                 <div class="legend-item">
                                     <div class="legend-dot pink"></div>
-                                    <span style="color: #87888c; font-size: 14px;">This Month</span>
+                                    <span style="font-size: 14px;">This Month</span>
                                 </div>
-                                <span style="color: white; font-size: 14px;">$5,506</span>
+                                <span style="font-size: 14px;">$5,506</span>
                             </div>
                         </div>
                     </div>
@@ -414,12 +415,36 @@
                     <div class="new-visitors">
                         <div class="visitors-indicator">
                             <div class="legend-dot yellow"></div>
-                            <span style="color: white; font-size: 14px;">New Visitors</span>
+                            <span style="font-size: 14px;">New Visitors</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Get elements
+        const dashboardToggle = document.getElementById('dashboardToggle');
+        const extendedSidebar = document.getElementById('extendedSidebar');
+
+        // Function to toggle sidebar
+        function toggleSidebar() {
+            extendedSidebar.classList.toggle('show');
+        }
+
+        // Add click event listener to dashboard icon
+        dashboardToggle.addEventListener('click', toggleSidebar);
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideSidebar = extendedSidebar.contains(event.target) || 
+                                       dashboardToggle.contains(event.target);
+            
+            if (!isClickInsideSidebar && extendedSidebar.classList.contains('show')) {
+                extendedSidebar.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>

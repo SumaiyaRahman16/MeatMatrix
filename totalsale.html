@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Sales</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #fef7f7 0%, #f8e8e8 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #2d1b1b;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(144, 36, 54, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #902436, #994d64);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+    
+    .content {
+      padding: 40px 30px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    
+    .main-card {
+      background: linear-gradient(135deg, #902436, #994d64);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(144, 36, 54, 0.2);
+      transition: all 0.3s ease;
+      grid-column: span 2;
+    }
+    
+    .main-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(144, 36, 54, 0.3);
+    }
+    
+    .main-card h2 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .main-card p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #902436;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .table-container {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(144, 36, 54, 0.1);
+      border: 1px solid rgba(144, 36, 54, 0.1);
+      margin-bottom: 40px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    thead {
+      background: linear-gradient(135deg, #902436, #994d64);
+      color: white;
+    }
+    
+    th, td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid rgba(144, 36, 54, 0.1);
+    }
+    
+    th {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    
+    tr:hover {
+      background: rgba(144, 36, 54, 0.03);
+    }
+    
+    .increase {
+      color: #22c55e;
+      font-weight: 600;
+      background: rgba(34, 197, 94, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    
+    .decrease {
+      color: #ef4444;
+      font-weight: 600;
+      background: rgba(239, 68, 68, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    
+    .form-section {
+      background: rgba(144, 36, 54, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      border: 2px solid rgba(144, 36, 54, 0.1);
+    }
+    
+    .form-section h3 {
+      color: #902436;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .form-section input {
+      flex: 1;
+      min-width: 200px;
+      padding: 15px 20px;
+      border: 2px solid rgba(144, 36, 54, 0.2);
+      border-radius: 12px;
+      font-size: 1rem;
+      background: white;
+      color: #2d1b1b;
+      transition: all 0.3s ease;
+    }
+    
+    .form-section input:focus {
+      outline: none;
+      border-color: #902436;
+      box-shadow: 0 0 0 3px rgba(144, 36, 54, 0.1);
+    }
+    
+    .form-section button {
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #902436, #994d64);
+      border: none;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(144, 36, 54, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .form-section button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(144, 36, 54, 0.3);
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #902436;
+      text-decoration: none;
+      margin-top: 30px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: rgba(144, 36, 54, 0.05);
+    }
+    
+    .back-btn:hover {
+      background: rgba(144, 36, 54, 0.1);
+      transform: translateX(-5px);
+    }
+    
+    .icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+    }
+    
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+    
+    @media (max-width: 1024px) {
+      .main-card {
+        grid-column: span 1;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        margin: 10px;
+        border-radius: 16px;
+      }
+      
+      .header {
+        padding: 30px 20px;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .content {
+        padding: 30px 20px;
+      }
+      
+      .main-card h2 {
+        font-size: 2.5rem;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .form-section input {
+        min-width: auto;
+      }
+      
+      th, td {
+        padding: 15px 10px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Total Sales</h1>
+      <p>Track and analyze your sales performance</p>
+    </div>
+    
+    <div class="content">
+      <!-- Main Sales Card -->
+      <div class="stats-grid">
+        <div class="main-card">
+          <h2 id="totalSales">$0</h2>
+          <p id="percentChange">No data yet</p>
+        </div>
+      </div>
+
+      <!-- Sales Table -->
+      <div class="section-title">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
+        </svg>
+        Daily Sales History
+      </div>
+      
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Total Sales</th>
+              <th>Change from Previous</th>
+            </tr>
+          </thead>
+          <tbody id="salesTable">
+            <!-- Filled by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Form to add new sales -->
+      <div class="form-section">
+        <h3>Add New Sales Entry</h3>
+        <div class="form-row">
+          <input type="date" id="salesDate" required>
+          <input type="number" id="salesAmount" placeholder="Enter sales amount ($)" min="0" step="0.01" required>
+          <button onclick="addSales()">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M12 5v14m-7-7h14"/>
+            </svg>
+            Add Sales
+          </button>
+        </div>
+      </div>
+
+      <a href="dashboard.html" class="back-btn">
+        <svg class="icon" viewBox="0 0 24 24">
+          <path d="M19 12H5m7-7l-7 7 7 7"/>
+        </svg>
+        Back to Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Get or initialize sales data from localStorage
+    let salesData = JSON.parse(localStorage.getItem("salesData")) || [];
+
+    const totalSalesEl = document.getElementById("totalSales");
+    const percentChangeEl = document.getElementById("percentChange");
+    const salesTableEl = document.getElementById("salesTable");
+    const salesDateEl = document.getElementById("salesDate");
+    const salesAmountEl = document.getElementById("salesAmount");
+
+    // Set today's date as default
+    salesDateEl.value = new Date().toISOString().split('T')[0];
+
+    // Load existing sales into table
+    function loadTable() {
+      if (salesData.length === 0) {
+        salesTableEl.innerHTML = `
+          <tr>
+            <td colspan="3" class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+              <p>No sales data yet. Add your first sales entry!</p>
+            </td>
+          </tr>
+        `;
+        totalSalesEl.textContent = "$0";
+        percentChangeEl.textContent = "No data yet";
+        return;
+      }
+
+      // Calculate total sales
+      const totalAmount = salesData.reduce((sum, day) => sum + day.total, 0);
+      totalSalesEl.textContent = `$${totalAmount.toLocaleString()}`;
+
+      // Calculate overall change
+      if (salesData.length > 1) {
+        const latestDay = salesData[salesData.length - 1];
+        const previousDay = salesData[salesData.length - 2];
+        const percentChange = previousDay.total === 0 
+          ? 100 
+          : (((latestDay.total - previousDay.total) / previousDay.total) * 100).toFixed(1);
+        
+        const changeClass = percentChange >= 0 ? 'increase' : 'decrease';
+        const changeSymbol = percentChange >= 0 ? '+' : '';
+        percentChangeEl.innerHTML = `<span class="${changeClass}">${changeSymbol}${percentChange}%</span> from previous day`;
+      } else {
+        percentChangeEl.textContent = "First entry";
+      }
+
+      // Populate table
+      salesTableEl.innerHTML = "";
+      salesData.forEach((day, index) => {
+        let percentChange = "-";
+        let changeClass = "";
+        
+        if (index > 0) {
+          const prev = salesData[index - 1].total;
+          const change = prev === 0 ? 100 : (((day.total - prev) / prev) * 100).toFixed(1);
+          changeClass = change >= 0 ? 'increase' : 'decrease';
+          const changeSymbol = change >= 0 ? '+' : '';
+          percentChange = `<span class="${changeClass}">${changeSymbol}${change}%</span>`;
+        }
+        
+        salesTableEl.innerHTML += `
+          <tr>
+            <td>${formatDate(day.date)}</td>
+            <td>$${day.total.toLocaleString()}</td>
+            <td>${percentChange}</td>
+          </tr>
+        `;
+      });
+
+      // Save updated data
+      localStorage.setItem("salesData", JSON.stringify(salesData));
+    }
+
+    // Format date for display
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    }
+
+    // Add new sales entry
+    function addSales() {
+      const date = salesDateEl.value;
+      const amount = parseFloat(salesAmountEl.value);
+
+      if (!date) {
+        alert("Please select a date");
+        return;
+      }
+
+      if (!amount || amount < 0) {
+        alert("Please enter a valid sales amount");
+        return;
+      }
+
+      // Check if date already exists
+      const existingIndex = salesData.findIndex(day => day.date === date);
+      
+      if (existingIndex >= 0) {
+        if (confirm(`Sales data for ${formatDate(date)} already exists ($${salesData[existingIndex].total}). Do you want to update it?`)) {
+          salesData[existingIndex].total = amount;
+        } else {
+          return;
+        }
+      } else {
+        salesData.push({ date, total: amount });
+        // Sort by date
+        salesData.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+
+      loadTable();
+      
+      // Reset form
+      salesAmountEl.value = "";
+      salesDateEl.value = new Date().toISOString().split('T')[0];
+    }
+
+    // Handle enter key press
+    salesAmountEl.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addSales();
+      }
+    });
+
+    // Initial load
+    loadTable();
+  </script>
+
+</body>
+</html>
