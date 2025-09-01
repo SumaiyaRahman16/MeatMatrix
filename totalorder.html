@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Total Orders</title>
+  <title>Total Orders - MeatMatrix</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -110,7 +111,7 @@
       flex-wrap: wrap;
     }
     
-    input[type="number"] { 
+    input[type="number"], input[type="text"], select { 
       flex: 1;
       min-width: 200px;
       padding: 15px 20px;
@@ -122,7 +123,7 @@
       transition: all 0.3s ease;
     }
     
-    input[type="number"]:focus {
+    input[type="number"]:focus, input[type="text"]:focus, select:focus {
       outline: none;
       border-color: #902436;
       box-shadow: 0 0 0 3px rgba(144, 36, 54, 0.1);
@@ -181,10 +182,97 @@
       margin-top: 10px;
     }
     
-    .icon {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
+    .order-history {
+      background: rgba(144, 36, 54, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 30px;
+      border: 2px solid rgba(144, 36, 54, 0.1);
+    }
+    
+    .order-history h3 {
+      color: #902436;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .order-table {
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(144, 36, 54, 0.1);
+      border: 1px solid rgba(144, 36, 54, 0.1);
+    }
+    
+    .order-table th,
+    .order-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid rgba(144, 36, 54, 0.1);
+    }
+    
+    .order-table th {
+      background: linear-gradient(135deg, #902436, #994d64);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .order-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .order-table tr:hover {
+      background: rgba(144, 36, 54, 0.02);
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .action-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .edit-btn {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .edit-btn:hover {
+      background: #2563eb;
+    }
+    
+    .delete-btn {
+      background: #ef4444;
+      color: white;
+    }
+    
+    .delete-btn:hover {
+      background: #dc2626;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    
+    .form-row:last-child {
+      margin-bottom: 0;
     }
     
     @media (max-width: 768px) {
@@ -236,36 +324,65 @@
 
       <!-- Form to add new orders -->
       <div class="add-orders">
-        <h3>Add New Orders</h3>
-        <div class="input-group">
-          <input type="number" id="newOrders" placeholder="Enter number of orders" min="1">
+        <h3>Add New Order</h3>
+        <div class="form-row">
+          <input type="text" id="orderNumber" placeholder="Order Number (e.g. ORD-001)" required>
+          <select id="orderType" required>
+            <option value="">Select Order Type</option>
+            <option value="Beef">Beef</option>
+            <option value="Chicken">Chicken</option>
+            <option value="Mutton">Mutton</option>
+            <option value="Fish">Fish</option>
+            <option value="Mixed">Mixed</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input type="number" id="orderKg" placeholder="Order Weight (kg)" step="0.1" min="0" required>
           <button id="addOrderBtn">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M12 5v14m-7-7h14"/>
-            </svg>
-            Add Orders
+            <i class="fas fa-plus"></i>
+            Add Order
           </button>
         </div>
       </div>
 
+      <!-- Order History -->
+      <div class="order-history">
+        <h3>Order History</h3>
+        <table class="order-table" id="orderTable">
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>Order Type</th>
+              <th>Weight (kg)</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="orderTableBody">
+            <!-- Order entries will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+
       <a href="dashboard.html" class="back-btn">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M19 12H5m7-7l-7 7 7 7"/>
-        </svg>
+        <i class="fas fa-arrow-left"></i>
         Back to Dashboard
       </a>
     </div>
   </div>
 
   <script>
-    // Load existing salesData from localStorage
-    let salesData = JSON.parse(localStorage.getItem("salesData")) || [];
+    // Load existing orderData from localStorage
+    let orderData = JSON.parse(localStorage.getItem("orderData")) || [];
 
     const totalOrdersEl = document.getElementById("totalOrders");
     const orderChangeEl = document.getElementById("orderChange");
     const currentDateEl = document.getElementById("currentDate");
     const addOrderBtn = document.getElementById("addOrderBtn");
-    const newOrdersInput = document.getElementById("newOrders");
+    const orderNumberInput = document.getElementById("orderNumber");
+    const orderTypeInput = document.getElementById("orderType");
+    const orderKgInput = document.getElementById("orderKg");
+    const orderTableBody = document.getElementById("orderTableBody");
 
     // Get today's date in YYYY-MM-DD format
     function getTodayDate() {
@@ -273,25 +390,32 @@
       return today.toISOString().split('T')[0];
     }
 
-    // Initialize today's entry if not exists
-    const todayDate = getTodayDate();
-    if (!salesData.length || salesData[salesData.length - 1].date !== todayDate) {
-      salesData.push({ date: todayDate, total: 0 });
-      localStorage.setItem("salesData", JSON.stringify(salesData));
+    // Calculate total orders for display
+    function calculateTotalOrders() {
+      const today = getTodayDate();
+      return orderData.filter(order => order.date === today).length;
+    }
+
+    // Calculate yesterday's orders for comparison
+    function calculateYesterdayOrders() {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().split('T')[0];
+      return orderData.filter(order => order.date === yesterdayStr).length;
     }
 
     // Function to update total orders display
     function updateDisplay() {
-      const lastDay = salesData[salesData.length - 1];
-      const prevDay = salesData[salesData.length - 2] || null;
+      const todayOrders = calculateTotalOrders();
+      const yesterdayOrders = calculateYesterdayOrders();
+      
+      totalOrdersEl.textContent = todayOrders;
+      currentDateEl.textContent = `Date: ${getTodayDate()}`;
 
-      totalOrdersEl.textContent = `${lastDay.total}`;
-      currentDateEl.textContent = `Date: ${lastDay.date}`;
-
-      if (prevDay) {
-        const percent = prevDay.total === 0 
+      if (yesterdayOrders > 0) {
+        const percent = yesterdayOrders === 0 
           ? 100 
-          : (((lastDay.total - prevDay.total) / prevDay.total) * 100).toFixed(1);
+          : (((todayOrders - yesterdayOrders) / yesterdayOrders) * 100).toFixed(1);
         orderChangeEl.innerHTML =
           percent >= 0 ? `<span class="increase">+${percent}%</span> from yesterday`
                        : `<span class="decrease">${percent}%</span> from yesterday`;
@@ -300,32 +424,124 @@
       }
     }
 
+    // Function to render order table
+    function renderOrderTable() {
+      orderTableBody.innerHTML = "";
+      
+      // Show recent orders (last 10)
+      const recentOrders = orderData.slice(-10).reverse();
+      
+      recentOrders.forEach((order, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${order.orderNumber}</td>
+          <td>${order.orderType}</td>
+          <td>${order.orderKg} kg</td>
+          <td>${order.date}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="action-btn edit-btn" onclick="editOrder(${orderData.length - 1 - index})">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button class="action-btn delete-btn" onclick="deleteOrder(${orderData.length - 1 - index})">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </div>
+          </td>
+        `;
+        orderTableBody.appendChild(row);
+      });
+    }
+
+    // Function to add new order
+    function addOrder() {
+      const orderNumber = orderNumberInput.value.trim();
+      const orderType = orderTypeInput.value;
+      const orderKg = parseFloat(orderKgInput.value);
+
+      if (!orderNumber || !orderType || !orderKg || orderKg <= 0) {
+        alert("Please fill in all fields with valid data");
+        return;
+      }
+
+      // Check if order number already exists
+      if (orderData.some(order => order.orderNumber === orderNumber)) {
+        alert("Order number already exists. Please use a unique order number.");
+        return;
+      }
+
+      const newOrder = {
+        orderNumber: orderNumber,
+        orderType: orderType,
+        orderKg: orderKg,
+        date: getTodayDate()
+      };
+
+      orderData.push(newOrder);
+      localStorage.setItem("orderData", JSON.stringify(orderData));
+
+      // Clear inputs
+      orderNumberInput.value = "";
+      orderTypeInput.value = "";
+      orderKgInput.value = "";
+
+      // Update displays
+      updateDisplay();
+      renderOrderTable();
+    }
+
+    // Function to edit order
+    function editOrder(index) {
+      const order = orderData[index];
+      const newOrderNumber = prompt("Enter new order number:", order.orderNumber);
+      const newOrderType = prompt("Enter new order type (Beef/Chicken/Mutton/Fish/Mixed):", order.orderType);
+      const newOrderKg = prompt("Enter new order weight (kg):", order.orderKg);
+
+      if (newOrderNumber && newOrderType && newOrderKg && parseFloat(newOrderKg) > 0) {
+        // Check if new order number conflicts with existing ones (excluding current)
+        if (newOrderNumber !== order.orderNumber && orderData.some(o => o.orderNumber === newOrderNumber)) {
+          alert("Order number already exists. Please use a unique order number.");
+          return;
+        }
+
+        orderData[index] = {
+          ...order,
+          orderNumber: newOrderNumber,
+          orderType: newOrderType,
+          orderKg: parseFloat(newOrderKg)
+        };
+
+        localStorage.setItem("orderData", JSON.stringify(orderData));
+        updateDisplay();
+        renderOrderTable();
+      }
+    }
+
+    // Function to delete order
+    function deleteOrder(index) {
+      const order = orderData[index];
+      if (confirm(`Are you sure you want to delete order ${order.orderNumber}?`)) {
+        orderData.splice(index, 1);
+        localStorage.setItem("orderData", JSON.stringify(orderData));
+        updateDisplay();
+        renderOrderTable();
+      }
+    }
+
     // Initial display
     updateDisplay();
+    renderOrderTable();
 
-    // Handle adding new orders
-    addOrderBtn.addEventListener("click", () => {
-      const newOrders = parseInt(newOrdersInput.value);
-      if (!newOrders || newOrders <= 0) return alert("Enter a valid number of orders");
+    // Event listeners
+    addOrderBtn.addEventListener("click", addOrder);
 
-      // Update today's total
-      salesData[salesData.length - 1].total += newOrders;
-
-      // Save to localStorage
-      localStorage.setItem("salesData", JSON.stringify(salesData));
-
-      // Update display
-      updateDisplay();
-
-      // Clear input
-      newOrdersInput.value = "";
-    });
-
-    // Handle enter key press
-    newOrdersInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        addOrderBtn.click();
-      }
+    // Handle enter key press in form inputs
+    [orderNumberInput, orderTypeInput, orderKgInput].forEach(input => {
+      input.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          addOrder();
+        }
+      });
     });
   </script>
 </body>

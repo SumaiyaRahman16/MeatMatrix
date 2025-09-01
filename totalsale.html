@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Total Sales</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -230,23 +231,10 @@
       transform: translateX(-5px);
     }
     
-    .icon {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-    
     .empty-state {
       text-align: center;
       padding: 60px 20px;
       color: #666;
-    }
-    
-    .empty-state svg {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 20px;
-      opacity: 0.5;
     }
     
     @media (max-width: 1024px) {
@@ -301,19 +289,15 @@
     </div>
     
     <div class="content">
-      <!-- Main Sales Card -->
       <div class="stats-grid">
         <div class="main-card">
-          <h2 id="totalSales">$0</h2>
+          <h2 id="totalSales">৳0</h2>
           <p id="percentChange">No data yet</p>
         </div>
       </div>
 
-      <!-- Sales Table -->
       <div class="section-title">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M3 3h18v18H3zM9 9h6v6H9z"/>
-        </svg>
+        <i class="fas fa-table"></i>
         Daily Sales History
       </div>
       
@@ -324,40 +308,34 @@
               <th>Date</th>
               <th>Total Sales</th>
               <th>Change from Previous</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody id="salesTable">
-            <!-- Filled by JavaScript -->
           </tbody>
         </table>
       </div>
 
-      <!-- Form to add new sales -->
       <div class="form-section">
         <h3>Add New Sales Entry</h3>
         <div class="form-row">
           <input type="date" id="salesDate" required>
-          <input type="number" id="salesAmount" placeholder="Enter sales amount ($)" min="0" step="0.01" required>
+          <input type="number" id="salesAmount" placeholder="Enter sales amount (৳)" min="0" step="0.01" required>
           <button onclick="addSales()">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M12 5v14m-7-7h14"/>
-            </svg>
+            <i class="fas fa-plus"></i>
             Add Sales
           </button>
         </div>
       </div>
 
       <a href="dashboard.html" class="back-btn">
-        <svg class="icon" viewBox="0 0 24 24">
-          <path d="M19 12H5m7-7l-7 7 7 7"/>
-        </svg>
+        <i class="fas fa-arrow-left"></i>
         Back to Dashboard
       </a>
     </div>
   </div>
 
   <script>
-    // Get or initialize sales data from localStorage
     let salesData = JSON.parse(localStorage.getItem("salesData")) || [];
 
     const totalSalesEl = document.getElementById("totalSales");
@@ -366,33 +344,26 @@
     const salesDateEl = document.getElementById("salesDate");
     const salesAmountEl = document.getElementById("salesAmount");
 
-    // Set today's date as default
     salesDateEl.value = new Date().toISOString().split('T')[0];
 
-    // Load existing sales into table
     function loadTable() {
       if (salesData.length === 0) {
         salesTableEl.innerHTML = `
           <tr>
-            <td colspan="3" class="empty-state">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
+            <td colspan="4" class="empty-state">
+              <i class="fas fa-clock" style="font-size: 64px; margin-bottom: 20px; opacity: 0.5;"></i>
               <p>No sales data yet. Add your first sales entry!</p>
             </td>
           </tr>
         `;
-        totalSalesEl.textContent = "$0";
+        totalSalesEl.textContent = "৳0";
         percentChangeEl.textContent = "No data yet";
         return;
       }
 
-      // Calculate total sales
       const totalAmount = salesData.reduce((sum, day) => sum + day.total, 0);
-      totalSalesEl.textContent = `$${totalAmount.toLocaleString()}`;
+      totalSalesEl.textContent = `৳${totalAmount.toLocaleString()}`;
 
-      // Calculate overall change
       if (salesData.length > 1) {
         const latestDay = salesData[salesData.length - 1];
         const previousDay = salesData[salesData.length - 2];
@@ -407,7 +378,6 @@
         percentChangeEl.textContent = "First entry";
       }
 
-      // Populate table
       salesTableEl.innerHTML = "";
       salesData.forEach((day, index) => {
         let percentChange = "-";
@@ -424,17 +394,19 @@
         salesTableEl.innerHTML += `
           <tr>
             <td>${formatDate(day.date)}</td>
-            <td>$${day.total.toLocaleString()}</td>
+            <td>৳${day.total.toLocaleString()}</td>
             <td>${percentChange}</td>
+            <td>
+              <button class="edit-btn" onclick="editSales(${index})" style="background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 0.8rem;"><i class="fas fa-edit"></i> Edit</button>
+              <button class="delete-btn" onclick="deleteSales(${index})" style="background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;"><i class="fas fa-trash"></i> Delete</button>
+            </td>
           </tr>
         `;
       });
 
-      // Save updated data
       localStorage.setItem("salesData", JSON.stringify(salesData));
     }
 
-    // Format date for display
     function formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', { 
@@ -445,7 +417,6 @@
       });
     }
 
-    // Add new sales entry
     function addSales() {
       const date = salesDateEl.value;
       const amount = parseFloat(salesAmountEl.value);
@@ -460,36 +431,53 @@
         return;
       }
 
-      // Check if date already exists
       const existingIndex = salesData.findIndex(day => day.date === date);
       
       if (existingIndex >= 0) {
-        if (confirm(`Sales data for ${formatDate(date)} already exists ($${salesData[existingIndex].total}). Do you want to update it?`)) {
+        if (confirm(`Sales data for ${formatDate(date)} already exists (৳${salesData[existingIndex].total}). Do you want to update it?`)) {
           salesData[existingIndex].total = amount;
         } else {
           return;
         }
       } else {
         salesData.push({ date, total: amount });
-        // Sort by date
         salesData.sort((a, b) => new Date(a.date) - new Date(b.date));
       }
 
       loadTable();
       
-      // Reset form
       salesAmountEl.value = "";
       salesDateEl.value = new Date().toISOString().split('T')[0];
     }
 
-    // Handle enter key press
     salesAmountEl.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         addSales();
       }
     });
 
-    // Initial load
+    function editSales(index) {
+      const entry = salesData[index];
+      const newAmount = prompt(`Edit sales amount for ${formatDate(entry.date)}:`, entry.total);
+      
+      if (newAmount !== null && !isNaN(newAmount) && parseFloat(newAmount) >= 0) {
+        salesData[index].total = parseFloat(newAmount);
+        loadTable();
+        alert('Sales entry updated successfully!');
+      } else if (newAmount !== null) {
+        alert('Please enter a valid sales amount');
+      }
+    }
+
+    function deleteSales(index) {
+      const entry = salesData[index];
+      if (confirm(`Are you sure you want to delete the sales entry for ${formatDate(entry.date)} (৳${entry.total})?`)) {
+        salesData.splice(index, 1);
+        loadTable();
+        alert('Sales entry deleted successfully!');
+      }
+    }
+
     loadTable();
   </script>
 
