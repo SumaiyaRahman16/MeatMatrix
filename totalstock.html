@@ -25,12 +25,12 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #b1a4c8 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #d0a6a6 0%, #ff6363 100%);
+            color: #fff;
+            padding: 2.5rem 2rem 2rem 2rem;
+            border-radius: 15px;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 16px rgba(185,166,208,0.18);
         }
 
         .header h1 {
@@ -44,36 +44,44 @@
         }
 
         .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #d0a6a6;
+            color: #fff;
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.12);
             text-align: center;
+            min-width: 180px;
+            max-width: 220px;
+            margin: 0 0.5rem;
+            transition: box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            box-shadow: 0px 8px 24px rgba(108,99,255,0.18);
         }
 
         .stat-card h3 {
-            color: #666;
-            font-size: 0.9rem;
+            color: #fff;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .stat-card .number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #333;
+            color: #fff;
         }
 
         .stat-card.low-stock .number {
-            color: #f39c12;
+            color: #f5b642;
         }
 
         .stat-card.expired .number {
@@ -81,14 +89,14 @@
         }
 
         .inventory-table {
-            background: white;
-            border-radius: 10px;
+            background: #fff;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 16px rgba(185,166,208,0.10);
         }
 
         .table-header {
-            background: #34495e;
+            background: #5e3434;
             color: white;
             padding: 1rem;
             display: flex;
@@ -278,12 +286,12 @@
         </div>
 
         <!-- Alerts -->
-        <div class="alert alert-warning">
-            <strong>⚠️ Low Stock Alert:</strong> Chicken and Duck are running low on stock!
+        <div class="alert alert-warning" id="low-stock-alert">
+            <strong>⚠️ Low Stock Alert:</strong> <span id="low-stock-msg">Chicken and Duck are running low on stock!</span>
         </div>
 
-        <div class="alert alert-danger">
-            <strong>🚨 Expired Items:</strong> 2kg of Beef has expired and needs immediate attention!
+        <div class="alert alert-danger" id="expired-alert">
+            <strong>🚨 Expired Items:</strong> <span id="expired-msg">2kg of Beef has expired and needs immediate attention!</span>
         </div>
 
         <!-- Dashboard Stats -->
@@ -489,11 +497,71 @@
         }
 
         function updateStats() {
-            // This would recalculate the dashboard statistics
-            // In a real application, you would update the stat cards
-            console.log('Stats updated');
-        }
+            // Recalculate dashboard statistics based on table data
+            const rows = document.querySelectorAll('tbody tr');
+            let totalItems = 0;
+            let totalStock = 0;
+            let lowStock = 0;
+            let expired = 0;
 
+            rows.forEach(row => {
+                // Only count visible inventory rows (not edit forms)
+                if (row.classList.contains('edit-form')) return;
+                const amountCell = row.querySelector('.amount');
+                const expiredCell = row.querySelector('.expired-amount');
+                const statusSpan = row.querySelector('.status');
+                if (!amountCell || !expiredCell || !statusSpan) return;
+                totalItems++;
+                const amount = parseInt(amountCell.textContent) || 0;
+                const expiredAmount = parseInt(expiredCell.textContent) || 0;
+                totalStock += amount;
+                expired += expiredAmount;
+                if (statusSpan.classList.contains('low-stock')) lowStock++;
+            });
+
+            // Update stat cards
+            document.querySelector('.stat-card:nth-child(1) .number').textContent = totalItems;
+            document.querySelector('.stat-card:nth-child(2) .number').textContent = totalStock + 'kg';
+            document.querySelector('.stat-card:nth-child(3) .number').textContent = lowStock;
+            document.querySelector('.stat-card:nth-child(4) .number').textContent = expired + 'kg';
+
+            // Dynamic Low Stock Alert
+            let lowStockMeats = [];
+            rows.forEach(row => {
+                if (row.classList.contains('edit-form')) return;
+                const meatNameCell = row.querySelector('.meat-name');
+                const statusSpan = row.querySelector('.status');
+                if (!meatNameCell || !statusSpan) return;
+                if (statusSpan.classList.contains('low-stock')) {
+                    // Remove emoji for alert
+                    let name = meatNameCell.textContent.replace(/^[^a-zA-Z]+\s*/, '');
+                    lowStockMeats.push(name);
+                }
+            });
+            const lowStockMsg = lowStockMeats.length > 0
+                ? lowStockMeats.join(' and ') + (lowStockMeats.length === 1 ? ' is' : ' are') + ' running low on stock!'
+                : 'All items are sufficiently stocked.';
+            document.getElementById('low-stock-msg').textContent = lowStockMsg;
+
+            // Dynamic Expired Items Alert
+            let expiredMeats = [];
+            rows.forEach(row => {
+                if (row.classList.contains('edit-form')) return;
+                const meatNameCell = row.querySelector('.meat-name');
+                const expiredCell = row.querySelector('.expired-amount');
+                if (!meatNameCell || !expiredCell) return;
+                const expiredAmount = parseInt(expiredCell.textContent) || 0;
+                if (expiredAmount > 0) {
+                    let name = meatNameCell.textContent.replace(/^[^a-zA-Z]+\s*/, '');
+                    expiredMeats.push(expiredAmount + 'kg of ' + name);
+                }
+            });
+            const expiredMsg = expiredMeats.length > 0
+                ? expiredMeats.join(', ') + ' has expired and needs immediate attention!'
+                : 'No expired items.';
+            document.getElementById('expired-msg').textContent = expiredMsg;
+        }
+        
         // Auto-refresh every 30 seconds (in a real app, this would fetch from server)
         setInterval(function() {
             console.log('Auto-refreshing data...');

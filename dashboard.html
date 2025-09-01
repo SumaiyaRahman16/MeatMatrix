@@ -5,89 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Management Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="dashboard">
         <!-- Icon Sidebar -->
         <div class="sidebar-icons">
             <div class="logo">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9,22 9,12 15,12 15,22"/>
-                </svg>
+                <i class="fas fa-home icon"></i>
             </div>
             
             <div class="nav-icon active" id="dashboardToggle" style="cursor: pointer;">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
+                <i class="fas fa-home icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                </svg>
+                <i class="fas fa-user icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6"/>
-                </svg>
+                <i class="fas fa-trophy icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="9" cy="21" r="1"/>
-                    <circle cx="20" cy="21" r="1"/>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                </svg>
+                <i class="fas fa-shopping-cart icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                </svg>
+                <i class="fas fa-box icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                </svg>
+                <i class="fas fa-chart-line icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
+                <i class="fas fa-comments icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                </svg>
+                <i class="fas fa-cog icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                </svg>
+                <i class="fas fa-star icon"></i>
             </div>
             
             <div class="nav-icon">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12,6 12,12 16,14"/>
-                </svg>
+                <i class="fas fa-clock icon"></i>
             </div>
             
             <div class="nav-icon" style="margin-top: auto;">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16,17 21,12 16,7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
+                <i class="fas fa-sign-out-alt icon"></i>
             </div>
         </div>
 
@@ -96,86 +66,57 @@
             <div class="dashboard-btn">Dashboard</div>
             
             <div class="nav-item active">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
+                <i class="fas fa-home icon"></i>
                 <span>Dashboard</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                </svg>
+                <i class="fas fa-user icon"></i>
                 <span>Profile</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M6 9l6 6 6-6"/>
-                </svg>
+                <i class="fas fa-trophy icon"></i>
                 <span>Leaderboard</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="9" cy="21" r="1"/>
-                    <circle cx="20" cy="21" r="1"/>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                </svg>
+                <i class="fas fa-shopping-cart icon"></i>
                 <span>Order</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                </svg>
+                <i class="fas fa-box icon"></i>
                 <span>Product</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                </svg>
+                <i class="fas fa-chart-line icon"></i>
                 <span>Sales Report</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
+                <i class="fas fa-comments icon"></i>
                 <span>Message</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                </svg>
+                <i class="fas fa-cog icon"></i>
                 <span>Settings</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                </svg>
+                <i class="fas fa-star icon"></i>
                 <span>Favourite</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12,6 12,12 16,14"/>
-                </svg>
+                <i class="fas fa-clock icon"></i>
                 <span>History</span>
             </div>
             
             <div class="nav-item">
-                <svg class="icon" viewBox="0 0 24 24">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16,17 21,12 16,7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
+                <i class="fas fa-sign-out-alt icon"></i>
                 <span>Signout</span>
             </div>
         </div>
@@ -186,26 +127,18 @@
             <!-- Header -->
             <div class="header">
                 <div class="search-container">
-                    <svg class="search-icon icon-sm" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
+                    <i class="fas fa-search search-icon icon-sm"></i>
                     <input type="text" class="search-input" placeholder="Search here...">
                 </div>
                 
                 <div class="header-right">
                     <div class="notification">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                        </svg>
+                        <i class="fas fa-bell icon"></i>
                     </div>
                     
                     <div class="user-profile">
                         <div class="avatar"></div>
-                        <svg class="icon-sm" viewBox="0 0 24 24">
-                            <polyline points="6,9 12,15 18,9"/>
-                        </svg>
+                        <i class="fas fa-chevron-down icon-sm"></i>
                     </div>
                 </div>
             </div>
@@ -220,9 +153,7 @@
                     <div class="sales-cards">
                         <div class="sales-card" onclick="window.location.href='totalsale.html'" style="cursor: pointer;">
                             <div class="card-icon yellow">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
-                                </svg>
+                                <i class="fas fa-chart-line icon"></i>
                             </div>
                             <div class="card-value">$5k</div>
                             <div class="card-label">Total Sales</div>
@@ -231,11 +162,7 @@
                         
                         <div class="sales-card" onclick="window.location.href='totalorder.html'" style="cursor: pointer;">
                             <div class="card-icon blue">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <line x1="18" y1="20" x2="18" y2="10"/>
-                                    <line x1="12" y1="20" x2="12" y2="4"/>
-                                    <line x1="6" y1="20" x2="6" y2="14"/>
-                                </svg>
+                                <i class="fas fa-chart-bar icon"></i>
                             </div>
                             <div class="card-value">500</div>
                             <div class="card-label">Total Order</div>
@@ -244,9 +171,7 @@
                         
                         <div class="sales-card">
                             <div class="card-icon teal">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                </svg>
+                                <i class="fas fa-box icon"></i>
                             </div>
                             <div class="card-value">9</div>
                             <div class="card-label">Product Sold</div>
@@ -255,12 +180,7 @@
                         
                         <div class="sales-card">
                             <div class="card-icon blue">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
+                                <i class="fas fa-users icon"></i>
                             </div>
                             <div class="card-value">12</div>
                             <div class="card-label">New Customer</div>
@@ -326,17 +246,50 @@
                         <div class="chart-container" onclick="window.location.href='totalstock.html'" style="cursor: pointer;">
                             <h3 class="section-title">Total Stock</h3>
                             <div class="donut-chart">
-                                <svg width="200" height="200" viewBox="0 0 200 200">
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="16"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#5a1a23" stroke-width="16" 
-                                            stroke-dasharray="125.6" stroke-dashoffset="31.4" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#6b2332" stroke-width="16" 
-                                            stroke-dasharray="125.6" stroke-dashoffset="62.8" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="16" 
-                                            stroke-dasharray="125.6" stroke-dashoffset="94.2" transform="rotate(-90 100 100)"/>
-                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="16" 
-                                            stroke-dasharray="125.6" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                                </svg>
+                                <div style="position: relative; width: 240px; height: 240px; margin: 0 auto;">
+                                    <svg id="stockDonutChart" width="240" height="240" viewBox="0 0 240 240" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));">
+                                        <defs>
+                                            <linearGradient id="outerDonutGradient" x1="0" y1="0" x2="1" y2="1">
+                                                <stop offset="0%" stop-color="#2563eb"/> <!-- blue -->
+                                                <stop offset="50%" stop-color="#06b6d4"/> <!-- cyan -->
+                                                <stop offset="100%" stop-color="#a78bfa"/> <!-- yash (purple) -->
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="120" cy="120" r="105" fill="none" stroke="url(#outerDonutGradient)" stroke-width="10"/>
+                                        <circle cx="120" cy="120" r="90" fill="#f8e7ef" stroke="#e5e7eb" stroke-width="18"/>
+                                    </svg>
+                                    <div id="donutLabels" style="position: absolute; top: 0; left: 0; width: 240px; height: 240px; pointer-events: none;"></div>
+                                </div>
+                                <div class="donut-legend" style="display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 1.1em;">
+                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                        <span style="display: flex; align-items: center;">
+                                            <span style="width: 16px; height: 16px; background: #2563eb; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            Beef
+                                        </span>
+                                        <span id="beefPercent" style="color: #2563eb; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                    </span>
+                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                        <span style="display: flex; align-items: center;">
+                                            <span style="width: 16px; height: 16px; background: #06b6d4; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            Chicken
+                                        </span>
+                                        <span id="chickenPercent" style="color: #06b6d4; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                    </span>
+                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                        <span style="display: flex; align-items: center;">
+                                            <span style="width: 16px; height: 16px; background: #a78bfa; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            Duck
+                                        </span>
+                                        <span id="duckPercent" style="color: #a78bfa; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                    </span>
+                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                        <span style="display: flex; align-items: center;">
+                                            <span style="width: 16px; height: 16px; background: #334155; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            Mutton
+                                        </span>
+                                        <span id="muttonPercent" style="color: #334155; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         
@@ -344,16 +297,26 @@
                             <h3 class="section-title">Inventory Categories</h3>
                             <div class="category-grid">
                                 <div class="category-item">
-                                    <div class="category-icon">🐔</div>
+                                    <div class="category-icon"><i class="fas fa-drumstick-bite"></i></div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon">🐐</div>
+                                    <div class="category-icon">
+                                        <!-- Duck SVG from noun-duck-7803424.svg -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
+                                            <path d="m87.398 33.301h-1.1992c-7.8984-2.1016-7.3008-4.5-7.3008-4.5-0.80078-7.8008-9-7.8008-9-7.8008-12-0.80078-12 13.898-8.8984 19.102 3 5.1992-4.8008 7.6992-13.699 7.6992-13.102 0-34.398 6.3008-34.398 6.3008l5.1016 3.3984-8.1992 3c5.6016 1.5 19.801 7.8984 19.801 7.8984 12.301 7.1016 27.801 7.6992 27.801 7.6992 39.293 2.9023 29.793-27.199 20.293-30.898-5.5-2.1016-5.1016-5.6992-5.1016-5.6992 0-0.89844 0.39844-1.5 1.1016-2h13.801c1.1016 0 2.1016-0.89844 2.1016-2.1016-0.10156-1.0977-1.1016-2.0977-2.2031-2.0977z"/>
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon">🦆</div>
+                                    <div class="category-icon">
+                                        <!-- Goat SVG from noun-goat-7929333.svg -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
+                                            <path d="m80.273 35.797-4.4414-4.0391c0.10938-1.9609-0.91016-3.8164-2.625-4.7773-0.42188-4.8594-2.9453-7.7383-7.7422-8.4805 2.4688 2.0781 3.9531 4.4883 4.375 7.2695l-1.2773 0.33594c-2.8242-6.4141-7.543-8.8008-14.27-6.9336 5.5469 1.4062 9.2188 4.1953 10.77 8.5469l-1.3125 0.875c-1.8711-1.8945-4.3555-2.6641-7.5703-2.0859 0.70312 3.957 3.1367 5.6562 6.4609 6.1914-1.6445 5.125-4.9492 6.9805-9.2891 6.8008-7.2617 0-20.258-4.6523-26.586 2.2227-3.1914-0.34375-5.5312-2.1406-7.0664-5.3164-1.9219 5.6992-0.35938 8.8633 4.5078 9.625v-0.003906c-1.0703 3.8516-0.48438 7.9766 1.6133 11.375 1.3242 2.4727 0.76563 5.0547-1.4883 7.1016-0.64062 0.55859-0.94922 1.4102-0.81641 2.25 0.72266 4.0938 1.3203 7.9922 1.1641 10.734-0.027344 0.47656 0.25391 0.91406 0.69922 1.0859 0.35938 0.14453 0.61719 0.46484 0.68359 0.84766l0.36328 2.0781h4.1797c0.25391 0 0.49219-0.11719 0.64453-0.32031 0.15625-0.19922 0.20703-0.46094 0.13672-0.70703-0.71484-2.5781-3.6445-5.8477-3.4805-8.668 0.066406-2.3047 0.39844-4.0859 1.75-4.3086v0.003906c1.3906 3.4258 2.4766 6.9648 3.2461 10.582 0.10547 0.59766 0.625 1.0352 1.2344 1.0352 0.46094 0 0.88281 0.25391 1.1055 0.65625l0.94531 1.7266h3.0391c0.25781 0 0.5-0.12109 0.65234-0.32812s0.19922-0.47266 0.125-0.71875c-0.63672-2.1484-3.0859-3.6836-4.2891-5.8203-1.5625-2.6758-2-6.2109-1.8828-10.164v0.003906c1.332-0.70703 2.3281-1.9219 2.7578-3.3672 5.9297 1.1914 12.027 1.2344 17.973 0.13281 0.57812 6.4688 1.1016 12.797 0.57422 16.703-0.023438 0.17188 0.023437 0.34375 0.12891 0.47656 0.10938 0.13281 0.26562 0.21484 0.4375 0.22656h0.011719c0.30078 0.015625 0.54688 0.25391 0.57031 0.55859l0.17969 2.2969h4.0977c0.25781 0 0.49609-0.125 0.64844-0.33203 0.15625-0.20703 0.19922-0.47266 0.125-0.71875-0.17578-0.55469-0.41406-1.0898-0.70703-1.5898-1.3398-2.4648-1.9766-5.25-1.8398-8.0547 0.14063-3.2227 0.59766-6.4258 1.3594-9.5625l2.9648 15.91c0.074219 0.41406 0.4375 0.71484 0.85938 0.71484 0.37109 0 0.69922 0.23047 0.82422 0.58203l1.0742 3.0508h4.8125c0.34766 0 0.66406-0.19922 0.82031-0.51172 0.15234-0.3125 0.11719-0.6875-0.09375-0.96484-1.2422-1.6602-3.2383-2.5625-4.5312-4.3828-1.8164-2.6016-1.6875-9.9336-1.5469-17.297 4.6602-5.8516 2.2891-13.93 6.1914-18.844l1.6836 0.67188c-0.90625 2.7656 0.17969 4.6406 2.8945 5.7891-0.62891-1.8516-0.68359-3.5977 0.47266-5.1172 3.1875 1.3984 5.9727-2.7734 3.6992-5.0469z"/>
+                                        </svg>
+                                    </div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon">🐄</div>
+                                    <div class="category-icon"><i class="fas fa-cow"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +355,7 @@
                                 <polyline fill="none" stroke="#f2c8ed" stroke-width="2" 
                                          points="0,110 50,105 100,100 150,95 200,90 250,85 300,80"/>
                             </svg>
-                        </div>
+                        </div>okay 
                         <div class="chart-stats">
                             <div class="stat-row">
                                 <div class="legend-item">
@@ -444,6 +407,54 @@
             if (!isClickInsideSidebar && extendedSidebar.classList.contains('show')) {
                 extendedSidebar.classList.remove('show');
             }
+        });
+
+        // --- Dynamic Donut Chart for Total Stock ---
+        // Stock data from totalstock.html
+        const stockData = [
+            { name: 'Beef', value: 15, color: '#2563eb' },      // blue
+            { name: 'Chicken', value: 8, color: '#06b6d4' },    // cyan
+            { name: 'Duck', value: 5, color: '#a78bfa' },       // yash (purple)
+            { name: 'Mutton', value: 19, color: '#334155' }     // slate (neutral)
+        ];
+        const totalStock = stockData.reduce((sum, item) => sum + item.value, 0); // 47
+        const radius = 90;
+        const center = 120;
+        const circumference = 2 * Math.PI * radius;
+        let offset = 0;
+        const svg = document.getElementById('stockDonutChart');
+        const labelContainer = document.getElementById('donutLabels');
+        // Remove previous segments if any
+        while (svg.children.length > 1) svg.removeChild(svg.lastChild);
+        labelContainer.innerHTML = '';
+        stockData.forEach((item, idx) => {
+            const percent = item.value / totalStock;
+            const dash = percent * circumference;
+            // Draw segment
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', center);
+            circle.setAttribute('cy', center);
+            circle.setAttribute('r', radius);
+            circle.setAttribute('fill', 'none');
+            circle.setAttribute('stroke', item.color);
+            circle.setAttribute('stroke-width', '18');
+            circle.setAttribute('stroke-dasharray', dash + ',' + (circumference - dash));
+            circle.setAttribute('stroke-dashoffset', offset);
+            circle.setAttribute('transform', `rotate(-90 ${center} ${center})`);
+            circle.setAttribute('style', 'transition: stroke-dasharray 0.8s; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.10));');
+            svg.appendChild(circle);
+            // Set percentage under legend name
+            const percentText = Math.round(percent * 100) + '%';
+            if (item.name === 'Beef') {
+                document.getElementById('beefPercent').textContent = percentText;
+            } else if (item.name === 'Chicken') {
+                document.getElementById('chickenPercent').textContent = percentText;
+            } else if (item.name === 'Duck') {
+                document.getElementById('duckPercent').textContent = percentText;
+            } else if (item.name === 'Mutton') {
+                document.getElementById('muttonPercent').textContent = percentText;
+            }
+            offset -= dash;
         });
     </script>
 </body>
