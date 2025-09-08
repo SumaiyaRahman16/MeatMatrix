@@ -12,6 +12,31 @@
       color: #fff;
     }
 
+    /* Top navigation row */
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 12px 20px;
+    }
+
+    .top-row button {
+      background: #902436;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .top-row button:hover {
+      background: #73202c;
+    }
+
+    /* Page header */
     header {
       background: rgba(0, 0, 0, 0.6);
       padding: 15px;
@@ -20,6 +45,7 @@
       font-weight: bold;
     }
 
+    /* Grid container for items */
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -27,6 +53,7 @@
       padding: 30px;
     }
 
+    /* Item card */
     .card {
       background: #fff;
       color: #333;
@@ -68,8 +95,17 @@
   </style>
 </head>
 <body>
+
+  <!-- Top row with profile and orders -->
+  <div class="top-row">
+    <button onclick="goToProfile()">Profile</button>
+    <button onclick="viewOrders()">My Orders</button>
+  </div>
+
+  <!-- Page header -->
   <header>Available Items for Sale</header>
 
+  <!-- Items grid -->
   <div class="container">
     <!-- Meat -->
     <div class="card">
@@ -106,9 +142,17 @@
 
   <script>
     function orderNow(itemName) {
-      // redirect to order page with selected item as query parameter
       window.location.href = "order.html?item=" + encodeURIComponent(itemName);
     }
+
+    function goToProfile() {
+      window.location.href = "profile.html"; // replace with actual profile page
+    }
+
+    function viewOrders() {
+      window.location.href = "orders.html"; // replace with actual orders page
+    }
   </script>
+
 </body>
 </html>

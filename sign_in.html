@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeatMatrix - Login</title>
+  <title>Meat Matrix</title>
   <style>
+    /* Body and background */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       background: linear-gradient(135deg, #902436 0%, #994d64 100%);
       display: flex;
@@ -15,40 +17,61 @@
       height: 100vh;
     }
 
+    /* Login container */
     .login-container {
       background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-      width: 350px;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      width: 360px;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .login-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 28px;
       color: #a83232;
+      letter-spacing: 1px;
     }
 
+
+    /* Input fields */
     input[type="text"],
     input[type="password"] {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 14px;
+      margin: 12px 0;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
     }
 
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #a83232;
+      box-shadow: 0 0 8px rgba(168, 50, 50, 0.3);
+      outline: none;
+    }
+
+    /* Login button */
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       background: #a83232;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 20px;
       transition: 0.3s;
     }
 
@@ -56,57 +79,33 @@
       background: #7a2424;
     }
 
+    /* Signup link */
     .link {
-      margin-top: 15px;
+      margin-top: 18px;
       display: block;
       font-size: 14px;
       color: #a83232;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
 
     .link:hover {
+      color: #7a2424;
       text-decoration: underline;
     }
   </style>
 </head>
+
 <body>
   <div class="login-container">
-    <h2>Log in</h2>
-    <!--
-    <form onsubmit="return validateLogin(event)">
-      <input type="text" id="userIdEmail" placeholder="Email or User ID" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    -->
-
+    <h2>Meat Matrix</h2>
     <form action="dashboard.html">
       <input type="text" id="userIdEmail" placeholder="Email or User ID" required>
       <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
-
-
     <a href="login.html" class="link">Don’t have an account? Sign up</a>
   </div>
-
-  <!--
-<script>
-    function validateLogin(event) {
-      event.preventDefault();
-
-      let userIdEmail = document.getElementById("userIdEmail").value;
-      let password = document.getElementById("password").value;
-
-      // Demo check (replace with real backend check)
-      if ((userIdEmail === "test@example.com" || userIdEmail === "testuser") && password === "12345") {
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Invalid Email/User ID or Password!");
-      }
-    }
-</script>
--->
-
 </body>
+
 </html>
