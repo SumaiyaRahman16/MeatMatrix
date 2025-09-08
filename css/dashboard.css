@@ -19,8 +19,9 @@ body {
 
 /* Sidebar Styles */
 .sidebar-icons {
-    width: 64px;
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,13 +32,28 @@ body {
 .sidebar-icons .logo {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
-    box-shadow: 0 4px 15px rgba(90, 26, 35, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 4px 15px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.25); */
 }
 
 .sidebar-icons .nav-icon {
@@ -61,8 +77,17 @@ body {
 
 .sidebar-icons .nav-icon.active {
     color: white;
-    background: linear-gradient(135deg, #4d1b23, #772d43);
-    box-shadow: 0 4px 15px rgba(90, 26, 35, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    box-shadow: 0 4px 15px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280);
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.25); */
 }
 
 .sidebar-extended {
@@ -85,20 +110,43 @@ body {
 }
 
 .sidebar-extended .dashboard-btn {
-    background: linear-gradient(135deg, #5d1e27, #3a141c);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     color: white;
     padding: 12px 20px;
     border-radius: 12px;
     font-weight: 600;
     margin-bottom: 32px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(90, 26, 35, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 4px 15px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.25); */
+    
     transition: all 0.3s ease;
 }
 
 .sidebar-extended .dashboard-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(90, 26, 35, 0.4);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 8px 25px rgba(139, 38, 53, 0.35);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.35); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.35); */
 }
 
 .sidebar-extended .nav-item {
@@ -114,14 +162,34 @@ body {
 }
 
 .sidebar-extended .nav-item:hover {
-    color: #5a1a23;
-    background: rgba(90, 26, 35, 0.1);
+    /* Option 1: Professional Reddish + Gray */
+    color: #8B2635;
+    background: rgba(139, 38, 53, 0.1);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    color: #1e3a8a;
+    background: rgba(30, 58, 138, 0.1); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    color: #374151;
+    background: rgba(55, 65, 81, 0.1); */
+    
     transform: translateX(5px);
 }
 
 .sidebar-extended .nav-item.active {
-    color: #5a1a23;
-    background: rgba(90, 26, 35, 0.15);
+    /* Option 1: Professional Reddish + Gray */
+    color: #8B2635;
+    background: rgba(139, 38, 53, 0.15);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    color: #1e3a8a;
+    background: rgba(30, 58, 138, 0.15); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    color: #374151;
+    background: rgba(55, 65, 81, 0.15); */
+    
     font-weight: 600;
 }
 
@@ -166,9 +234,17 @@ body {
     width: 100%;
     padding: 12px 12px 12px 40px;
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(82, 25, 25, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    border: 2px solid rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    border: 2px solid rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    border: 2px solid rgba(55, 65, 81, 0.25); */
+    
     border-radius: 12px;
-    color: #703333;
+    color: #333;
     font-size: 14px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -176,8 +252,18 @@ body {
 
 .search-input:focus {
     outline: none;
-    border-color: #5a1a23;
-    box-shadow: 0 0 0 3px rgba(90, 26, 35, 0.1);
+    /* Option 1: Professional Reddish + Gray */
+    border-color: #8B2635;
+    box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.1);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    border-color: #374151;
+    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
+    
     transform: translateY(-1px);
 }
 
@@ -220,9 +306,19 @@ body {
     right: -2px;
     width: 8px;
     height: 8px;
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    box-shadow: 0 2px 8px rgba(139, 38, 53, 0.35);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    box-shadow: 0 2px 8px rgba(30, 58, 138, 0.35); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280);
+    box-shadow: 0 2px 8px rgba(55, 65, 81, 0.35); */
+    
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(90, 26, 35, 0.4);
 }
 
 .user-profile {
@@ -243,9 +339,24 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 15px rgba(90, 26, 35, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 4px 15px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.25); */
 }
 
 /* Content Grid */
@@ -279,7 +390,15 @@ body {
 }
 
 .sales-card {
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     backdrop-filter: blur(20px);
     padding: 24px;
     border-radius: 16px;
@@ -291,8 +410,17 @@ body {
 
 .sales-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(144, 36, 54, 0.3);
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 20px 60px rgba(139, 38, 53, 0.25);
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 20px 60px rgba(30, 58, 138, 0.25);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 20px 60px rgba(55, 65, 81, 0.25);
+    background: linear-gradient(135deg, #374151, #6b7280); */
 }
 
 .card-icon {
@@ -356,7 +484,15 @@ body {
 
 /* Inventory Dashboard */
 .inventory-dashboard {
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     backdrop-filter: blur(20px);
     padding: 32px;
     border-radius: 20px;
@@ -420,13 +556,28 @@ body {
 }
 
 .sales-percentage {
-    background: linear-gradient(135deg, #5a1a23, #6b2332);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     color: white;
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(90, 26, 35, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 2px 8px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 2px 8px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 2px 8px rgba(55, 65, 81, 0.25); */
 }
 
 /* Bottom Grid */
@@ -437,7 +588,15 @@ body {
 }
 
 .chart-container {
-    background: linear-gradient(135deg, #4d1b23, #772d43);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     backdrop-filter: blur(20px);
     padding: 32px;
     border-radius: 20px;
@@ -453,7 +612,14 @@ body {
 
 .chart-container:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(144, 36, 54, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 20px 60px rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 20px 60px rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 20px 60px rgba(55, 65, 81, 0.25); */
 }
 
 /* Donut Chart */
@@ -493,7 +659,15 @@ body {
 .category-icon {
     width: 52px;
     height: 52px;
-    background: linear-gradient(135deg, rgba(90, 26, 35, 0.1), rgba(107, 35, 50, 0.1));
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, rgba(139, 38, 53, 0.1), rgba(107, 107, 107, 0.1));
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(59, 130, 246, 0.1)); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, rgba(55, 65, 81, 0.1), rgba(107, 114, 128, 0.1)); */
+    
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -503,7 +677,15 @@ body {
 }
 
 .category-item:hover .category-icon {
-    background: linear-gradient(135deg, #5a1a23, #6b2332);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
     color: white;
     transform: scale(1.1);
 }
@@ -521,7 +703,15 @@ body {
     backdrop-filter: blur(20px);
     padding: 32px;
     border-radius: 20px;
-    border: 2px solid rgba(144, 36, 54, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    border: 2px solid rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    border: 2px solid rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    border: 2px solid rgba(55, 65, 81, 0.25); */
+    
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     color: #333;
 }
@@ -537,13 +727,29 @@ body {
 
 .bar {
     width: 24px;
-    background: linear-gradient(180deg, #5a1a23, #6b2332);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(180deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(180deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(180deg, #374151, #6b7280); */
+    
     border-radius: 4px 4px 0 0;
     transition: all 0.3s ease;
 }
 
 .bar:hover {
-    background: linear-gradient(180deg, #6b2332, #5a1a23);
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(180deg, #6B6B6B, #8B2635);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(180deg, #3b82f6, #1e3a8a); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(180deg, #6b7280, #374151); */
+    
     transform: scaleY(1.1);
 }
 
@@ -579,7 +785,15 @@ body {
     backdrop-filter: blur(20px);
     padding: 32px;
     border-radius: 20px;
-    border: 2px solid rgba(144, 36, 54, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    border: 2px solid rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    border: 2px solid rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    border: 2px solid rgba(55, 65, 81, 0.25); */
+    
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     color: #333;
 }
@@ -614,7 +828,15 @@ body {
     backdrop-filter: blur(20px);
     padding: 32px;
     border-radius: 20px;
-    border: 2px solid rgba(144, 36, 54, 0.3);
+    /* Option 1: Professional Reddish + Gray */
+    border: 2px solid rgba(139, 38, 53, 0.25);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    border: 2px solid rgba(30, 58, 138, 0.25); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    border: 2px solid rgba(55, 65, 81, 0.25); */
+    
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     color: #333;
 }
