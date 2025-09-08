@@ -649,3 +649,59 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Admin Panel Button */
+.admin-panel-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* Option 1: Professional Reddish + Gray */
+    background: linear-gradient(135deg, #8B2635, #6B6B6B);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    background: linear-gradient(135deg, #374151, #6b7280); */
+    
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 4px 15px rgba(139, 38, 53, 0.3);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3); */
+    
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+}
+
+.admin-panel-btn:hover {
+    transform: translateY(-3px);
+    /* Option 1: Professional Reddish + Gray */
+    box-shadow: 0 8px 25px rgba(139, 38, 53, 0.4);
+    
+    /* Option 2: Professional Blue (uncomment to use)
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4); */
+    
+    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
+    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4); */
+}
+
+.admin-panel-btn:active {
+    transform: translateY(-1px);
+}
