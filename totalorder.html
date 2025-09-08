@@ -7,542 +7,113 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body { 
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #fef7f7 0%, #f8e8e8 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #2d1b1b;
-    }
-    
-    .container { 
-      max-width: 800px; 
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(144, 36, 54, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-    }
-    
-    .header {
-      background: linear-gradient(135deg, #902436, #994d64);
-      color: white;
-      padding: 40px 30px;
-      text-align: center;
-    }
-    
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .header p {
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-    
-    .content {
-      padding: 40px 30px;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    
-    .stat-card {
-      background: linear-gradient(135deg, #902436, #994d64);
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(144, 36, 54, 0.2);
-      transition: all 0.3s ease;
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(144, 36, 54, 0.3);
-    }
-    
-    .stat-card h2 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    
-    .stat-card p {
-      font-size: 1rem;
-      opacity: 0.9;
-      margin-bottom: 15px;
-    }
-    
-    .add-orders {
-      background: rgba(144, 36, 54, 0.05);
-      padding: 30px;
-      border-radius: 20px;
-      margin-bottom: 30px;
-      border: 2px solid rgba(144, 36, 54, 0.1);
-    }
-    
-    .add-orders h3 {
-      color: #902436;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-    
-    .input-group {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    input[type="number"], input[type="text"], select { 
-      flex: 1;
-      min-width: 200px;
-      padding: 15px 20px;
-      border: 2px solid rgba(144, 36, 54, 0.2);
-      border-radius: 12px;
-      font-size: 1rem;
-      background: white;
-      color: #2d1b1b;
-      transition: all 0.3s ease;
-    }
-    
-    input[type="number"]:focus, input[type="text"]:focus, select:focus {
-      outline: none;
-      border-color: #902436;
-      box-shadow: 0 0 0 3px rgba(144, 36, 54, 0.1);
-    }
-    
-    button { 
-      padding: 15px 30px;
-      background: linear-gradient(135deg, #902436, #994d64);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(144, 36, 54, 0.2);
-    }
-    
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(144, 36, 54, 0.3);
-    }
-    
-    .back-btn { 
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #902436;
-      text-decoration: none;
-      margin-top: 30px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background: rgba(144, 36, 54, 0.05);
-    }
-    
-    .back-btn:hover {
-      background: rgba(144, 36, 54, 0.1);
-      transform: translateX(-5px);
-    }
-    
-    .increase { 
-      color: #22c55e;
-      font-weight: 600;
-    }
-    
-    .decrease { 
-      color: #ef4444;
-      font-weight: 600;
-    }
-    
-    .date-label { 
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 10px;
-    }
-    
-    .order-history {
-      background: rgba(144, 36, 54, 0.05);
-      padding: 30px;
-      border-radius: 20px;
-      margin-top: 30px;
-      border: 2px solid rgba(144, 36, 54, 0.1);
-    }
-    
-    .order-history h3 {
-      color: #902436;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-    
-    .order-table {
-      width: 100%;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(144, 36, 54, 0.1);
-      border: 1px solid rgba(144, 36, 54, 0.1);
-    }
-    
-    .order-table th,
-    .order-table td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid rgba(144, 36, 54, 0.1);
-    }
-    
-    .order-table th {
-      background: linear-gradient(135deg, #902436, #994d64);
-      color: white;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .order-table tr:last-child td {
-      border-bottom: none;
-    }
-    
-    .order-table tr:hover {
-      background: rgba(144, 36, 54, 0.02);
-    }
-    
-    .action-buttons {
-      display: flex;
-      gap: 8px;
-    }
-    
-    .action-btn {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    
-    .edit-btn {
-      background: #3b82f6;
-      color: white;
-    }
-    
-    .edit-btn:hover {
-      background: #2563eb;
-    }
-    
-    .delete-btn {
-      background: #ef4444;
-      color: white;
-    }
-    
-    .delete-btn:hover {
-      background: #dc2626;
-    }
-    
-    .form-row {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    
-    .form-row:last-child {
-      margin-bottom: 0;
-    }
-    
-    @media (max-width: 768px) {
-      .container {
-        margin: 10px;
-        border-radius: 16px;
-      }
-      
-      .header {
-        padding: 30px 20px;
-      }
-      
-      .header h1 {
-        font-size: 2rem;
-      }
-      
-      .content {
-        padding: 30px 20px;
-      }
-      
-      .input-group {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      input[type="number"] {
-        min-width: auto;
-      }
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #fef7f7 0%, #f8e8e8 100%); min-height: 100vh; padding: 20px; color: #2d1b1b; }
+    .container { max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 8px 32px rgba(144,36,54,0.15); border: 1px solid rgba(255,255,255,0.2); overflow: hidden; }
+    .header { background: linear-gradient(135deg, #902436, #994d64); color: white; padding: 30px 20px; text-align: center; }
+    .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .header p { opacity: 0.9; font-size: 1rem; }
+    .order-table { width: 100%; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(144,36,54,0.1); border: 1px solid rgba(144,36,54,0.1); margin: 30px 0; }
+    .order-table th, .order-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(144,36,54,0.1); }
+    .order-table th { background: linear-gradient(135deg, #902436, #994d64); color: white; font-weight: 600; font-size: 0.9rem; }
+    .order-table tr:last-child td { border-bottom: none; }
+    .order-table tr:hover { background: rgba(144,36,54,0.03); }
+    .back-btn { display: inline-flex; align-items: center; gap: 10px; color: #902436; text-decoration: none; margin-top: 20px; padding: 10px 18px; border-radius: 10px; font-weight: 600; background: rgba(144,36,54,0.05); }
+    .back-btn:hover { background: rgba(144,36,54,0.1); transform: translateX(-5px); }
+    @media (max-width: 700px) { .container { margin: 10px; border-radius: 16px; } .header { padding: 20px 10px; } .header h1 { font-size: 1.5rem; } }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>Total Orders</h1>
-      <p>Track and manage your order performance</p>
+      <p>All recent orders placed by customers</p>
     </div>
-    
-    <div class="content">
-      <!-- Stats Grid -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <h2 id="totalOrders">0</h2>
-          <p>Total Orders Today</p>
-          <p id="orderChange" class="date-label">+0% from yesterday</p>
-          <p class="date-label" id="currentDate">Date: --</p>
-        </div>
-      </div>
-
-      <!-- Form to add new orders -->
-      <div class="add-orders">
-        <h3>Add New Order</h3>
-        <div class="form-row">
-          <input type="text" id="orderNumber" placeholder="Order Number (e.g. ORD-001)" required>
-          <select id="orderType" required>
-            <option value="">Select Order Type</option>
-            <option value="Beef">Beef</option>
-            <option value="Chicken">Chicken</option>
-            <option value="Mutton">Mutton</option>
-            <option value="Fish">Fish</option>
-            <option value="Mixed">Mixed</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <input type="number" id="orderKg" placeholder="Order Weight (kg)" step="0.1" min="0" required>
-          <button id="addOrderBtn">
-            <i class="fas fa-plus"></i>
-            Add Order
-          </button>
-        </div>
-      </div>
-
-      <!-- Order History -->
-      <div class="order-history">
-        <h3>Order History</h3>
-        <table class="order-table" id="orderTable">
-          <thead>
-            <tr>
-              <th>Order Number</th>
-              <th>Order Type</th>
-              <th>Weight (kg)</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="orderTableBody">
-            <!-- Order entries will be dynamically added here -->
-          </tbody>
-        </table>
-      </div>
-
-      <a href="dashboard.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-        Back to Dashboard
-      </a>
-    </div>
+    <table class="order-table" id="orderTable">
+      <thead>
+        <tr>
+          <th>Order No.</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody">
+        <!-- Orders will be injected here -->
+      </tbody>
+    </table>
+    <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
   </div>
-
   <script>
-    // Load existing orderData from localStorage
-    let orderData = JSON.parse(localStorage.getItem("orderData")) || [];
-
-    const totalOrdersEl = document.getElementById("totalOrders");
-    const orderChangeEl = document.getElementById("orderChange");
-    const currentDateEl = document.getElementById("currentDate");
-    const addOrderBtn = document.getElementById("addOrderBtn");
-    const orderNumberInput = document.getElementById("orderNumber");
-    const orderTypeInput = document.getElementById("orderType");
-    const orderKgInput = document.getElementById("orderKg");
-    const orderTableBody = document.getElementById("orderTableBody");
-
-    // Get today's date in YYYY-MM-DD format
-    function getTodayDate() {
-      const today = new Date();
-      return today.toISOString().split('T')[0];
+    // Load orders from localStorage
+    function getOrders() {
+      return JSON.parse(localStorage.getItem('orders')) || [];
     }
-
-    // Calculate total orders for display
-    function calculateTotalOrders() {
-      const today = getTodayDate();
-      return orderData.filter(order => order.date === today).length;
+    function saveOrders(orders) {
+      localStorage.setItem('orders', JSON.stringify(orders));
     }
-
-    // Calculate yesterday's orders for comparison
-    function calculateYesterdayOrders() {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().split('T')[0];
-      return orderData.filter(order => order.date === yesterdayStr).length;
-    }
-
-    // Function to update total orders display
-    function updateDisplay() {
-      const todayOrders = calculateTotalOrders();
-      const yesterdayOrders = calculateYesterdayOrders();
-      
-      totalOrdersEl.textContent = todayOrders;
-      currentDateEl.textContent = `Date: ${getTodayDate()}`;
-
-      if (yesterdayOrders > 0) {
-        const percent = yesterdayOrders === 0 
-          ? 100 
-          : (((todayOrders - yesterdayOrders) / yesterdayOrders) * 100).toFixed(1);
-        orderChangeEl.innerHTML =
-          percent >= 0 ? `<span class="increase">+${percent}%</span> from yesterday`
-                       : `<span class="decrease">${percent}%</span> from yesterday`;
-      } else {
-        orderChangeEl.textContent = "No previous data";
+    function renderOrders() {
+      const orders = getOrders();
+      const orderTableBody = document.getElementById('orderTableBody');
+      if (!orders.length) {
+        orderTableBody.innerHTML = '<tr><td colspan="6">No orders yet.</td></tr>';
+        return;
       }
-    }
-
-    // Function to render order table
-    function renderOrderTable() {
-      orderTableBody.innerHTML = "";
-      
-      // Show recent orders (last 10)
-      const recentOrders = orderData.slice(-10).reverse();
-      
-      recentOrders.forEach((order, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+      orderTableBody.innerHTML = orders.map((order, idx) => `
+        <tr>
           <td>${order.orderNumber}</td>
           <td>${order.orderType}</td>
-          <td>${order.orderKg} kg</td>
+          <td>${order.orderKg}</td>
+          <td>৳${order.totalPrice}</td>
           <td>${order.date}</td>
           <td>
-            <div class="action-buttons">
-              <button class="action-btn edit-btn" onclick="editOrder(${orderData.length - 1 - index})">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button class="action-btn delete-btn" onclick="deleteOrder(${orderData.length - 1 - index})">
-                <i class="fas fa-trash"></i> Delete
-              </button>
-            </div>
+            <button onclick="markAsDelivered(${idx})" style="background:#22c55e;color:white;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;">Mark as Delivered</button>
           </td>
-        `;
-        orderTableBody.appendChild(row);
+        </tr>
+      `).join('');
+    }
+    function markAsDelivered(idx) {
+      let orders = getOrders();
+      const deliveredOrder = orders[idx];
+      let salesData = JSON.parse(localStorage.getItem('salesData')) || [];
+      salesData.push({
+        date: new Date().toISOString().split('T')[0],
+        item: deliveredOrder.orderType,
+        kg: deliveredOrder.orderKg,
+        total: deliveredOrder.totalPrice
       });
+      localStorage.setItem('salesData', JSON.stringify(salesData));
+      orders.splice(idx, 1);
+      saveOrders(orders);
+      renderOrders();
+      alert('Order marked as delivered and moved to Total Sales!');
     }
-
-    // Function to add new order
-    function addOrder() {
-      const orderNumber = orderNumberInput.value.trim();
-      const orderType = orderTypeInput.value;
-      const orderKg = parseFloat(orderKgInput.value);
-
-      if (!orderNumber || !orderType || !orderKg || orderKg <= 0) {
-        alert("Please fill in all fields with valid data");
-        return;
-      }
-
-      // Check if order number already exists
-      if (orderData.some(order => order.orderNumber === orderNumber)) {
-        alert("Order number already exists. Please use a unique order number.");
-        return;
-      }
-
-      const newOrder = {
-        orderNumber: orderNumber,
-        orderType: orderType,
-        orderKg: orderKg,
-        date: getTodayDate()
-      };
-
-      orderData.push(newOrder);
-      localStorage.setItem("orderData", JSON.stringify(orderData));
-
-      // Clear inputs
-      orderNumberInput.value = "";
-      orderTypeInput.value = "";
-      orderKgInput.value = "";
-
-      // Update displays
-      updateDisplay();
-      renderOrderTable();
-    }
-
-    // Function to edit order
-    function editOrder(index) {
-      const order = orderData[index];
-      const newOrderNumber = prompt("Enter new order number:", order.orderNumber);
-      const newOrderType = prompt("Enter new order type (Beef/Chicken/Mutton/Fish/Mixed):", order.orderType);
-      const newOrderKg = prompt("Enter new order weight (kg):", order.orderKg);
-
-      if (newOrderNumber && newOrderType && newOrderKg && parseFloat(newOrderKg) > 0) {
-        // Check if new order number conflicts with existing ones (excluding current)
-        if (newOrderNumber !== order.orderNumber && orderData.some(o => o.orderNumber === newOrderNumber)) {
-          alert("Order number already exists. Please use a unique order number.");
-          return;
-        }
-
-        orderData[index] = {
-          ...order,
-          orderNumber: newOrderNumber,
-          orderType: newOrderType,
-          orderKg: parseFloat(newOrderKg)
-        };
-
-        localStorage.setItem("orderData", JSON.stringify(orderData));
-        updateDisplay();
-        renderOrderTable();
+    // Accept new order from customerpage.html
+    function acceptOrderFromCart() {
+      const cartOrder = localStorage.getItem('cartOrder');
+      if (cartOrder) {
+        const cartData = JSON.parse(cartOrder);
+        const orders = getOrders();
+        const today = new Date().toISOString().split('T')[0];
+        cartData.forEach((item, idx) => {
+          orders.push({
+            orderNumber: `ORD-${orders.length+1}`,
+            orderType: item.name,
+            orderKg: item.quantity,
+            price: item.price,
+            totalPrice: item.price * item.quantity,
+            date: today
+          });
+        });
+        saveOrders(orders);
+        localStorage.removeItem('cartOrder');
       }
     }
-
-    // Function to delete order
-    function deleteOrder(index) {
-      const order = orderData[index];
-      if (confirm(`Are you sure you want to delete order ${order.orderNumber}?`)) {
-        orderData.splice(index, 1);
-        localStorage.setItem("orderData", JSON.stringify(orderData));
-        updateDisplay();
-        renderOrderTable();
-      }
-    }
-
-    // Initial display
-    updateDisplay();
-    renderOrderTable();
-
-    // Event listeners
-    addOrderBtn.addEventListener("click", addOrder);
-
-    // Handle enter key press in form inputs
-    [orderNumberInput, orderTypeInput, orderKgInput].forEach(input => {
-      input.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          addOrder();
-        }
-      });
-    });
+    // On page load, accept new order and render
+    acceptOrderFromCart();
+    renderOrders();
   </script>
 </body>
 </html>

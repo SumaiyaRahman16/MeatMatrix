@@ -489,10 +489,50 @@
             const meatType = prompt('Enter meat type:');
             const amount = prompt('Enter stock amount (kg):');
             const expired = prompt('Enter expired amount (kg):');
-            
-            if (meatType && amount && expired !== null) {
-                alert('New item would be added: ' + meatType + ' with ' + amount + 'kg stock');
-                // In a real application, you would add the new row to the table
+            if (meatType && amount !== null && expired !== null) {
+                // Create new row
+                const tbody = document.querySelector('table tbody');
+                const rowId = meatType.toLowerCase().replace(/\s+/g, '-') + '-row';
+                const editId = meatType.toLowerCase().replace(/\s+/g, '-') + '-edit';
+                const now = new Date();
+                const timestamp = now.getFullYear() + '-' + 
+                    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                    String(now.getDate()).padStart(2, '0') + ' ' +
+                    String(now.getHours()).padStart(2, '0') + ':' +
+                    String(now.getMinutes()).padStart(2, '0');
+                const statusClass = parseInt(amount) < 10 ? 'low-stock' : 'in-stock';
+                const statusText = parseInt(amount) < 10 ? 'Low Stock' : 'In Stock';
+                // Inventory row
+                const tr = document.createElement('tr');
+                tr.id = rowId;
+                tr.innerHTML = `
+                    <td class="meat-name">${meatType}</td>
+                    <td class="amount" id="${meatType.toLowerCase()}-amount">${amount}</td>
+                    <td class="expired-amount" id="${meatType.toLowerCase()}-expired">${expired}</td>
+                    <td><span class="status ${statusClass}">${statusText}</span></td>
+                    <td>${timestamp}</td>
+                    <td class="actions">
+                        <button class="btn btn-edit" onclick="editItem('${meatType.toLowerCase()}')">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteItem('${meatType.toLowerCase()}')">Delete</button>
+                    </td>
+                `;
+                // Edit form row
+                const editTr = document.createElement('tr');
+                editTr.className = 'edit-form';
+                editTr.id = editId;
+                editTr.innerHTML = `
+                    <td colspan="6">
+                        <strong>Edit ${meatType} Stock:</strong>
+                        <input type="number" id="${meatType.toLowerCase()}-new-amount" placeholder="Stock (kg)">
+                        <input type="number" id="${meatType.toLowerCase()}-new-expired" placeholder="Expired (kg)">
+                        <button class="btn btn-save" onclick="saveItem('${meatType.toLowerCase()}')">Save</button>
+                        <button class="btn btn-cancel" onclick="cancelEdit('${meatType.toLowerCase()}')">Cancel</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+                tbody.appendChild(editTr);
+                updateStats();
+                alert('New item added: ' + meatType + ' with ' + amount + 'kg stock');
             }
         }
 

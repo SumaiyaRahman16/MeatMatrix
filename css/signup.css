@@ -6,15 +6,9 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    /* Option 1: Professional Reddish + Gray */
-    background: linear-gradient(135deg, #8B2635 0%, #6B6B6B 50%, #4A4A4A 100%);
-    
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #64748b 100%); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151 0%, #6b7280 50%, #9ca3af 100%); */
-    
+ 
+    background: linear-gradient(135deg, #ad1b30 0%, #a2a2a2 50%, #4A4A4A 100%);
+ 
     min-height: 100vh;
     color: #333;
     line-height: 1.6;
@@ -44,14 +38,9 @@ header {
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
-    /* Option 1: Professional Reddish + Gray */
+   
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
-    
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
+
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -90,14 +79,10 @@ nav a::after {
     height: 2px;
     bottom: -5px;
     left: 0;
-    /* Option 1: Professional Reddish + Gray */
+
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
+
     
     transition: width 0.3s ease;
 }
@@ -107,14 +92,9 @@ nav a:hover::after {
 }
 
 .sign-up-btn {
-    /* Option 1: Professional Reddish + Gray */
+  
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
-    
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
+
     
     color: white;
     border: none;
@@ -123,29 +103,21 @@ nav a:hover::after {
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    /* Option 1: Professional Reddish + Gray */
+
     box-shadow: 0 4px 15px rgba(139, 38, 53, 0.25);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.25); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.25); */
+
 }
 
 .sign-up-btn:hover {
     transform: translateY(-2px);
-    /* Option 1: Professional Reddish + Gray */
+ 
     box-shadow: 0 8px 25px rgba(139, 38, 53, 0.35);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.35); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.35); */
+
 }
 
-/* Main Content */
+
 main {
     padding: 4rem 0;
 }
@@ -181,14 +153,10 @@ main {
 .form-header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.8rem;
-    /* Option 1: Professional Reddish + Gray */
+  
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
+  
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -197,15 +165,10 @@ main {
 }
 
 .login-link {
-    /* Option 1: Professional Reddish + Gray */
+
     color: #8B2635;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    color: #1e3a8a; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    color: #374151; */
-    
+ 
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
@@ -213,14 +176,10 @@ main {
 }
 
 .login-link:hover {
-    /* Option 1: Professional Reddish + Gray */
+ 
     color: #6B6B6B;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    color: #3b82f6; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    color: #6b7280; */
+
     
     text-decoration: underline;
 }
@@ -254,17 +213,11 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
-    /* Option 1: Professional Reddish + Gray */
+
     border-color: #8B2635;
     box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.1);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    border-color: #1e3a8a;
-    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1); */
+
     
     transform: translateY(-2px);
 }
@@ -272,14 +225,10 @@ input[type="password"]:focus {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover {
-    /* Option 1: Professional Reddish + Gray */
+
     border-color: #8B2635;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    border-color: #1e3a8a; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    border-color: #374151; */
+
 }
 
 .checkbox-group {
@@ -292,14 +241,10 @@ input[type="password"]:hover {
 .checkbox-group input[type="checkbox"] {
     margin-top: 0.25rem;
     transform: scale(1.2);
-    /* Option 1: Professional Reddish + Gray */
+   
     accent-color: #8B2635;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    accent-color: #1e3a8a; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    accent-color: #374151; */
+
 }
 
 .checkbox-group label {
@@ -311,42 +256,29 @@ input[type="password"]:hover {
 }
 
 .checkbox-group a {
-    /* Option 1: Professional Reddish + Gray */
+
     color: #8B2635;
-    
-    /* Option 2: Professional Blue (uncomment to use)
-    color: #1e3a8a; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    color: #374151; */
+
     
     text-decoration: none;
     font-weight: 500;
 }
 
 .checkbox-group a:hover {
-    /* Option 1: Professional Reddish + Gray */
+
     color: #6B6B6B;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    color: #3b82f6; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    color: #6b7280; */
+
     
     text-decoration: underline;
 }
 
 .create-btn {
     width: 100%;
-    /* Option 1: Professional Reddish + Gray */
+
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
+
     
     color: white;
     border: none;
@@ -357,26 +289,17 @@ input[type="password"]:hover {
     cursor: pointer;
     margin-bottom: 2rem;
     transition: all 0.3s ease;
-    /* Option 1: Professional Reddish + Gray */
+   
     box-shadow: 0 8px 25px rgba(139, 38, 53, 0.25);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.25); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.25); */
+
 }
 
 .create-btn:hover {
     transform: translateY(-3px);
-    /* Option 1: Professional Reddish + Gray */
+ 
     box-shadow: 0 15px 35px rgba(139, 38, 53, 0.35);
-    
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 15px 35px rgba(30, 58, 138, 0.35); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 15px 35px rgba(55, 65, 81, 0.35); */
+
 }
 
 .create-btn:active {
@@ -427,14 +350,10 @@ input[type="password"]:hover {
 }
 
 .google-btn:hover {
-    /* Option 1: Professional Reddish + Gray */
+
     border-color: #8B2635;
     
-    /* Option 2: Professional Blue (uncomment to use)
-    border-color: #1e3a8a; */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    border-color: #374151; */
+
     
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -454,14 +373,10 @@ input[type="password"]:hover {
     left: -20px;
     right: -20px;
     bottom: -20px;
-    /* Option 1: Professional Reddish + Gray */
+  
     background: linear-gradient(45deg, rgba(139, 38, 53, 0.08), rgba(107, 107, 107, 0.08));
     
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(45deg, rgba(30, 58, 138, 0.08), rgba(59, 130, 246, 0.08)); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(45deg, rgba(55, 65, 81, 0.08), rgba(107, 114, 128, 0.08)); */
+
     
     border-radius: 30px;
     z-index: -1;
@@ -650,20 +565,15 @@ footer {
     }
 }
 
-/* Admin Panel Button */
+
 .admin-panel-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    /* Option 1: Professional Reddish + Gray */
+
     background: linear-gradient(135deg, #8B2635, #6B6B6B);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    background: linear-gradient(135deg, #374151, #6b7280); */
-    
+
     color: white;
     border: none;
     padding: 12px 20px;
@@ -676,14 +586,10 @@ footer {
     align-items: center;
     gap: 8px;
     transition: all 0.3s ease;
-    /* Option 1: Professional Reddish + Gray */
+
     box-shadow: 0 4px 15px rgba(139, 38, 53, 0.3);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3); */
+  
     
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -692,14 +598,10 @@ footer {
 
 .admin-panel-btn:hover {
     transform: translateY(-3px);
-    /* Option 1: Professional Reddish + Gray */
+  
     box-shadow: 0 8px 25px rgba(139, 38, 53, 0.4);
     
-    /* Option 2: Professional Blue (uncomment to use)
-    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4); */
-    
-    /* Option 3: Neutral Gray/Charcoal (uncomment to use)
-    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4); */
+
 }
 
 .admin-panel-btn:active {

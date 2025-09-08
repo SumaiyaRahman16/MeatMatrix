@@ -14,13 +14,13 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #8B2635 0%, #6B6B6B 50%, #4A4A4A 100%);
+      background: linear-gradient(135deg, #b47e86 0%, #bf4f4f 50%, #f6f6f6 100%);
       min-height: 100vh;
       color: #333;
       line-height: 1.6;
     }
 
-    /* Top navigation bar */
+
     .navbar {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
@@ -75,7 +75,7 @@
       box-shadow: 0 8px 25px rgba(139, 38, 53, 0.3);
     }
 
-    /* Hero section */
+
     .hero {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
@@ -105,7 +105,7 @@
       margin: 0 auto;
     }
 
-    /* Items container */
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -115,7 +115,7 @@
       gap: 2rem;
     }
 
-    /* Premium item cards */
+
     .card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
@@ -213,7 +213,6 @@
       transform: translateY(-1px);
     }
 
-    /* Special badges */
     .premium-badge {
       position: absolute;
       top: 1rem;
@@ -244,20 +243,44 @@
       gap: 0.3rem;
     }
 
-    /* Footer */
+
     .footer {
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(20px);
+      background: none;
+      box-shadow: none;
+      border: none;
       color: white;
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem 1.5rem 1rem;
       margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: none;
+      box-shadow: none;
+      border: none;
     }
+
+    @media (max-width: 768px) {
+      .footer {
+        padding: 2rem 0.5rem;
+      }
+      .footer-content {
+        padding: 0 0.5rem;
+      }
+    }
+
 
     /* Responsive design */
     @media (max-width: 768px) {
@@ -281,7 +304,7 @@
       }
     }
 
-    /* Loading animation for stock */
+
     .stock-loading {
       animation: pulse 2s infinite;
     }
@@ -292,7 +315,7 @@
       100% { opacity: 1; }
     }
 
-    /* Cart Sidebar */
+
     .cart-sidebar {
       position: fixed;
       top: 0;
@@ -709,7 +732,7 @@
       color: white;
     }
 
-    /* Profile overlay */
+
     .profile-overlay {
       position: fixed;
       top: 0;
@@ -730,7 +753,7 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+
   <nav class="navbar">
     <div class="nav-content">
       <div class="logo">MeatMatrix</div>
@@ -749,88 +772,76 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+
   <div class="hero">
     <h1>Premium Meat Selection</h1>
     <p>Fresh, high-quality meat delivered to your doorstep. Choose from our premium selection of finest cuts.</p>
   </div>
 
-  <!-- Items Grid -->
+
   <div class="container">
-    <!-- Beef/Meat -->
+ 
     <div class="card">
       <div class="premium-badge">
         <i class="fas fa-crown"></i>
         Premium
       </div>
       <div class="card-icon">
-        <i class="fas fa-cow"></i>
+        <img src="assets/steak.png" alt="Premium Beef" style="width:64px;height:64px;object-fit:contain;" />
       </div>
-      <h3>Premium Beef</h3>
+      <h3>Steak Cuts</h3>
       <div class="price-tag">৳500/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>20 kg in stock</span>
-      </div>
+
       <button class="order-btn" onclick="addToCart('Beef', 500)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
       </button>
     </div>
 
-    <!-- Duck -->
+
     <div class="card">
       <div class="card-icon">
-        <i class="fas fa-duck"></i>
+        <img src="assets/beef.png" alt="Beaf" style="width:64px;height:64px;object-fit:contain;" />
       </div>
-      <h3>Fresh Duck</h3>
+      <h3>Normal Cut Beef</h3>
       <div class="price-tag">৳400/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>15 kg in stock</span>
-      </div>
+ 
       <button class="order-btn" onclick="addToCart('Duck', 400)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
       </button>
     </div>
 
-    <!-- Chicken -->
+
     <div class="card">
       <div class="popular-badge">
         <i class="fas fa-fire"></i>
         Popular
       </div>
       <div class="card-icon">
-        <i class="fas fa-drumstick-bite"></i>
+        <img src="assets/chicken.png" alt="Farm Chicken" style="width:64px;height:64px;object-fit:contain;" />
       </div>
       <h3>Farm Chicken</h3>
       <div class="price-tag">৳300/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>25 kg in stock</span>
-      </div>
+   
       <button class="order-btn" onclick="addToCart('Chicken', 300)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
       </button>
     </div>
 
-    <!-- Mutton -->
+  
     <div class="card">
       <div class="premium-badge">
         <i class="fas fa-star"></i>
         Special
       </div>
       <div class="card-icon">
-        <i class="fas fa-bacon"></i>
+        <img src="assets/mutton.png" alt="Premium Mutton" style="width:64px;height:64px;object-fit:contain;" />
       </div>
       <h3>Premium Mutton</h3>
       <div class="price-tag">৳800/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>10 kg in stock</span>
-      </div>
+  
       <button class="order-btn" onclick="addToCart('Mutton', 800)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
@@ -840,43 +851,79 @@
     <!-- Fish -->
     <div class="card">
       <div class="card-icon">
-        <i class="fas fa-fish"></i>
+        <img src="assets/fish.png" alt="Fresh Fish" style="width:64px;height:64px;object-fit:contain;" />
       </div>
       <h3>Fresh Fish</h3>
       <div class="price-tag">৳250/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>30 kg in stock</span>
-      </div>
+
       <button class="order-btn" onclick="addToCart('Fish', 250)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
       </button>
     </div>
 
-    <!-- Prawns -->
+
     <div class="card">
       <div class="premium-badge">
         <i class="fas fa-gem"></i>
         Deluxe
       </div>
       <div class="card-icon">
-        <i class="fas fa-shrimp"></i>
+        <img src="assets/prawn.png" alt="King Prawns" style="width:64px;height:64px;object-fit:contain;" />
       </div>
       <h3>King Prawns</h3>
       <div class="price-tag">৳1200/kg</div>
-      <div class="stock-info">
-        <i class="fas fa-box"></i>
-        <span>5 kg in stock</span>
-      </div>
+  
       <button class="order-btn" onclick="addToCart('Prawns', 1200)">
         <i class="fas fa-cart-plus"></i>
         Add to Cart
       </button>
     </div>
-  </div>
 
-  <!-- Profile Sidebar -->
+    <!-- New Items -->
+    <div class="card">
+      <div class="card-icon">
+        <img src="assets/duck.png" alt="Fresh Duck" style="width:64px;height:64px;object-fit:contain;" />
+      </div>
+      <h3>Fresh Duck</h3>
+      <div class="price-tag">৳400/kg</div>
+ 
+      <button class="order-btn" onclick="addToCart('Duck', 400)">
+        <i class="fas fa-cart-plus"></i>
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">
+        <img src="assets/turkey.png" alt="Fresh Turkey" style="width:64px;height:64px;object-fit:contain;" />
+      </div>
+      <h3>Fresh Turkey</h3>
+      <div class="price-tag">৳700/kg</div>
+      <button class="order-btn" onclick="addToCart('Turkey', 700)">
+        <i class="fas fa-cart-plus"></i>
+        Add to Cart
+      </button>
+    </div>
+
+
+
+    <div class="card">
+      <div class="card-icon">
+        <img src="assets/crab.png" alt="Fresh Crab" style="width:64px;height:64px;object-fit:contain;" />
+      </div>
+      <h3>Fresh Crab</h3>
+      <div class="price-tag">৳1300/kg</div>
+      <button class="order-btn" onclick="addToCart('Crab', 1300)">
+        <i class="fas fa-cart-plus"></i>
+        Add to Cart
+      </button>
+    </div>
+
+
+
+
+
   <div class="profile-overlay" id="profileOverlay" onclick="closeProfile()"></div>
   <div class="profile-sidebar" id="profileSidebar">
     <div class="profile-header">
@@ -961,7 +1008,7 @@
     </div>
   </div>
 
-  <!-- Cart Sidebar -->
+
   <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
@@ -992,7 +1039,7 @@
     </button>
   </div>
 
-  <!-- Footer -->
+
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2024 MeatMatrix. Fresh meat, delivered with care.</p>
@@ -1001,12 +1048,12 @@
   </footer>
 
   <script>
-    // Cart functionality
+
     let cart = [];
     let cartTotal = 0;
 
     function addToCart(itemName, price) {
-      // Check if item already exists in cart
+
       const existingItem = cart.find(item => item.name === itemName);
       
       if (existingItem) {
@@ -1047,12 +1094,12 @@
       const totalAmount = document.getElementById('totalAmount');
       const checkoutBtn = document.getElementById('checkoutBtn');
       
-      // Update cart count
+
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       cartCount.textContent = totalItems;
       cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
       
-      // Update cart items
+
       if (cart.length === 0) {
         cartItems.innerHTML = `
           <div class="empty-cart">
@@ -1086,8 +1133,7 @@
             </button>
           </div>
         `).join('');
-        
-        // Calculate total
+
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         totalAmount.textContent = `৳${total}`;
         cartTotal.style.display = 'block';
@@ -1116,7 +1162,7 @@
     }
 
     function showCartNotification(itemName) {
-      // Create temporary notification
+
       const notification = document.createElement('div');
       notification.style.cssText = `
         position: fixed;
@@ -1139,13 +1185,13 @@
       
       document.body.appendChild(notification);
       
-      // Animate in
+
       setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
       }, 100);
       
-      // Remove after 3 seconds
+
       setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(100px)';
@@ -1160,19 +1206,15 @@
         alert('Your cart is empty!');
         return;
       }
-      
-      // Calculate total
+      // Save cart data to localStorage for totalorder.html
+      localStorage.setItem('cartOrder', JSON.stringify(cart));
+      // Show confirmation message
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      
-      // Create order summary
-      const orderSummary = cart.map(item => 
-        `${item.name} x ${item.quantity}kg = ৳${item.price * item.quantity}`
-      ).join('\n');
-      
-      alert(`Order Summary:\n\n${orderSummary}\n\nTotal: ৳${total}\n\nRedirecting to checkout...`);
-      
-      // Here you would typically redirect to a checkout page
-      // window.location.href = "checkout.html";
+      const orderSummary = cart.map(item => `${item.name} x ${item.quantity}kg = ৳${item.price * item.quantity}`).join('\n');
+      alert(`Order Placed!\n\n${orderSummary}\n\nTotal: ৳${total}\n\nYour order has been added to Total Orders.`);
+      // Optionally clear cart
+      cart = [];
+      updateCartUI();
     }
 
     function toggleProfile() {
@@ -1197,24 +1239,23 @@
 
     function editProfile() {
       alert('Redirecting to edit profile page...');
-      // window.location.href = "edit-profile.html";
+
     }
 
     function viewOrderHistory() {
       alert('Redirecting to order history page...');
-      // window.location.href = "order-history.html";
+
     }
 
     function changePassword() {
       alert('Redirecting to change password page...');
-      // window.location.href = "change-password.html";
+    
     }
 
     function logout() {
       if (confirm('Are you sure you want to logout?')) {
         alert('Logging out...');
-        // Clear any stored user data
-        // window.location.href = "login.html";
+
       }
     }
 
@@ -1226,7 +1267,7 @@
       window.location.href = "orders.html";
     }
 
-    // Add dynamic stock updates (demo)
+
     function updateStock() {
       const stockElements = document.querySelectorAll('.stock-info span');
       stockElements.forEach(element => {
@@ -1237,10 +1278,10 @@
       });
     }
 
-    // Update stock every 30 seconds (demo)
+
     setInterval(updateStock, 30000);
 
-    // Initialize cart UI
+
     updateCartUI();
   </script>
 </body>

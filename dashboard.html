@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Management Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
-    <!-- Font Awesome CDN -->
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -119,10 +119,9 @@
             </div>
         </div>
 
-        <!-- Main Content -->
-        <!-- Main Content -->
+
         <div class="main-content">
-            <!-- Header -->
+
             <div class="header">
                 <div class="search-container">
                     <i class="fas fa-search search-icon icon-sm"></i>
@@ -142,9 +141,9 @@
             </div>
 
             <div class="content-grid">
-                <!-- Left Column -->
+
                 <div>
-                    <!-- Today's Sales -->
+
                     <div class="section-title">Today's Sales</div>
                     <div class="section-subtitle">Sales Summary</div>
                     
@@ -177,7 +176,7 @@
                         </div>
                     </div>
 
-                    <!-- Meat Inventory Dashboard -->
+                 
                     <div class="inventory-dashboard">
                         <h3 class="section-title">Meat Inventory Dashboard</h3>
                         
@@ -230,7 +229,7 @@
                         </div>
                     </div>
 
-                    <!-- Bottom Charts -->
+                   
                     <div class="bottom-grid">
                         <div class="chart-container" onclick="window.location.href='totalstock.html'" style="cursor: pointer;">
                             <h3 class="section-title">Total Stock</h3>
@@ -286,25 +285,25 @@
                             <h3 class="section-title">Inventory Categories</h3>
                             <div class="category-grid">
                                 <div class="category-item">
-                                    <div class="category-icon"><i class="fas fa-drumstick-bite"></i></div>
+                                    <div class="category-icon"><img src="assets/chicken.png" alt="Chicken" style="width: 50px; height: 40px; object-fit: contain;"></div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon"><img src="duck.svg" alt="Duck" style="width: 50px; height: 40px; object-fit: contain;"></div>
+                                    <div class="category-icon"><img src="assets/duck.png" alt="Duck" style="width: 50px; height: 40px; object-fit: contain;"></div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon"><img src="goat.svg" alt="Goat" style="width: 40px; height: 40px; object-fit: contain;"></div>
+                                    <div class="category-icon"><img src="assets/fish.png" alt="Fish" style="width: 50px; height: 40px; object-fit: contain;"></div>
                                 </div>
                                 <div class="category-item">
-                                    <div class="category-icon"><i class="fas fa-cow"></i></div>
+                                    <div class="category-icon"><img src="assets/mutton.png" alt="Mutton" style="width: 40px; height: 40px; object-fit: contain;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Sidebar -->
+
                 <div class="right-sidebar">
-                    <!-- Level Chart -->
+
                     <div class="level-chart">
                         <h3 class="section-title">Level</h3>
                         <div class="bar-chart">
@@ -324,7 +323,7 @@
                         </div>
                     </div>
 
-                    <!-- Customer Fulfillment -->
+                   
                     <div class="fulfillment-chart">
                         <h3 class="section-title">Customer Fulfillment</h3>
                         <div class="line-chart">
@@ -341,19 +340,19 @@
                                     <div class="legend-dot teal"></div>
                                     <span style="font-size: 14px;">Last Month</span>
                                 </div>
-                                <span style="font-size: 14px;">$4,087</span>
+                                <span style="font-size: 14px;">৳4,087</span>
                             </div>
                             <div class="stat-row">
                                 <div class="legend-item">
                                     <div class="legend-dot pink"></div>
                                     <span style="font-size: 14px;">This Month</span>
                                 </div>
-                                <span style="font-size: 14px;">$5,506</span>
+                                <span style="font-size: 14px;">৳5,506</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- New Visitors -->
+
                     <div class="new-visitors">
                         <div class="visitors-indicator">
                             <div class="legend-dot yellow"></div>
@@ -366,19 +365,19 @@
     </div>
 
     <script>
-        // Get elements
+
         const dashboardToggle = document.getElementById('dashboardToggle');
         const extendedSidebar = document.getElementById('extendedSidebar');
 
-        // Function to toggle sidebar
+
         function toggleSidebar() {
             extendedSidebar.classList.toggle('show');
         }
 
-        // Add click event listener to dashboard icon
+  
         dashboardToggle.addEventListener('click', toggleSidebar);
 
-        // Close sidebar when clicking outside
+      
         document.addEventListener('click', function(event) {
             const isClickInsideSidebar = extendedSidebar.contains(event.target) || 
                                        dashboardToggle.contains(event.target);
@@ -388,8 +387,7 @@
             }
         });
 
-        // --- Dynamic Donut Chart for Total Stock ---
-        // Stock data from totalstock.html
+    
         const stockData = [
             { name: 'Beef', value: 15, color: '#2563eb' },      // blue
             { name: 'Chicken', value: 8, color: '#06b6d4' },    // cyan
@@ -397,92 +395,31 @@
             { name: 'Mutton', value: 19, color: '#334155' }     // slate (neutral)
         ];
 
-        // --- Load Sales Data from Total Sales Page ---
         function loadSalesData() {
             const salesData = JSON.parse(localStorage.getItem("salesData")) || [];
             const totalSalesEl = document.getElementById("totalSalesCard");
             const salesChangeEl = document.getElementById("salesChangeCard");
-            
-            if (salesData.length === 0) {
-                totalSalesEl.textContent = "৳0";
-                salesChangeEl.textContent = "No data yet";
-                salesChangeEl.className = "card-change";
-                return;
-            }
-
-            // Calculate total sales
-            const totalAmount = salesData.reduce((sum, day) => sum + day.total, 0);
-            
-            // Format total sales for display
-            if (totalAmount >= 1000) {
-                totalSalesEl.textContent = `৳${(totalAmount / 1000).toFixed(1)}k`;
-            } else {
-                totalSalesEl.textContent = `৳${totalAmount.toLocaleString()}`;
-            }
-
-            // Calculate change from previous day
-            if (salesData.length > 1) {
-                const latestDay = salesData[salesData.length - 1];
-                const previousDay = salesData[salesData.length - 2];
-                const percentChange = previousDay.total === 0 
-                    ? 100 
-                    : (((latestDay.total - previousDay.total) / previousDay.total) * 100).toFixed(1);
-                
-                const changeClass = percentChange >= 0 ? 'card-change positive' : 'card-change negative';
-                const changeSymbol = percentChange >= 0 ? '+' : '';
-                salesChangeEl.textContent = `${changeSymbol}${percentChange}% from yesterday`;
-                salesChangeEl.className = changeClass;
-            } else {
-                salesChangeEl.textContent = "First entry";
-                salesChangeEl.className = "card-change";
-            }
+            // Total sales
+            const totalAmount = salesData.reduce((sum, sale) => sum + sale.total, 0);
+            totalSalesEl.textContent = totalAmount >= 1000 ? `৳${(totalAmount / 1000).toFixed(1)}k` : `৳${totalAmount.toLocaleString()}`;
+            // Remove percent change, show static label
+            salesChangeEl.textContent = "";
+            salesChangeEl.className = "card-change";
         }
 
-        // Load sales data on page load
-        loadSalesData();
-
-        // --- Load Order Data from Total Orders Page ---
         function loadOrderData() {
-            const orderData = JSON.parse(localStorage.getItem("orderData")) || [];
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
             const totalOrderEl = document.getElementById("totalOrderCard");
             const orderChangeEl = document.getElementById("orderChangeCard");
-            
-            // Get today's date in YYYY-MM-DD format
-            function getTodayDate() {
-                const today = new Date();
-                return today.toISOString().split('T')[0];
-            }
-
-            // Calculate today's orders
-            const today = getTodayDate();
-            const todayOrders = orderData.filter(order => order.date === today).length;
-            
-            // Calculate yesterday's orders
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yesterdayStr = yesterday.toISOString().split('T')[0];
-            const yesterdayOrders = orderData.filter(order => order.date === yesterdayStr).length;
-            
-            // Update total orders display
-            totalOrderEl.textContent = todayOrders;
-            
-            // Calculate and display change
-            if (yesterdayOrders > 0) {
-                const percentChange = yesterdayOrders === 0 
-                    ? 100 
-                    : (((todayOrders - yesterdayOrders) / yesterdayOrders) * 100).toFixed(1);
-                
-                const changeClass = percentChange >= 0 ? 'card-change positive' : 'card-change negative';
-                const changeSymbol = percentChange >= 0 ? '+' : '';
-                orderChangeEl.textContent = `${changeSymbol}${percentChange}% from yesterday`;
-                orderChangeEl.className = changeClass;
-            } else {
-                orderChangeEl.textContent = todayOrders > 0 ? "First orders today" : "No orders yet";
-                orderChangeEl.className = "card-change";
-            }
+            // Total orders
+            totalOrderEl.textContent = orders.length;
+            // Remove percent change, show static label
+            orderChangeEl.textContent = "";
+            orderChangeEl.className = "card-change";
         }
 
-        // Load order data on page load
+
+        loadSalesData();
         loadOrderData();
 
         const totalStock = stockData.reduce((sum, item) => sum + item.value, 0); // 47
@@ -492,7 +429,7 @@
         let offset = 0;
         const svg = document.getElementById('stockDonutChart');
         const labelContainer = document.getElementById('donutLabels');
-        // Remove previous segments if any
+
         while (svg.children.length > 1) svg.removeChild(svg.lastChild);
         labelContainer.innerHTML = '';
         stockData.forEach((item, idx) => {
@@ -511,7 +448,7 @@
             circle.setAttribute('transform', `rotate(-90 ${center} ${center})`);
             circle.setAttribute('style', 'transition: stroke-dasharray 0.8s; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.10));');
             svg.appendChild(circle);
-            // Set percentage under legend name
+           
             const percentText = Math.round(percent * 100) + '%';
             if (item.name === 'Beef') {
                 document.getElementById('beefPercent').textContent = percentText;

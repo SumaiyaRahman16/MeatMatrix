@@ -7,12 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: linear-gradient(135deg, #fef7f7 0%, #f8e8e8 100%);
@@ -20,262 +14,74 @@
       padding: 20px;
       color: #2d1b1b;
     }
-    
     .container {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.95);
       border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(144, 36, 54, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(144,36,54,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
       overflow: hidden;
+      padding: 40px 30px;
     }
-    
     .header {
       background: linear-gradient(135deg, #902436, #994d64);
       color: white;
-      padding: 40px 30px;
+      padding: 30px 20px;
       text-align: center;
+      border-radius: 16px;
+      margin-bottom: 30px;
     }
-    
     .header h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       margin-bottom: 10px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    
-    .header p {
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-    
-    .content {
-      padding: 40px 30px;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-    
-    .main-card {
-      background: linear-gradient(135deg, #902436, #994d64);
-      color: white;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(144, 36, 54, 0.2);
-      transition: all 0.3s ease;
-      grid-column: span 2;
-    }
-    
-    .main-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(144, 36, 54, 0.3);
-    }
-    
-    .main-card h2 {
-      font-size: 4rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-    
-    .main-card p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #902436;
-      margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
     .table-container {
       background: white;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(144, 36, 54, 0.1);
-      border: 1px solid rgba(144, 36, 54, 0.1);
+      box-shadow: 0 8px 32px rgba(144,36,54,0.1);
+      border: 1px solid rgba(144,36,54,0.1);
       margin-bottom: 40px;
     }
-    
     table {
       width: 100%;
       border-collapse: collapse;
     }
-    
     thead {
       background: linear-gradient(135deg, #902436, #994d64);
       color: white;
     }
-    
     th, td {
-      padding: 20px;
+      padding: 16px;
       text-align: left;
-      border-bottom: 1px solid rgba(144, 36, 54, 0.1);
+      border-bottom: 1px solid rgba(144,36,54,0.1);
     }
-    
     th {
       font-weight: 600;
       font-size: 1rem;
     }
-    
     tr:hover {
-      background: rgba(144, 36, 54, 0.03);
+      background: rgba(144,36,54,0.03);
     }
-    
-    .increase {
-      color: #22c55e;
-      font-weight: 600;
-      background: rgba(34, 197, 94, 0.1);
-      padding: 4px 8px;
-      border-radius: 6px;
-      display: inline-block;
-    }
-    
-    .decrease {
-      color: #ef4444;
-      font-weight: 600;
-      background: rgba(239, 68, 68, 0.1);
-      padding: 4px 8px;
-      border-radius: 6px;
-      display: inline-block;
-    }
-    
-    .form-section {
-      background: rgba(144, 36, 54, 0.05);
-      padding: 30px;
-      border-radius: 20px;
-      margin-bottom: 30px;
-      border: 2px solid rgba(144, 36, 54, 0.1);
-    }
-    
-    .form-section h3 {
-      color: #902436;
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-    
-    .form-row {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .form-section input {
-      flex: 1;
-      min-width: 200px;
-      padding: 15px 20px;
-      border: 2px solid rgba(144, 36, 54, 0.2);
-      border-radius: 12px;
-      font-size: 1rem;
-      background: white;
-      color: #2d1b1b;
-      transition: all 0.3s ease;
-    }
-    
-    .form-section input:focus {
-      outline: none;
-      border-color: #902436;
-      box-shadow: 0 0 0 3px rgba(144, 36, 54, 0.1);
-    }
-    
-    .form-section button {
-      padding: 15px 30px;
-      background: linear-gradient(135deg, #902436, #994d64);
-      border: none;
-      color: white;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(144, 36, 54, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .form-section button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(144, 36, 54, 0.3);
-    }
-    
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #902436;
-      text-decoration: none;
-      margin-top: 30px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background: rgba(144, 36, 54, 0.05);
-    }
-    
-    .back-btn:hover {
-      background: rgba(144, 36, 54, 0.1);
-      transform: translateX(-5px);
-    }
-    
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
       color: #666;
     }
-    
-    @media (max-width: 1024px) {
-      .main-card {
-        grid-column: span 1;
-      }
-    }
-    
     @media (max-width: 768px) {
       .container {
         margin: 10px;
         border-radius: 16px;
+        padding: 20px 10px;
       }
-      
       .header {
-        padding: 30px 20px;
+        padding: 20px 10px;
+        font-size: 1.2rem;
       }
-      
-      .header h1 {
-        font-size: 2rem;
-      }
-      
-      .content {
-        padding: 30px 20px;
-      }
-      
-      .main-card h2 {
-        font-size: 2.5rem;
-      }
-      
-      .form-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .form-section input {
-        min-width: auto;
-      }
-      
       th, td {
-        padding: 15px 10px;
+        padding: 10px 6px;
         font-size: 0.9rem;
       }
     }
@@ -285,201 +91,48 @@
   <div class="container">
     <div class="header">
       <h1>Total Sales</h1>
-      <p>Track and analyze your sales performance</p>
+      <p>All delivered orders</p>
     </div>
-    
-    <div class="content">
-      <div class="stats-grid">
-        <div class="main-card">
-          <h2 id="totalSales">৳0</h2>
-          <p id="percentChange">No data yet</p>
-        </div>
-      </div>
-
-      <div class="section-title">
-        <i class="fas fa-table"></i>
-        Daily Sales History
-      </div>
-      
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Total Sales</th>
-              <th>Change from Previous</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="salesTable">
-          </tbody>
-        </table>
-      </div>
-
-      <div class="form-section">
-        <h3>Add New Sales Entry</h3>
-        <div class="form-row">
-          <input type="date" id="salesDate" required>
-          <input type="number" id="salesAmount" placeholder="Enter sales amount (৳)" min="0" step="0.01" required>
-          <button onclick="addSales()">
-            <i class="fas fa-plus"></i>
-            Add Sales
-          </button>
-        </div>
-      </div>
-
-      <a href="dashboard.html" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-        Back to Dashboard
-      </a>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th>Kg</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody id="salesTable"></tbody>
+      </table>
     </div>
+    <a href="dashboard.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i>
+      Back to Dashboard
+    </a>
   </div>
-
   <script>
-    let salesData = JSON.parse(localStorage.getItem("salesData")) || [];
-
-    const totalSalesEl = document.getElementById("totalSales");
-    const percentChangeEl = document.getElementById("percentChange");
-    const salesTableEl = document.getElementById("salesTable");
-    const salesDateEl = document.getElementById("salesDate");
-    const salesAmountEl = document.getElementById("salesAmount");
-
-    salesDateEl.value = new Date().toISOString().split('T')[0];
-
-    function loadTable() {
-      if (salesData.length === 0) {
-        salesTableEl.innerHTML = `
-          <tr>
-            <td colspan="4" class="empty-state">
-              <i class="fas fa-clock" style="font-size: 64px; margin-bottom: 20px; opacity: 0.5;"></i>
-              <p>No sales data yet. Add your first sales entry!</p>
-            </td>
-          </tr>
-        `;
-        totalSalesEl.textContent = "৳0";
-        percentChangeEl.textContent = "No data yet";
-        return;
-      }
-
-      const totalAmount = salesData.reduce((sum, day) => sum + day.total, 0);
-      totalSalesEl.textContent = `৳${totalAmount.toLocaleString()}`;
-
-      if (salesData.length > 1) {
-        const latestDay = salesData[salesData.length - 1];
-        const previousDay = salesData[salesData.length - 2];
-        const percentChange = previousDay.total === 0 
-          ? 100 
-          : (((latestDay.total - previousDay.total) / previousDay.total) * 100).toFixed(1);
-        
-        const changeClass = percentChange >= 0 ? 'increase' : 'decrease';
-        const changeSymbol = percentChange >= 0 ? '+' : '';
-        percentChangeEl.innerHTML = `<span class="${changeClass}">${changeSymbol}${percentChange}%</span> from previous day`;
-      } else {
-        percentChangeEl.textContent = "First entry";
-      }
-
-      salesTableEl.innerHTML = "";
-      salesData.forEach((day, index) => {
-        let percentChange = "-";
-        let changeClass = "";
-        
-        if (index > 0) {
-          const prev = salesData[index - 1].total;
-          const change = prev === 0 ? 100 : (((day.total - prev) / prev) * 100).toFixed(1);
-          changeClass = change >= 0 ? 'increase' : 'decrease';
-          const changeSymbol = change >= 0 ? '+' : '';
-          percentChange = `<span class="${changeClass}">${changeSymbol}${change}%</span>`;
-        }
-        
-        salesTableEl.innerHTML += `
-          <tr>
-            <td>${formatDate(day.date)}</td>
-            <td>৳${day.total.toLocaleString()}</td>
-            <td>${percentChange}</td>
-            <td>
-              <button class="edit-btn" onclick="editSales(${index})" style="background: #3498db; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; margin-right: 5px; font-size: 0.8rem;"><i class="fas fa-edit"></i> Edit</button>
-              <button class="delete-btn" onclick="deleteSales(${index})" style="background: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem;"><i class="fas fa-trash"></i> Delete</button>
-            </td>
-          </tr>
-        `;
-      });
-
-      localStorage.setItem("salesData", JSON.stringify(salesData));
-    }
-
     function formatDate(dateString) {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { 
-        weekday: 'short', 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
-      });
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
-
-    function addSales() {
-      const date = salesDateEl.value;
-      const amount = parseFloat(salesAmountEl.value);
-
-      if (!date) {
-        alert("Please select a date");
+    function loadSales() {
+      const salesData = JSON.parse(localStorage.getItem('salesData')) || [];
+      const salesTable = document.getElementById('salesTable');
+      if (!salesData.length) {
+        salesTable.innerHTML = `<tr><td colspan="4" class="empty-state">No delivered sales yet.</td></tr>`;
         return;
       }
-
-      if (!amount || amount < 0) {
-        alert("Please enter a valid sales amount");
-        return;
-      }
-
-      const existingIndex = salesData.findIndex(day => day.date === date);
-      
-      if (existingIndex >= 0) {
-        if (confirm(`Sales data for ${formatDate(date)} already exists (৳${salesData[existingIndex].total}). Do you want to update it?`)) {
-          salesData[existingIndex].total = amount;
-        } else {
-          return;
-        }
-      } else {
-        salesData.push({ date, total: amount });
-        salesData.sort((a, b) => new Date(a.date) - new Date(b.date));
-      }
-
-      loadTable();
-      
-      salesAmountEl.value = "";
-      salesDateEl.value = new Date().toISOString().split('T')[0];
+      salesTable.innerHTML = salesData.map(sale => `
+        <tr>
+          <td>${formatDate(sale.date)}</td>
+          <td>${sale.item}</td>
+          <td>${sale.kg}</td>
+          <td>৳${sale.total.toLocaleString()}</td>
+        </tr>
+      `).join('');
     }
-
-    salesAmountEl.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        addSales();
-      }
-    });
-
-    function editSales(index) {
-      const entry = salesData[index];
-      const newAmount = prompt(`Edit sales amount for ${formatDate(entry.date)}:`, entry.total);
-      
-      if (newAmount !== null && !isNaN(newAmount) && parseFloat(newAmount) >= 0) {
-        salesData[index].total = parseFloat(newAmount);
-        loadTable();
-        alert('Sales entry updated successfully!');
-      } else if (newAmount !== null) {
-        alert('Please enter a valid sales amount');
-      }
-    }
-
-    function deleteSales(index) {
-      const entry = salesData[index];
-      if (confirm(`Are you sure you want to delete the sales entry for ${formatDate(entry.date)} (৳${entry.total})?`)) {
-        salesData.splice(index, 1);
-        loadTable();
-        alert('Sales entry deleted successfully!');
-      }
-    }
-
-    loadTable();
+    loadSales();
   </script>
-
 </body>
 </html>
