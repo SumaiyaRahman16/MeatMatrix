@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeatMatrix - All Customer Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #902436 0%, #994d64 100%);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .customer-card {
+            background: #fff;
+            color: #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .customer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .customer-name {
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            color: #902436;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .status-delivered {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .status-pending {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .customer-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #902436;
+            color: #fff;
+        }
+
+        .btn-deliver {
+            background: #902436;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-deliver:hover {
+            background: #73202c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="allOrdersContainer">
+        <h2>All Customer Orders</h2>
+    </div>
+
+    <script>
+        let allOrders = JSON.parse(localStorage.getItem("allOrders") || "[]");
+        const container = document.getElementById("allOrdersContainer");
+
+        if (allOrders.length === 0) {
+            container.innerHTML += "<p>No orders found.</p>";
+        }
+
+        function renderOrders() {
+            container.innerHTML = "<h2>All Customer Orders</h2>";
+
+            allOrders.forEach((customer, index) => {
+                const card = document.createElement("div");
+                card.className = "customer-card";
+
+                // Header with name + status badge
+                const header = document.createElement("div");
+                header.className = "customer-header";
+
+                const nameDiv = document.createElement("div");
+                nameDiv.className = "customer-name";
+                nameDiv.textContent = customer.name;
+
+                const statusDiv = document.createElement("div");
+                const isDelivered = customer.orders.every(o => o.status === "Delivered");
+                statusDiv.innerHTML = `<span class="status-badge ${isDelivered ? "status-delivered" : "status-pending"}">
+      ${isDelivered ? "Delivered" : "Pending"}
+    </span>`;
+
+                header.appendChild(nameDiv);
+                header.appendChild(statusDiv);
+
+                // Customer details + orders
+                const detailsDiv = document.createElement("div");
+                detailsDiv.className = "customer-details";
+                detailsDiv.innerHTML = `
+      <p><strong>Phone:</strong> ${customer.phone}</p>
+      <p><strong>Address:</strong> ${customer.address}</p>
+      <h4>Ordered Items:</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price (BDT)</th>
+            <th>Quantity (kg)</th>
+            <th>Total Price (BDT)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${customer.orders.map(o => `
+            <tr>
+              <td>${o.item}</td>
+              <td>${o.price}</td>
+              <td>${o.qty}</td>
+              <td>${o.total}</td>
+              <td class="${o.status === 'Delivered' ? 'status-delivered' : 'status-pending'}">${o.status}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+      <button class="btn-deliver" onclick="toggleDelivery(${index})">
+        ${isDelivered ? "Mark as Pending" : "Mark as Delivered"}
+      </button>
+    `;
+
+                // Toggle details
+                nameDiv.onclick = () => {
+                    detailsDiv.style.display = detailsDiv.style.display === "none" ? "block" : "none";
+                };
+
+                card.appendChild(header);
+                card.appendChild(detailsDiv);
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle between Delivered and Pending
+        function toggleDelivery(index) {
+            const isDelivered = allOrders[index].orders.every(o => o.status === "Delivered");
+
+            allOrders[index].orders = allOrders[index].orders.map(o => ({
+                ...o,
+                status: isDelivered ? "Pending" : "Delivered"
+            }));
+
+            // Save back to localStorage
+            localStorage.setItem("allOrders", JSON.stringify(allOrders));
+            renderOrders();
+        }
+
+
+        // Mark all orders for a customer as delivered
+        function markDelivered(index) {
+            allOrders[index].orders = allOrders[index].orders.map(o => ({
+                ...o,
+                status: "Delivered"
+            }));
+
+            // Save back to localStorage
+            localStorage.setItem("allOrders", JSON.stringify(allOrders));
+            renderOrders();
+        }
+
+        renderOrders();
+    </script>
+</body>
+
+</html>
