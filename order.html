@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeatMatrix - Order</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #902436 0%, #994d64 100%);
+      color: #fff;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: #fff;
+      color: #333;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #902436;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .btn {
+      background: #902436;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #73202c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .form-section {
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Place Your Order</h2>
+
+    <!-- Order Items Table -->
+    <table id="orderTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price (BDT/kg)</th>
+          <th>Quantity (kg)</th>
+          <th>Total (BDT)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <button class="btn" onclick="addItem()">+ Add Another Item</button>
+
+    <h3>Total Price: <span id="grandTotal">0</span> BDT</h3>
+
+    <button class="btn" onclick="showCustomerForm()">Click to Order</button>
+
+    <!-- Customer Details Form -->
+    <div id="customerForm" class="form-section hidden">
+      <h3>Enter Your Details</h3>
+      <input type="text" id="customerName" placeholder="Full Name" required>
+      <input type="text" id="customerPhone" placeholder="Phone Number" required>
+      <textarea id="customerAddress" placeholder="Address" required></textarea>
+      <button class="btn" onclick="confirmOrder()">Confirm Order</button>
+    </div>
+  </div>
+
+  <script>
+    // Item Prices
+    const prices = {
+      "Meat": 500,
+      "Duck": 400,
+      "Chicken": 300,
+      "Mutton": 800
+    };
+
+    // Get item from query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedItem = urlParams.get("item");
+
+    // Add initial row
+    const tableBody = document.querySelector("#orderTable tbody");
+    addRow(selectedItem);
+
+    function addRow(itemName = "Meat") {
+      let row = document.createElement("tr");
+
+      // Item select
+      let itemCell = document.createElement("td");
+      let select = document.createElement("select");
+      for (let item in prices) {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        if (item === itemName) option.selected = true;
+        select.appendChild(option);
+      }
+      itemCell.appendChild(select);
+      row.appendChild(itemCell);
+
+      // Price cell
+      let priceCell = document.createElement("td");
+      priceCell.textContent = prices[itemName];
+      row.appendChild(priceCell);
+
+      // Quantity input
+      let qtyCell = document.createElement("td");
+      let qtyInput = document.createElement("input");
+      qtyInput.type = "number";
+      qtyInput.min = 1;
+      qtyInput.value = 1;
+      qtyInput.oninput = updateTotal;
+      qtyCell.appendChild(qtyInput);
+      row.appendChild(qtyCell);
+
+      // Total cell
+      let totalCell = document.createElement("td");
+      totalCell.textContent = prices[itemName];
+      row.appendChild(totalCell);
+
+      // Delete button cell
+      let deleteCell = document.createElement("td");
+      let deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.className = "btn";
+      deleteBtn.onclick = function () {
+        row.remove();
+        updateTotal();
+      };
+      deleteCell.appendChild(deleteBtn);
+      row.appendChild(deleteCell);
+
+      // Events
+      select.onchange = function () {
+        priceCell.textContent = prices[select.value];
+        updateTotal();
+      };
+      qtyInput.oninput = updateTotal;
+
+      // Add row
+      tableBody.appendChild(row);
+      updateTotal();
+    }
+
+    function addItem() {
+      addRow();
+    }
+
+    function updateTotal() {
+      let rows = tableBody.querySelectorAll("tr");
+      let grandTotal = 0;
+
+      rows.forEach(row => {
+        let item = row.querySelector("select").value;
+        let price = prices[item];
+        let qty = parseInt(row.querySelector("input").value) || 0;
+        let total = price * qty;
+
+        row.querySelector("td:nth-child(4)").textContent = total;
+        grandTotal += total;
+      });
+
+      document.getElementById("grandTotal").textContent = grandTotal;
+    }
+
+    function showCustomerForm() {
+      document.getElementById("customerForm").classList.remove("hidden");
+    }
+
+    function confirmOrder() {
+      let name = document.getElementById("customerName").value;
+      let phone = document.getElementById("customerPhone").value;
+      let address = document.getElementById("customerAddress").value;
+
+      if (!name || !phone || !address) {
+        alert("Please fill all details!");
+        return;
+      }
+
+      alert("Your order confirmed! Thank you " + name + " 🎉");
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

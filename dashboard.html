@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="dashboard">
         <!-- Icon Sidebar -->
@@ -15,47 +17,47 @@
             <div class="logo">
                 <i class="fas fa-home icon"></i>
             </div>
-            
+
             <div class="nav-icon active" id="dashboardToggle" style="cursor: pointer;">
                 <i class="fas fa-home icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-user icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-trophy icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-shopping-cart icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-box icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-chart-line icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-comments icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-cog icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-star icon"></i>
             </div>
-            
+
             <div class="nav-icon">
                 <i class="fas fa-clock icon"></i>
             </div>
-            
+
             <div class="nav-icon" style="margin-top: auto;">
                 <i class="fas fa-sign-out-alt icon"></i>
             </div>
@@ -64,57 +66,58 @@
         <!-- Extended Sidebar -->
         <div class="sidebar-extended" id="extendedSidebar">
             <div class="dashboard-btn">Dashboard</div>
-            
+
             <div class="nav-item active">
                 <i class="fas fa-home icon"></i>
                 <span>Dashboard</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-user icon"></i>
                 <span>Profile</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-trophy icon"></i>
                 <span>Leaderboard</span>
             </div>
-            
-            <div class="nav-item">
+
+            <div class="nav-item" onclick="window.location.href='sales_page.html'">
                 <i class="fas fa-shopping-cart icon"></i>
                 <span>Order</span>
             </div>
-            
+
+
             <div class="nav-item">
                 <i class="fas fa-box icon"></i>
                 <span>Product</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-chart-line icon"></i>
                 <span>Sales Report</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-comments icon"></i>
                 <span>Message</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-cog icon"></i>
                 <span>Settings</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-star icon"></i>
                 <span>Favourite</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-clock icon"></i>
                 <span>History</span>
             </div>
-            
+
             <div class="nav-item">
                 <i class="fas fa-sign-out-alt icon"></i>
                 <span>Signout</span>
@@ -130,12 +133,12 @@
                     <i class="fas fa-search search-icon icon-sm"></i>
                     <input type="text" class="search-input" placeholder="Search here...">
                 </div>
-                
+
                 <div class="header-right">
                     <div class="notification">
                         <i class="fas fa-bell icon"></i>
                     </div>
-                    
+
                     <div class="user-profile">
                         <div class="avatar"></div>
                         <i class="fas fa-chevron-down icon-sm"></i>
@@ -149,9 +152,10 @@
                     <!-- Today's Sales -->
                     <div class="section-title">Today's Sales</div>
                     <div class="section-subtitle">Sales Summary</div>
-                    
+
                     <div class="sales-cards">
-                        <div class="sales-card" onclick="window.location.href='totalsale.html'" style="cursor: pointer;">
+                        <div class="sales-card" onclick="window.location.href='totalsale.html'"
+                            style="cursor: pointer;">
                             <div class="card-icon yellow">
                                 <i class="fas fa-chart-line icon"></i>
                             </div>
@@ -159,8 +163,9 @@
                             <div class="card-label">Total Sales</div>
                             <div class="card-change positive">+10% from yesterday</div>
                         </div>
-                        
-                        <div class="sales-card" onclick="window.location.href='totalorder.html'" style="cursor: pointer;">
+
+                        <div class="sales-card" onclick="window.location.href='totalorder.html'"
+                            style="cursor: pointer;">
                             <div class="card-icon blue">
                                 <i class="fas fa-chart-bar icon"></i>
                             </div>
@@ -168,7 +173,7 @@
                             <div class="card-label">Total Order</div>
                             <div class="card-change positive">+8% from yesterday</div>
                         </div>
-                        
+
                         <div class="sales-card">
                             <div class="card-icon teal">
                                 <i class="fas fa-box icon"></i>
@@ -177,7 +182,7 @@
                             <div class="card-label">Product Sold</div>
                             <div class="card-change positive">+2% from yesterday</div>
                         </div>
-                        
+
                         <div class="sales-card">
                             <div class="card-icon blue">
                                 <i class="fas fa-users icon"></i>
@@ -191,7 +196,7 @@
                     <!-- Meat Inventory Dashboard -->
                     <div class="inventory-dashboard">
                         <h3 class="section-title">Meat Inventory Dashboard</h3>
-                        
+
                         <div class="inventory-table">
                             <div class="table-header">
                                 <div>#</div>
@@ -199,7 +204,7 @@
                                 <div>Quantity</div>
                                 <div>Sales</div>
                             </div>
-                            
+
                             <div class="table-row">
                                 <div style="font-weight: 500;">01</div>
                                 <div>Inventory Overview (Total Stock)</div>
@@ -212,7 +217,7 @@
                                     <span class="sales-percentage">46%</span>
                                 </div>
                             </div>
-                            
+
                             <div class="table-row">
                                 <div style="font-weight: 500;">02</div>
                                 <div>Expiring Soon Items</div>
@@ -225,7 +230,7 @@
                                     <span class="sales-percentage">17%</span>
                                 </div>
                             </div>
-                            
+
                             <div class="table-row">
                                 <div style="font-weight: 500;">03</div>
                                 <div>Low Stock Alerts</div>
@@ -243,56 +248,75 @@
 
                     <!-- Bottom Charts -->
                     <div class="bottom-grid">
-                        <div class="chart-container" onclick="window.location.href='totalstock.html'" style="cursor: pointer;">
+                        <div class="chart-container" onclick="window.location.href='totalstock.html'"
+                            style="cursor: pointer;">
                             <h3 class="section-title">Total Stock</h3>
                             <div class="donut-chart">
                                 <div style="position: relative; width: 240px; height: 240px; margin: 0 auto;">
-                                    <svg id="stockDonutChart" width="240" height="240" viewBox="0 0 240 240" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));">
+                                    <svg id="stockDonutChart" width="240" height="240" viewBox="0 0 240 240"
+                                        style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));">
                                         <defs>
                                             <linearGradient id="outerDonutGradient" x1="0" y1="0" x2="1" y2="1">
-                                                <stop offset="0%" stop-color="#2563eb"/> <!-- blue -->
-                                                <stop offset="50%" stop-color="#06b6d4"/> <!-- cyan -->
-                                                <stop offset="100%" stop-color="#a78bfa"/> <!-- yash (purple) -->
+                                                <stop offset="0%" stop-color="#2563eb" /> <!-- blue -->
+                                                <stop offset="50%" stop-color="#06b6d4" /> <!-- cyan -->
+                                                <stop offset="100%" stop-color="#a78bfa" /> <!-- yash (purple) -->
                                             </linearGradient>
                                         </defs>
-                                        <circle cx="120" cy="120" r="105" fill="none" stroke="url(#outerDonutGradient)" stroke-width="10"/>
-                                        <circle cx="120" cy="120" r="90" fill="#f8e7ef" stroke="#e5e7eb" stroke-width="18"/>
+                                        <circle cx="120" cy="120" r="105" fill="none" stroke="url(#outerDonutGradient)"
+                                            stroke-width="10" />
+                                        <circle cx="120" cy="120" r="90" fill="#f8e7ef" stroke="#e5e7eb"
+                                            stroke-width="18" />
                                     </svg>
-                                    <div id="donutLabels" style="position: absolute; top: 0; left: 0; width: 240px; height: 240px; pointer-events: none;"></div>
+                                    <div id="donutLabels"
+                                        style="position: absolute; top: 0; left: 0; width: 240px; height: 240px; pointer-events: none;">
+                                    </div>
                                 </div>
-                                <div class="donut-legend" style="display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 1.1em;">
-                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                <div class="donut-legend"
+                                    style="display: flex; justify-content: center; gap: 24px; margin-top: 16px; font-size: 1.1em;">
+                                    <span
+                                        style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
                                         <span style="display: flex; align-items: center;">
-                                            <span style="width: 16px; height: 16px; background: #2563eb; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            <span
+                                                style="width: 16px; height: 16px; background: #2563eb; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
                                             Beef
                                         </span>
-                                        <span id="beefPercent" style="color: #2563eb; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                        <span id="beefPercent"
+                                            style="color: #2563eb; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
                                     </span>
-                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                    <span
+                                        style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
                                         <span style="display: flex; align-items: center;">
-                                            <span style="width: 16px; height: 16px; background: #06b6d4; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            <span
+                                                style="width: 16px; height: 16px; background: #06b6d4; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
                                             Chicken
                                         </span>
-                                        <span id="chickenPercent" style="color: #06b6d4; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                        <span id="chickenPercent"
+                                            style="color: #06b6d4; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
                                     </span>
-                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                    <span
+                                        style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
                                         <span style="display: flex; align-items: center;">
-                                            <span style="width: 16px; height: 16px; background: #a78bfa; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            <span
+                                                style="width: 16px; height: 16px; background: #a78bfa; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
                                             Duck
                                         </span>
-                                        <span id="duckPercent" style="color: #a78bfa; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                        <span id="duckPercent"
+                                            style="color: #a78bfa; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
                                     </span>
-                                    <span style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                                    <span
+                                        style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
                                         <span style="display: flex; align-items: center;">
-                                            <span style="width: 16px; height: 16px; background: #334155; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
+                                            <span
+                                                style="width: 16px; height: 16px; background: #334155; border-radius: 50%; display: inline-block; margin-right: 6px; border: 2px solid #fff;"></span>
                                             Mutton
                                         </span>
-                                        <span id="muttonPercent" style="color: #334155; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
+                                        <span id="muttonPercent"
+                                            style="color: #334155; font-weight: bold; font-size: 1em; margin-top: 2px;"></span>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="chart-container">
                             <h3 class="section-title">Inventory Categories</h3>
                             <div class="category-grid">
@@ -302,16 +326,20 @@
                                 <div class="category-item">
                                     <div class="category-icon">
                                         <!-- Duck SVG from noun-duck-7803424.svg -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
-                                            <path d="m87.398 33.301h-1.1992c-7.8984-2.1016-7.3008-4.5-7.3008-4.5-0.80078-7.8008-9-7.8008-9-7.8008-12-0.80078-12 13.898-8.8984 19.102 3 5.1992-4.8008 7.6992-13.699 7.6992-13.102 0-34.398 6.3008-34.398 6.3008l5.1016 3.3984-8.1992 3c5.6016 1.5 19.801 7.8984 19.801 7.8984 12.301 7.1016 27.801 7.6992 27.801 7.6992 39.293 2.9023 29.793-27.199 20.293-30.898-5.5-2.1016-5.1016-5.6992-5.1016-5.6992 0-0.89844 0.39844-1.5 1.1016-2h13.801c1.1016 0 2.1016-0.89844 2.1016-2.1016-0.10156-1.0977-1.1016-2.0977-2.2031-2.0977z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                            viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
+                                            <path
+                                                d="m87.398 33.301h-1.1992c-7.8984-2.1016-7.3008-4.5-7.3008-4.5-0.80078-7.8008-9-7.8008-9-7.8008-12-0.80078-12 13.898-8.8984 19.102 3 5.1992-4.8008 7.6992-13.699 7.6992-13.102 0-34.398 6.3008-34.398 6.3008l5.1016 3.3984-8.1992 3c5.6016 1.5 19.801 7.8984 19.801 7.8984 12.301 7.1016 27.801 7.6992 27.801 7.6992 39.293 2.9023 29.793-27.199 20.293-30.898-5.5-2.1016-5.1016-5.6992-5.1016-5.6992 0-0.89844 0.39844-1.5 1.1016-2h13.801c1.1016 0 2.1016-0.89844 2.1016-2.1016-0.10156-1.0977-1.1016-2.0977-2.2031-2.0977z" />
                                         </svg>
                                     </div>
                                 </div>
                                 <div class="category-item">
                                     <div class="category-icon">
                                         <!-- Goat SVG from noun-goat-7929333.svg -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
-                                            <path d="m80.273 35.797-4.4414-4.0391c0.10938-1.9609-0.91016-3.8164-2.625-4.7773-0.42188-4.8594-2.9453-7.7383-7.7422-8.4805 2.4688 2.0781 3.9531 4.4883 4.375 7.2695l-1.2773 0.33594c-2.8242-6.4141-7.543-8.8008-14.27-6.9336 5.5469 1.4062 9.2188 4.1953 10.77 8.5469l-1.3125 0.875c-1.8711-1.8945-4.3555-2.6641-7.5703-2.0859 0.70312 3.957 3.1367 5.6562 6.4609 6.1914-1.6445 5.125-4.9492 6.9805-9.2891 6.8008-7.2617 0-20.258-4.6523-26.586 2.2227-3.1914-0.34375-5.5312-2.1406-7.0664-5.3164-1.9219 5.6992-0.35938 8.8633 4.5078 9.625v-0.003906c-1.0703 3.8516-0.48438 7.9766 1.6133 11.375 1.3242 2.4727 0.76563 5.0547-1.4883 7.1016-0.64062 0.55859-0.94922 1.4102-0.81641 2.25 0.72266 4.0938 1.3203 7.9922 1.1641 10.734-0.027344 0.47656 0.25391 0.91406 0.69922 1.0859 0.35938 0.14453 0.61719 0.46484 0.68359 0.84766l0.36328 2.0781h4.1797c0.25391 0 0.49219-0.11719 0.64453-0.32031 0.15625-0.19922 0.20703-0.46094 0.13672-0.70703-0.71484-2.5781-3.6445-5.8477-3.4805-8.668 0.066406-2.3047 0.39844-4.0859 1.75-4.3086v0.003906c1.3906 3.4258 2.4766 6.9648 3.2461 10.582 0.10547 0.59766 0.625 1.0352 1.2344 1.0352 0.46094 0 0.88281 0.25391 1.1055 0.65625l0.94531 1.7266h3.0391c0.25781 0 0.5-0.12109 0.65234-0.32812s0.19922-0.47266 0.125-0.71875c-0.63672-2.1484-3.0859-3.6836-4.2891-5.8203-1.5625-2.6758-2-6.2109-1.8828-10.164v0.003906c1.332-0.70703 2.3281-1.9219 2.7578-3.3672 5.9297 1.1914 12.027 1.2344 17.973 0.13281 0.57812 6.4688 1.1016 12.797 0.57422 16.703-0.023438 0.17188 0.023437 0.34375 0.12891 0.47656 0.10938 0.13281 0.26562 0.21484 0.4375 0.22656h0.011719c0.30078 0.015625 0.54688 0.25391 0.57031 0.55859l0.17969 2.2969h4.0977c0.25781 0 0.49609-0.125 0.64844-0.33203 0.15625-0.20703 0.19922-0.47266 0.125-0.71875-0.17578-0.55469-0.41406-1.0898-0.70703-1.5898-1.3398-2.4648-1.9766-5.25-1.8398-8.0547 0.14063-3.2227 0.59766-6.4258 1.3594-9.5625l2.9648 15.91c0.074219 0.41406 0.4375 0.71484 0.85938 0.71484 0.37109 0 0.69922 0.23047 0.82422 0.58203l1.0742 3.0508h4.8125c0.34766 0 0.66406-0.19922 0.82031-0.51172 0.15234-0.3125 0.11719-0.6875-0.09375-0.96484-1.2422-1.6602-3.2383-2.5625-4.5312-4.3828-1.8164-2.6016-1.6875-9.9336-1.5469-17.297 4.6602-5.8516 2.2891-13.93 6.1914-18.844l1.6836 0.67188c-0.90625 2.7656 0.17969 4.6406 2.8945 5.7891-0.62891-1.8516-0.68359-3.5977 0.47266-5.1172 3.1875 1.3984 5.9727-2.7734 3.6992-5.0469z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                            viewBox="-5.0 -10.0 110.0 135.0" width="32" height="32">
+                                            <path
+                                                d="m80.273 35.797-4.4414-4.0391c0.10938-1.9609-0.91016-3.8164-2.625-4.7773-0.42188-4.8594-2.9453-7.7383-7.7422-8.4805 2.4688 2.0781 3.9531 4.4883 4.375 7.2695l-1.2773 0.33594c-2.8242-6.4141-7.543-8.8008-14.27-6.9336 5.5469 1.4062 9.2188 4.1953 10.77 8.5469l-1.3125 0.875c-1.8711-1.8945-4.3555-2.6641-7.5703-2.0859 0.70312 3.957 3.1367 5.6562 6.4609 6.1914-1.6445 5.125-4.9492 6.9805-9.2891 6.8008-7.2617 0-20.258-4.6523-26.586 2.2227-3.1914-0.34375-5.5312-2.1406-7.0664-5.3164-1.9219 5.6992-0.35938 8.8633 4.5078 9.625v-0.003906c-1.0703 3.8516-0.48438 7.9766 1.6133 11.375 1.3242 2.4727 0.76563 5.0547-1.4883 7.1016-0.64062 0.55859-0.94922 1.4102-0.81641 2.25 0.72266 4.0938 1.3203 7.9922 1.1641 10.734-0.027344 0.47656 0.25391 0.91406 0.69922 1.0859 0.35938 0.14453 0.61719 0.46484 0.68359 0.84766l0.36328 2.0781h4.1797c0.25391 0 0.49219-0.11719 0.64453-0.32031 0.15625-0.19922 0.20703-0.46094 0.13672-0.70703-0.71484-2.5781-3.6445-5.8477-3.4805-8.668 0.066406-2.3047 0.39844-4.0859 1.75-4.3086v0.003906c1.3906 3.4258 2.4766 6.9648 3.2461 10.582 0.10547 0.59766 0.625 1.0352 1.2344 1.0352 0.46094 0 0.88281 0.25391 1.1055 0.65625l0.94531 1.7266h3.0391c0.25781 0 0.5-0.12109 0.65234-0.32812s0.19922-0.47266 0.125-0.71875c-0.63672-2.1484-3.0859-3.6836-4.2891-5.8203-1.5625-2.6758-2-6.2109-1.8828-10.164v0.003906c1.332-0.70703 2.3281-1.9219 2.7578-3.3672 5.9297 1.1914 12.027 1.2344 17.973 0.13281 0.57812 6.4688 1.1016 12.797 0.57422 16.703-0.023438 0.17188 0.023437 0.34375 0.12891 0.47656 0.10938 0.13281 0.26562 0.21484 0.4375 0.22656h0.011719c0.30078 0.015625 0.54688 0.25391 0.57031 0.55859l0.17969 2.2969h4.0977c0.25781 0 0.49609-0.125 0.64844-0.33203 0.15625-0.20703 0.19922-0.47266 0.125-0.71875-0.17578-0.55469-0.41406-1.0898-0.70703-1.5898-1.3398-2.4648-1.9766-5.25-1.8398-8.0547 0.14063-3.2227 0.59766-6.4258 1.3594-9.5625l2.9648 15.91c0.074219 0.41406 0.4375 0.71484 0.85938 0.71484 0.37109 0 0.69922 0.23047 0.82422 0.58203l1.0742 3.0508h4.8125c0.34766 0 0.66406-0.19922 0.82031-0.51172 0.15234-0.3125 0.11719-0.6875-0.09375-0.96484-1.2422-1.6602-3.2383-2.5625-4.5312-4.3828-1.8164-2.6016-1.6875-9.9336-1.5469-17.297 4.6602-5.8516 2.2891-13.93 6.1914-18.844l1.6836 0.67188c-0.90625 2.7656 0.17969 4.6406 2.8945 5.7891-0.62891-1.8516-0.68359-3.5977 0.47266-5.1172 3.1875 1.3984 5.9727-2.7734 3.6992-5.0469z" />
                                         </svg>
                                     </div>
                                 </div>
@@ -350,12 +378,12 @@
                         <h3 class="section-title">Customer Fulfillment</h3>
                         <div class="line-chart">
                             <svg width="100%" height="128" viewBox="0 0 300 128">
-                                <polyline fill="none" stroke="#a9dfd8" stroke-width="2" 
-                                         points="0,100 50,80 100,90 150,70 200,60 250,50 300,40"/>
-                                <polyline fill="none" stroke="#f2c8ed" stroke-width="2" 
-                                         points="0,110 50,105 100,100 150,95 200,90 250,85 300,80"/>
+                                <polyline fill="none" stroke="#a9dfd8" stroke-width="2"
+                                    points="0,100 50,80 100,90 150,70 200,60 250,50 300,40" />
+                                <polyline fill="none" stroke="#f2c8ed" stroke-width="2"
+                                    points="0,110 50,105 100,100 150,95 200,90 250,85 300,80" />
                             </svg>
-                        </div>okay 
+                        </div>okay
                         <div class="chart-stats">
                             <div class="stat-row">
                                 <div class="legend-item">
@@ -400,10 +428,10 @@
         dashboardToggle.addEventListener('click', toggleSidebar);
 
         // Close sidebar when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideSidebar = extendedSidebar.contains(event.target) || 
-                                       dashboardToggle.contains(event.target);
-            
+        document.addEventListener('click', function (event) {
+            const isClickInsideSidebar = extendedSidebar.contains(event.target) ||
+                dashboardToggle.contains(event.target);
+
             if (!isClickInsideSidebar && extendedSidebar.classList.contains('show')) {
                 extendedSidebar.classList.remove('show');
             }
@@ -458,4 +486,5 @@
         });
     </script>
 </body>
+
 </html>
