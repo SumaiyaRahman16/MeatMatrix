@@ -1,0 +1,4 @@
+[dotenv@17.2.3] injecting env (5) from .env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+Server running on http://localhost:3000
+*** Test API at: http://localhost:3000/api/products ***
+✅ MySQL Database Connected!

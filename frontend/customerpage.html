@@ -919,20 +919,19 @@
       showCartNotification(itemName);
     }
 
-    // helper: choose asset by product name (returns absolute URL so images load from server)
+    // helper: choose asset by product name (uses relative paths)
     function assetForProduct(name) {
       const key = (name || '').toLowerCase();
-      const origin = (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : '';
-      if (key.includes('steak')) return origin + '/assets/steak.png';
-      if (key.includes('beef')) return origin + '/assets/beef.png';
-      if (key.includes('chicken')) return origin + '/assets/chicken.png';
-      if (key.includes('mutton') || key.includes('lamb')) return origin + '/assets/mutton.png';
-      if (key.includes('fish')) return origin + '/assets/fish.png';
-      if (key.includes('prawn')) return origin + '/assets/prawn.png';
-      if (key.includes('duck')) return origin + '/assets/duck.png';
-      if (key.includes('turkey')) return origin + '/assets/turkey.png';
-      if (key.includes('crab')) return origin + '/assets/crab.png';
-      return origin + '/assets/pic1.png';
+      if (key.includes('steak')) return 'assets/steak.png';
+      if (key.includes('beef')) return 'assets/beef.png';
+      if (key.includes('chicken')) return 'assets/chicken.png';
+      if (key.includes('mutton') || key.includes('lamb')) return 'assets/mutton.png';
+      if (key.includes('fish')) return 'assets/fish.png';
+      if (key.includes('prawn')) return 'assets/prawn.png';
+      if (key.includes('duck')) return 'assets/duck.png';
+      if (key.includes('turkey')) return 'assets/turkey.png';
+      if (key.includes('crab')) return 'assets/crab.png';
+      return 'assets/pic1.png';
     }
 
     async function fetchProducts() {
@@ -983,7 +982,7 @@
           <div class="card">
             ${badge}
             <div class="card-icon">
-              <img class="product-image" src="${img}" alt="${p.name}" onerror="this.onerror=null;this.src=window.location.origin + '/assets/pic1.png';" />
+              <img class="product-image" src="${img}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/pic1.png';" />
             </div>
             <h3>${p.name}</h3>
             <div class="price-tag">৳${parseFloat(price).toFixed(0)}/kg</div>

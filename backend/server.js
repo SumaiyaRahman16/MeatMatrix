@@ -16,6 +16,17 @@ app.use(cors());
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
+// Simple request logger for debugging (logs method, path and JSON body)
+app.use((req, res, next) => {
+    try {
+        console.log(`--> ${req.method} ${req.path}`);
+        if (Object.keys(req.body || {}).length) console.log('    body:', JSON.stringify(req.body));
+    } catch (e) {
+        console.log('    (failed to log body)');
+    }
+    next();
+});
+
 
 const frontendPath = path.join(__dirname, '..', 'frontend');
 app.use(express.static(frontendPath)); 

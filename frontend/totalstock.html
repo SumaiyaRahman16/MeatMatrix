@@ -25,12 +25,12 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #d0a6a6 0%, #ff6363 100%);
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
             color: #fff;
             padding: 2.5rem 2rem 2rem 2rem;
             border-radius: 15px;
             margin-bottom: 2rem;
-            box-shadow: 0px 4px 16px rgba(185,166,208,0.18);
+            box-shadow: 0px 4px 16px rgba(139, 38, 53, 0.18);
         }
 
         .header h1 {
@@ -51,11 +51,11 @@
         }
 
         .stat-card {
-            background: #d0a6a6;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
             color: #fff;
             padding: 2rem 1.5rem;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.12);
+            box-shadow: 0px 4px 10px rgba(139, 38, 53, 0.18);
             text-align: center;
             min-width: 180px;
             max-width: 220px;
@@ -63,7 +63,7 @@
             transition: box-shadow 0.3s;
         }
         .stat-card:hover {
-            box-shadow: 0px 8px 24px rgba(108,99,255,0.18);
+            box-shadow: 0px 8px 24px rgba(139, 38, 53, 0.25);
         }
 
         .stat-card h3 {
@@ -96,7 +96,7 @@
         }
 
         .table-header {
-            background: #5e3434;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
             color: white;
             padding: 1rem;
             display: flex;
@@ -298,19 +298,19 @@
         <div class="dashboard-stats">
             <div class="stat-card">
                 <h3>Total Items</h3>
-                <div class="number">4</div>
+                <div class="number">0</div>
             </div>
             <div class="stat-card">
                 <h3>Total Stock</h3>
-                <div class="number">47kg</div>
+                <div class="number">0kg</div>
             </div>
             <div class="stat-card low-stock">
                 <h3>Low Stock</h3>
-                <div class="number">2</div>
+                <div class="number">0</div>
             </div>
             <div class="stat-card expired">
-                <h3>Expired</h3>
-                <div class="number">2kg</div>
+                <h3>Premium</h3>
+                <div class="number">0</div>
             </div>
         </div>
 
@@ -318,294 +318,334 @@
         <div class="inventory-table">
             <div class="table-header">
                 <h2>Meat Inventory</h2>
-                <button class="add-btn" onclick="addNewItem()">+ Add New Item</button>
+                <div>
+                    <button class="add-btn" id="toggle-add-btn">+ Add New Item</button>
+                </div>
+            </div>
+            <!-- Inline add form (hidden by default) -->
+            <div id="add-form" style="display:none; padding:12px; background:#fff; border-bottom:1px solid #eee;">
+                <label style="margin-right:8px">Name: <input type="text" id="add-name"></label>
+                <label style="margin-right:8px">Stock(kg): <input type="number" id="add-stock" min="0"></label>
+                <label style="margin-right:8px">Price/kg: <input type="number" id="add-price" step="0.01" min="0"></label>
+                <label style="margin-right:8px">Description: <input type="text" id="add-desc"></label>
+                <label style="margin-left:8px"><input type="checkbox" id="add-premium"> Premium</label>
+                <label style="margin-left:8px"><input type="checkbox" id="add-popular"> Popular</label>
+                <button class="btn btn-save" id="add-save">Save</button>
+                <button class="btn btn-cancel" id="add-cancel">Cancel</button>
+                <span id="add-error" style="color:#c0392b; margin-left:12px"></span>
             </div>
 
             <table>
                 <thead>
                     <tr>
                         <th>Meat Type</th>
-                        <th>Current Stock (kg)</th>
-                        <th>Expired Amount (kg)</th>
-                        <th>Status</th>
-                        <th>Last Updated</th>
+                        <th>Stock Quantity (kg)</th>
+                        <th>Price per kg</th>
+                        <th>Is Premium</th>
+                        <th>Is Popular</th>
+                        <th>Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr id="beef-row">
-                        <td class="meat-name">🥩 Beef</td>
-                        <td class="amount" id="beef-amount">15</td>
-                        <td class="expired-amount" id="beef-expired">2</td>
-                        <td><span class="status in-stock">In Stock</span></td>
-                        <td>2024-01-15 10:30</td>
-                        <td class="actions">
-                            <button class="btn btn-edit" onclick="editItem('beef')">Edit</button>
-                            <button class="btn btn-delete" onclick="deleteItem('beef')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="edit-form" id="beef-edit">
-                        <td colspan="6">
-                            <strong>Edit Beef Stock:</strong>
-                            <input type="number" id="beef-new-amount" placeholder="Stock (kg)">
-                            <input type="number" id="beef-new-expired" placeholder="Expired (kg)">
-                            <button class="btn btn-save" onclick="saveItem('beef')">Save</button>
-                            <button class="btn btn-cancel" onclick="cancelEdit('beef')">Cancel</button>
-                        </td>
-                    </tr>
-
-                    <tr id="chicken-row">
-                        <td class="meat-name">🐔 Chicken</td>
-                        <td class="amount" id="chicken-amount">8</td>
-                        <td class="expired-amount" id="chicken-expired">0</td>
-                        <td><span class="status low-stock">Low Stock</span></td>
-                        <td>2024-01-15 09:15</td>
-                        <td class="actions">
-                            <button class="btn btn-edit" onclick="editItem('chicken')">Edit</button>
-                            <button class="btn btn-delete" onclick="deleteItem('chicken')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="edit-form" id="chicken-edit">
-                        <td colspan="6">
-                            <strong>Edit Chicken Stock:</strong>
-                            <input type="number" id="chicken-new-amount" placeholder="Stock (kg)">
-                            <input type="number" id="chicken-new-expired" placeholder="Expired (kg)">
-                            <button class="btn btn-save" onclick="saveItem('chicken')">Save</button>
-                            <button class="btn btn-cancel" onclick="cancelEdit('chicken')">Cancel</button>
-                        </td>
-                    </tr>
-
-                    <tr id="duck-row">
-                        <td class="meat-name">🦆 Duck</td>
-                        <td class="amount" id="duck-amount">5</td>
-                        <td class="expired-amount" id="duck-expired">0</td>
-                        <td><span class="status low-stock">Low Stock</span></td>
-                        <td>2024-01-14 16:45</td>
-                        <td class="actions">
-                            <button class="btn btn-edit" onclick="editItem('duck')">Edit</button>
-                            <button class="btn btn-delete" onclick="deleteItem('duck')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="edit-form" id="duck-edit">
-                        <td colspan="6">
-                            <strong>Edit Duck Stock:</strong>
-                            <input type="number" id="duck-new-amount" placeholder="Stock (kg)">
-                            <input type="number" id="duck-new-expired" placeholder="Expired (kg)">
-                            <button class="btn btn-save" onclick="saveItem('duck')">Save</button>
-                            <button class="btn btn-cancel" onclick="cancelEdit('duck')">Cancel</button>
-                        </td>
-                    </tr>
-
-                    <tr id="mutton-row">
-                        <td class="meat-name">🐑 Mutton</td>
-                        <td class="amount" id="mutton-amount">19</td>
-                        <td class="expired-amount" id="mutton-expired">0</td>
-                        <td><span class="status in-stock">In Stock</span></td>
-                        <td>2024-01-15 08:20</td>
-                        <td class="actions">
-                            <button class="btn btn-edit" onclick="editItem('mutton')">Edit</button>
-                            <button class="btn btn-delete" onclick="deleteItem('mutton')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="edit-form" id="mutton-edit">
-                        <td colspan="6">
-                            <strong>Edit Mutton Stock:</strong>
-                            <input type="number" id="mutton-new-amount" placeholder="Stock (kg)">
-                            <input type="number" id="mutton-new-expired" placeholder="Expired (kg)">
-                            <button class="btn btn-save" onclick="saveItem('mutton')">Save</button>
-                            <button class="btn btn-cancel" onclick="cancelEdit('mutton')">Cancel</button>
-                        </td>
-                    </tr>
+                <tbody id="inventory-body">
+                    <!-- rows will be rendered here by JS -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        function editItem(meatType) {
-            // Hide the row and show edit form
-            document.getElementById(meatType + '-row').style.display = 'none';
-            document.getElementById(meatType + '-edit').style.display = 'table-row';
-            
-            // Pre-fill current values
-            const currentAmount = document.getElementById(meatType + '-amount').textContent;
-            const currentExpired = document.getElementById(meatType + '-expired').textContent;
-            document.getElementById(meatType + '-new-amount').value = currentAmount;
-            document.getElementById(meatType + '-new-expired').value = currentExpired;
+        // Base API URL
+        const API_BASE = 'http://localhost:3000/api/products';
+
+        // Fetch products from server and render
+        async function fetchProducts() {
+            try {
+                const res = await fetch(API_BASE);
+                const products = await res.json();
+                renderTable(products);
+                updateStats();
+            } catch (err) {
+                console.error('Failed to fetch products', err);
+            }
         }
 
-        function saveItem(meatType) {
-            const newAmount = document.getElementById(meatType + '-new-amount').value;
-            const newExpired = document.getElementById(meatType + '-new-expired').value;
-            
-            if (newAmount && newExpired !== '') {
-                // Update the display
-                document.getElementById(meatType + '-amount').textContent = newAmount;
-                document.getElementById(meatType + '-expired').textContent = newExpired;
-                
-                // Update status based on stock level
-                const statusElement = document.querySelector('#' + meatType + '-row .status');
-                if (parseInt(newAmount) < 10) {
-                    statusElement.textContent = 'Low Stock';
-                    statusElement.className = 'status low-stock';
-                } else {
-                    statusElement.textContent = 'In Stock';
-                    statusElement.className = 'status in-stock';
+        // Toggle add form visibility
+        document.getElementById('toggle-add-btn').addEventListener('click', () => {
+            const form = document.getElementById('add-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.getElementById('add-cancel').addEventListener('click', () => {
+            clearAddForm();
+            document.getElementById('add-form').style.display = 'none';
+        });
+
+        document.getElementById('add-save').addEventListener('click', async () => {
+            const name = (document.getElementById('add-name').value || '').trim();
+            const stock_quantity = parseInt(document.getElementById('add-stock').value) || 0;
+            const price_per_kg = parseFloat(document.getElementById('add-price').value) || 0;
+            const description = (document.getElementById('add-desc').value || '').trim();
+            const is_premium = document.getElementById('add-premium').checked ? 1 : 0;
+            const is_popular = document.getElementById('add-popular').checked ? 1 : 0;
+            const errEl = document.getElementById('add-error');
+            errEl.textContent = '';
+            if (!name) { errEl.textContent = 'Name is required'; return; }
+            if (isNaN(stock_quantity)) { errEl.textContent = 'Stock must be a number'; return; }
+            if (isNaN(price_per_kg)) { errEl.textContent = 'Price must be a number'; return; }
+
+            const payload = { name, stock_quantity, price_per_kg, description, is_premium, is_popular };
+            try {
+                const res = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(text || 'Create failed');
                 }
-                
-                // Update timestamp
-                const now = new Date();
-                const timestamp = now.getFullYear() + '-' + 
-                    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                    String(now.getDate()).padStart(2, '0') + ' ' +
-                    String(now.getHours()).padStart(2, '0') + ':' +
-                    String(now.getMinutes()).padStart(2, '0');
-                
-                document.querySelector('#' + meatType + '-row td:nth-child(5)').textContent = timestamp;
-                
-                cancelEdit(meatType);
-                updateStats();
-                alert('Stock updated successfully!');
-            } else {
-                alert('Please enter valid amounts');
+                clearAddForm();
+                document.getElementById('add-form').style.display = 'none';
+                await fetchProducts();
+                alert('Product added');
+            } catch (err) {
+                console.error(err);
+                errEl.textContent = 'Failed to add: ' + (err.message || err);
             }
+        });
+
+        function clearAddForm() {
+            document.getElementById('add-name').value = '';
+            document.getElementById('add-stock').value = '';
+            document.getElementById('add-price').value = '';
+            document.getElementById('add-desc').value = '';
+            document.getElementById('add-premium').checked = false;
+            document.getElementById('add-popular').checked = false;
+            document.getElementById('add-error').textContent = '';
         }
 
-        function cancelEdit(meatType) {
-            document.getElementById(meatType + '-row').style.display = 'table-row';
-            document.getElementById(meatType + '-edit').style.display = 'none';
-        }
-
-        function deleteItem(meatType) {
-            if (confirm('Are you sure you want to delete this item?')) {
-                document.getElementById(meatType + '-row').remove();
-                document.getElementById(meatType + '-edit').remove();
-                updateStats();
-                alert('Item deleted successfully!');
-            }
-        }
-
-        function addNewItem() {
-            const meatType = prompt('Enter meat type:');
-            const amount = prompt('Enter stock amount (kg):');
-            const expired = prompt('Enter expired amount (kg):');
-            if (meatType && amount !== null && expired !== null) {
-                // Create new row
-                const tbody = document.querySelector('table tbody');
-                const rowId = meatType.toLowerCase().replace(/\s+/g, '-') + '-row';
-                const editId = meatType.toLowerCase().replace(/\s+/g, '-') + '-edit';
-                const now = new Date();
-                const timestamp = now.getFullYear() + '-' + 
-                    String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-                    String(now.getDate()).padStart(2, '0') + ' ' +
-                    String(now.getHours()).padStart(2, '0') + ':' +
-                    String(now.getMinutes()).padStart(2, '0');
-                const statusClass = parseInt(amount) < 10 ? 'low-stock' : 'in-stock';
-                const statusText = parseInt(amount) < 10 ? 'Low Stock' : 'In Stock';
-                // Inventory row
+        function renderTable(products) {
+            const tbody = document.getElementById('inventory-body');
+            tbody.innerHTML = '';
+            products.forEach(p => {
+                const id = p.id;
                 const tr = document.createElement('tr');
-                tr.id = rowId;
+                tr.dataset.id = id;
                 tr.innerHTML = `
-                    <td class="meat-name">${meatType}</td>
-                    <td class="amount" id="${meatType.toLowerCase()}-amount">${amount}</td>
-                    <td class="expired-amount" id="${meatType.toLowerCase()}-expired">${expired}</td>
-                    <td><span class="status ${statusClass}">${statusText}</span></td>
-                    <td>${timestamp}</td>
+                    <td class="meat-name">${escapeHtml(p.name || '')}</td>
+                    <td class="amount" data-field="stock_quantity">${p.stock_quantity ?? 0}</td>
+                    <td class="price" data-field="price_per_kg">${p.price_per_kg ?? 0}</td>
+                    <td class="premium" data-field="is_premium">${p.is_premium ? 'Yes' : 'No'}</td>
+                    <td class="popular" data-field="is_popular">${p.is_popular ? 'Yes' : 'No'}</td>
+                    <td class="description">${escapeHtml(p.description || '')}</td>
                     <td class="actions">
-                        <button class="btn btn-edit" onclick="editItem('${meatType.toLowerCase()}')">Edit</button>
-                        <button class="btn btn-delete" onclick="deleteItem('${meatType.toLowerCase()}')">Delete</button>
-                    </td>
-                `;
-                // Edit form row
-                const editTr = document.createElement('tr');
-                editTr.className = 'edit-form';
-                editTr.id = editId;
-                editTr.innerHTML = `
-                    <td colspan="6">
-                        <strong>Edit ${meatType} Stock:</strong>
-                        <input type="number" id="${meatType.toLowerCase()}-new-amount" placeholder="Stock (kg)">
-                        <input type="number" id="${meatType.toLowerCase()}-new-expired" placeholder="Expired (kg)">
-                        <button class="btn btn-save" onclick="saveItem('${meatType.toLowerCase()}')">Save</button>
-                        <button class="btn btn-cancel" onclick="cancelEdit('${meatType.toLowerCase()}')">Cancel</button>
+                        <button class="btn btn-edit" onclick="startEdit(${id})">Edit</button>
+                        <button class="btn btn-delete" onclick="deleteItem(${id})">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(tr);
+
+                // edit row (hidden)
+                const editTr = document.createElement('tr');
+                editTr.className = 'edit-form';
+                editTr.style.display = 'none';
+                editTr.dataset.id = id;
+                editTr.innerHTML = `
+                    <td colspan="7">
+                        <strong>Edit ${escapeHtml(p.name || '')}:</strong>
+                        <input type="text" class="edit-name" value="${escapeHtml(p.name || '')}" placeholder="Name">
+                        <input type="number" class="edit-stock" value="${p.stock_quantity ?? 0}" placeholder="Stock (kg)">
+                        <input type="number" class="edit-price" value="${p.price_per_kg ?? 0}" placeholder="Price per kg">
+                        <label style="margin-left:8px">Description: <input type="text" class="edit-description" value="${escapeHtml(p.description || '')}" placeholder="Description"></label>
+                        <label style="margin-left:8px"><input type="checkbox" class="edit-premium" ${p.is_premium ? 'checked' : ''}> Premium</label>
+                        <label style="margin-left:8px"><input type="checkbox" class="edit-popular" ${p.is_popular ? 'checked' : ''}> Popular</label>
+                        <button class="btn btn-save" onclick="saveItem(${id})">Save</button>
+                        <button class="btn btn-cancel" onclick="cancelEdit(${id})">Cancel</button>
+                    </td>
+                `;
                 tbody.appendChild(editTr);
-                updateStats();
-                alert('New item added: ' + meatType + ' with ' + amount + 'kg stock');
+            });
+        }
+
+        // Helpers
+        function formatDate(input) {
+            if (!input) return '';
+            const d = new Date(input);
+            if (isNaN(d)) return input;
+            const y = d.getFullYear();
+            const m = String(d.getMonth()+1).padStart(2,'0');
+            const day = String(d.getDate()).padStart(2,'0');
+            const hh = String(d.getHours()).padStart(2,'0');
+            const mm = String(d.getMinutes()).padStart(2,'0');
+            return `${y}-${m}-${day} ${hh}:${mm}`;
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Start editing a row (show edit row, hide view row)
+        function startEdit(id) {
+            const tbody = document.getElementById('inventory-body');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.forEach(r => {
+                if (r.dataset.id == id) {
+                    // show next sibling (edit row)
+                    r.style.display = 'none';
+                    const edit = r.nextElementSibling;
+                    if (edit && edit.classList.contains('edit-form')) edit.style.display = 'table-row';
+                }
+            });
+        }
+
+        function cancelEdit(id) {
+            const tbody = document.getElementById('inventory-body');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.forEach(r => {
+                if (r.dataset.id == id && r.classList.contains('edit-form')) {
+                    r.style.display = 'none';
+                    const prev = r.previousElementSibling;
+                    if (prev) prev.style.display = '';
+                }
+            });
+        }
+
+        // Save changes to server via PUT
+        async function saveItem(id) {
+            try {
+                const tbody = document.getElementById('inventory-body');
+                const editRow = Array.from(tbody.querySelectorAll('tr.edit-form')).find(r => r.dataset.id == id);
+                if (!editRow) return;
+                const name = editRow.querySelector('.edit-name').value.trim();
+                const stock_quantity = parseInt(editRow.querySelector('.edit-stock').value) || 0;
+                const price_per_kg = parseFloat(editRow.querySelector('.edit-price').value) || 0;
+                const description = editRow.querySelector('.edit-description') ? editRow.querySelector('.edit-description').value.trim() : '';
+                const is_premium = editRow.querySelector('.edit-premium').checked ? 1 : 0;
+                const is_popular = editRow.querySelector('.edit-popular').checked ? 1 : 0;
+
+                const payload = { name, stock_quantity, price_per_kg, description, is_premium, is_popular };
+                const res = await fetch(`${API_BASE}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(text || 'Failed to save');
+                }
+                await fetchProducts();
+                alert('Product updated');
+            } catch (err) {
+                console.error(err);
+                alert('Failed to save product: ' + (err.message || err));
             }
         }
 
+        // Delete
+        async function deleteItem(id) {
+            if (!confirm('Delete this product?')) return;
+            try {
+                const res = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(text || 'Delete failed');
+                }
+                await fetchProducts();
+                alert('Deleted');
+            } catch (err) {
+                console.error(err);
+                alert('Failed to delete: ' + (err.message || err));
+            }
+        }
+
+        // Add new product (simple prompts) -> POST
+        async function addNewItem() {
+            const name = prompt('Enter meat type:');
+            if (!name) return;
+            const stock_quantity = parseInt(prompt('Enter stock amount (kg):') || '0') || 0;
+            const price_per_kg = parseFloat(prompt('Enter price per kg:') || '0') || 0;
+            const description = prompt('Enter description (optional):') || '';
+            const is_premium = confirm('Is this premium? OK = Yes');
+            const is_popular = confirm('Is this popular? OK = Yes');
+
+            const payload = { name, stock_quantity, price_per_kg, description, is_premium: is_premium ? 1 : 0, is_popular: is_popular ? 1 : 0 };
+            try {
+                const res = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) {
+                    const text = await res.text().catch(() => '');
+                    throw new Error(text || 'Create failed');
+                }
+                await fetchProducts();
+                alert('Product added');
+            } catch (err) {
+                console.error(err);
+                alert('Failed to add product: ' + (err.message || err));
+            }
+        }
+
+        // Recalculate dashboard statistics based on table data
         function updateStats() {
-            // Recalculate dashboard statistics based on table data
-            const rows = document.querySelectorAll('tbody tr');
+            const rows = document.querySelectorAll('#inventory-body > tr');
             let totalItems = 0;
             let totalStock = 0;
             let lowStock = 0;
-            let expired = 0;
+            let premiumCount = 0;
 
-            rows.forEach(row => {
-                // Only count visible inventory rows (not edit forms)
-                if (row.classList.contains('edit-form')) return;
+            for (let i = 0; i < rows.length; i += 2) { // view row and edit row pairs
+                const row = rows[i];
+                if (!row || row.classList.contains('edit-form')) continue;
                 const amountCell = row.querySelector('.amount');
-                const expiredCell = row.querySelector('.expired-amount');
-                const statusSpan = row.querySelector('.status');
-                if (!amountCell || !expiredCell || !statusSpan) return;
+                const premiumCell = row.querySelector('.premium');
+                if (!amountCell) continue;
                 totalItems++;
                 const amount = parseInt(amountCell.textContent) || 0;
-                const expiredAmount = parseInt(expiredCell.textContent) || 0;
                 totalStock += amount;
-                expired += expiredAmount;
-                if (statusSpan.classList.contains('low-stock')) lowStock++;
-            });
+                // low stock threshold same as before
+                if (amount < 10) lowStock++;
+                if (premiumCell && premiumCell.textContent.trim().toLowerCase() === 'yes') premiumCount++;
+            }
 
-            // Update stat cards
             document.querySelector('.stat-card:nth-child(1) .number').textContent = totalItems;
             document.querySelector('.stat-card:nth-child(2) .number').textContent = totalStock + 'kg';
             document.querySelector('.stat-card:nth-child(3) .number').textContent = lowStock;
-            document.querySelector('.stat-card:nth-child(4) .number').textContent = expired + 'kg';
+            document.querySelector('.stat-card:nth-child(4) .number').textContent = premiumCount;
 
-            // Dynamic Low Stock Alert
-            let lowStockMeats = [];
-            rows.forEach(row => {
-                if (row.classList.contains('edit-form')) return;
-                const meatNameCell = row.querySelector('.meat-name');
-                const statusSpan = row.querySelector('.status');
-                if (!meatNameCell || !statusSpan) return;
-                if (statusSpan.classList.contains('low-stock')) {
-                    // Remove emoji for alert
-                    let name = meatNameCell.textContent.replace(/^[^a-zA-Z]+\s*/, '');
-                    lowStockMeats.push(name);
-                }
-            });
-            const lowStockMsg = lowStockMeats.length > 0
-                ? lowStockMeats.join(' and ') + (lowStockMeats.length === 1 ? ' is' : ' are') + ' running low on stock!'
-                : 'All items are sufficiently stocked.';
+            // Alerts
+            const lowStockMeats = [];
+            const expiredMeats = [];
+            const bodyRows = document.querySelectorAll('#inventory-body > tr');
+            for (let i = 0; i < bodyRows.length; i += 2) {
+                const r = bodyRows[i];
+                if (!r || r.classList.contains('edit-form')) continue;
+                const nameCell = r.querySelector('.meat-name');
+                const statusAmt = parseInt(r.querySelector('.amount').textContent) || 0;
+                const name = nameCell ? nameCell.textContent.trim() : '';
+                if (statusAmt < 10) lowStockMeats.push(name);
+                // No expired field in this schema
+            }
+
+            const lowStockMsg = lowStockMeats.length ? lowStockMeats.join(' and ') + (lowStockMeats.length === 1 ? ' is' : ' are') + ' running low on stock!' : 'All items are sufficiently stocked.';
             document.getElementById('low-stock-msg').textContent = lowStockMsg;
 
-            // Dynamic Expired Items Alert
-            let expiredMeats = [];
-            rows.forEach(row => {
-                if (row.classList.contains('edit-form')) return;
-                const meatNameCell = row.querySelector('.meat-name');
-                const expiredCell = row.querySelector('.expired-amount');
-                if (!meatNameCell || !expiredCell) return;
-                const expiredAmount = parseInt(expiredCell.textContent) || 0;
-                if (expiredAmount > 0) {
-                    let name = meatNameCell.textContent.replace(/^[^a-zA-Z]+\s*/, '');
-                    expiredMeats.push(expiredAmount + 'kg of ' + name);
-                }
-            });
-            const expiredMsg = expiredMeats.length > 0
-                ? expiredMeats.join(', ') + ' has expired and needs immediate attention!'
-                : 'No expired items.';
+            const expiredMsg = expiredMeats.length ? expiredMeats.join(', ') + ' has expired and needs immediate attention!' : 'No expired items.';
             document.getElementById('expired-msg').textContent = expiredMsg;
         }
-        
-        // Auto-refresh every 30 seconds (in a real app, this would fetch from server)
-        setInterval(function() {
-            console.log('Auto-refreshing data...');
-        }, 30000);
+
+        // Initial load
+        fetchProducts();
+
+        // Auto-refresh every 30 seconds
+        setInterval(fetchProducts, 30000);
     </script>
 </body>
 </html>
