@@ -753,11 +753,11 @@
   </style>
 </head>
 <body>
-  <!-- Authentication Check -->
+
   <script>
-    // Check if user is logged in
+
     if (!sessionStorage.getItem('userRole')) {
-      // Redirect to signin if not logged in
+
       window.location.href = 'signin.html';
     }
   </script>
@@ -888,7 +888,7 @@
       </button>
     </div>
 
-    <!-- New Items -->
+
     <div class="card">
       <div class="card-icon">
         <img src="assets/duck.png" alt="Fresh Duck" style="width:64px;height:64px;object-fit:contain;" />
@@ -1030,13 +1030,6 @@
     </button>
   </div>
 
-
-  <!-- <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2024 MeatMatrix. Fresh meat, delivered with care.</p>
-      <p>📞 Contact: +880-123-456789 | 📧 Email: orders@meatmatrix.com</p>
-    </div>
-  </footer> -->
 
   <script>
 
@@ -1197,13 +1190,13 @@
         alert('Your cart is empty!');
         return;
       }
-      // Save cart data to localStorage for totalorder.html
+
       localStorage.setItem('cartOrder', JSON.stringify(cart));
-      // Show confirmation message
+
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       const orderSummary = cart.map(item => `${item.name} x ${item.quantity}kg = ৳${item.price * item.quantity}`).join('\n');
       alert(`Order Placed!\n\n${orderSummary}\n\nTotal: ৳${total}\n\nYour order has been added to Total Orders.`);
-      // Optionally clear cart
+
       cart = [];
       updateCartUI();
     }
@@ -1245,11 +1238,11 @@
 
     function logout() {
       if (confirm('Are you sure you want to logout?')) {
-        // Clear session data
+    
         sessionStorage.removeItem('userRole');
         sessionStorage.removeItem('userEmail');
         
-        // Redirect to signin page
+
         window.location.href = 'signin.html';
       }
     }
@@ -1281,7 +1274,7 @@
 
 
     function loadProfile() {
-      // Get user email from session
+
       const userEmail = sessionStorage.getItem('userEmail') || 'guest@meatmatrix.com';
       
       const profile = JSON.parse(localStorage.getItem('profileInfo')) || {
@@ -1293,7 +1286,7 @@
         orders: 0
       };
       
-      // Always use the logged-in user's email
+    
       profile.email = userEmail;
       
       document.getElementById('profileNameInput').value = profile.name;

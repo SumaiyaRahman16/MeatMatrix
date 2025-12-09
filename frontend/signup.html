@@ -155,13 +155,12 @@
         </div>
     </footer>
 
-    <!-- Admin Panel Button -->
     <a href="adminlogin.html" class="admin-panel-btn">
         🔧 Admin Panel 
     </a>
     
     <script>
-    // Signup form submission - sends JSON to backend /api/auth/signup
+
     (function(){
       const form = document.getElementById('signupForm');
       const msg = document.getElementById('signupMessage');
@@ -191,7 +190,7 @@
           return;
         }
 
-        // Derive a username from names if provided, else from email local part
+
         let username = '';
         if (firstName || lastName) {
           username = (firstName + ' ' + lastName).trim();
@@ -201,7 +200,7 @@
 
         const payload = { username, email, password };
 
-        // Use localhost:3000 for backend API
+
         const url = 'http://localhost:3000/api/auth/signup';
 
         try {
@@ -218,14 +217,14 @@
 
           if (res.status === 201) {
             showMessage('Registration successful! Redirecting...', false);
-            // store basic user info locally so profile sidebar can show name/email
+
             try {
               const userObj = { name: username, email };
               localStorage.setItem('user', JSON.stringify(userObj));
             } catch (e) {
               console.warn('Could not save user to localStorage', e);
             }
-            // small delay so user sees message
+
             setTimeout(() => { window.location.href = 'customerpage.html'; }, 700);
           } else if (res.status === 409) {
             showMessage(data.message || 'Email already registered.');

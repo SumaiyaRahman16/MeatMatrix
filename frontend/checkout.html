@@ -514,7 +514,7 @@
             cartTotal.style.display = 'block';
         }
 
-        function confirmOrder() {
+        async function confirmOrder() {
             const name = document.getElementById("name").value.trim();
             const phone = document.getElementById("phone").value.trim();
             const address = document.getElementById("address").value.trim();
@@ -545,8 +545,8 @@
                 price: totalAmount / totalQuantity, // Average price per kg
                 totalPrice: totalAmount,
                 date: today,
-                customer_name: name,
-                customer_phone: phone,
+                name: name,
+                customer_number: phone,
                 customer_address: address,
                 items: cart // Keep full item details for reference
             };
@@ -556,6 +556,44 @@
 
             // Clear checkout cart
             localStorage.removeItem('checkoutCart');
+
+            // Send order data to backend to store in DB (non-blocking, but we await to log result)
+            try {
+                const resp = await fetch('http://localhost:3000/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        customer_number: phone,
+                        total_kg: totalQuantity,
+                        total_amount: totalAmount
+                    })
+                });
+
+                // Parse response safely: only attempt json() when content-type is JSON
+                let json = null;
+                try {
+                    const ct = resp.headers.get('content-type') || '';
+                    if (ct.includes('application/json')) {
+                        json = await resp.json();
+                    } else {
+                        const text = await resp.text();
+                        console.warn('Non-JSON response from /api/orders', resp.status, text);
+                        json = { success: resp.ok, message: text };
+                    }
+                } catch (parseErr) {
+                    console.warn('Failed to parse response body as JSON', parseErr);
+                    json = { success: resp.ok };
+                }
+
+                if (resp.ok && json && json.success) {
+                    console.log('Order saved to DB, id=', json.order_id);
+                } else {
+                    console.warn('Failed saving order to DB', json);
+                }
+            } catch (err) {
+                console.error('Network or server error while saving order to DB', err);
+            }
 
             // Show success message
             document.getElementById("successMsg").style.display = "block";

@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Admin Authentication Check -->
+
     <script>
-        // Check if user is logged in as admin/manager
+
         const userRole = sessionStorage.getItem('userRole');
         if (!userRole || userRole !== 'manager') {
-            // Redirect to admin login if not authenticated as admin
+
             window.location.href = 'adminlogin.html';
         }
     </script>
@@ -399,20 +399,20 @@
 
     
         const stockData = [
-            { name: 'Beef', value: 15, color: '#2563eb' },      // blue
-            { name: 'Chicken', value: 8, color: '#06b6d4' },    // cyan
-            { name: 'Duck', value: 5, color: '#a78bfa' },       // yash (purple)
-            { name: 'Mutton', value: 19, color: '#334155' }     // slate (neutral)
+            { name: 'Beef', value: 15, color: '#2563eb' },     
+            { name: 'Chicken', value: 8, color: '#06b6d4' },    
+            { name: 'Duck', value: 5, color: '#a78bfa' },      
+            { name: 'Mutton', value: 19, color: '#334155' }     
         ];
 
         function loadSalesData() {
             const salesData = JSON.parse(localStorage.getItem("salesData")) || [];
             const totalSalesEl = document.getElementById("totalSalesCard");
             const salesChangeEl = document.getElementById("salesChangeCard");
-            // Total sales
+      
             const totalAmount = salesData.reduce((sum, sale) => sum + sale.total, 0);
             totalSalesEl.textContent = totalAmount >= 1000 ? `৳${(totalAmount / 1000).toFixed(1)}k` : `৳${totalAmount.toLocaleString()}`;
-            // Remove percent change, show static label
+
             salesChangeEl.textContent = "";
             salesChangeEl.className = "card-change";
         }
@@ -421,9 +421,9 @@
             const orders = JSON.parse(localStorage.getItem("orders")) || [];
             const totalOrderEl = document.getElementById("totalOrderCard");
             const orderChangeEl = document.getElementById("orderChangeCard");
-            // Total orders
+
             totalOrderEl.textContent = orders.length;
-            // Remove percent change, show static label
+
             orderChangeEl.textContent = "";
             orderChangeEl.className = "card-change";
         }
@@ -432,7 +432,7 @@
         loadSalesData();
         loadOrderData();
 
-        const totalStock = stockData.reduce((sum, item) => sum + item.value, 0); // 47
+        const totalStock = stockData.reduce((sum, item) => sum + item.value, 0);
         const radius = 90;
         const center = 120;
         const circumference = 2 * Math.PI * radius;
@@ -445,7 +445,7 @@
         stockData.forEach((item, idx) => {
             const percent = item.value / totalStock;
             const dash = percent * circumference;
-            // Draw segment
+  
             const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             circle.setAttribute('cx', center);
             circle.setAttribute('cy', center);

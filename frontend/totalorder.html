@@ -29,7 +29,27 @@
       <h1>Total Orders</h1>
       <p>All recent orders placed by customers</p>
     </div>
-    <table class="order-table" id="orderTable">
+
+    <!-- TABLE 1: Orders from Database -->
+    <h2 style="margin: 20px; color: #8B2635; font-size: 1.3rem;">📊 Orders from Database</h2>
+    <table class="order-table" id="dbOrderTable">
+      <thead>
+        <tr>
+          <th>Order No.</th>
+          <th>Customer Name</th>
+          <th>Total Kg</th>
+          <th>Total Amount</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody id="dbOrderTableBody">
+        <!-- Database orders will be injected here -->
+      </tbody>
+    </table>
+
+    <!-- TABLE 2: Pending Orders from localStorage (can mark as delivered) -->
+    <h2 style="margin: 20px; color: #8B2635; font-size: 1.3rem;">📦 Pending Orders (Mark as Delivered)</h2>
+    <table class="order-table" id="localOrderTable">
       <thead>
         <tr>
           <th>Order No.</th>
@@ -40,32 +60,77 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody id="orderTableBody">
-        <!-- Orders will be injected here -->
+      <tbody id="localOrderTableBody">
+        <!-- localStorage orders will be injected here -->
       </tbody>
     </table>
+
     <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
   </div>
   <script>
-    // Load orders from localStorage
-    function getOrders() {
-      return JSON.parse(localStorage.getItem('orders')) || [];
+    // ============ TABLE 1: DATABASE ORDERS ============
+    // Fetch orders from backend database
+    async function fetchDatabaseOrders() {
+      try {
+        const response = await fetch('http://localhost:3000/api/orders');
+        const data = await response.json();
+        
+        if (data.success) {
+          return data.orders;
+        } else {
+          console.error('Failed to fetch orders:', data.message);
+          return [];
+        }
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+        return [];
+      }
     }
-    function saveOrders(orders) {
-      localStorage.setItem('orders', JSON.stringify(orders));
-    }
-    function renderOrders() {
-      const orders = getOrders();
-      const orderTableBody = document.getElementById('orderTableBody');
+
+    async function renderDatabaseOrders() {
+      const orders = await fetchDatabaseOrders();
+      const dbOrderTableBody = document.getElementById('dbOrderTableBody');
+      
       if (!orders.length) {
-        orderTableBody.innerHTML = '<tr><td colspan="6">No orders yet.</td></tr>';
+        dbOrderTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:20px;color:#999;">No database orders yet.</td></tr>';
         return;
       }
-      orderTableBody.innerHTML = orders.map((order, idx) => `
+      
+      dbOrderTableBody.innerHTML = orders.map((order) => `
+        <tr>
+          <td>ORD-${order.order_id}</td>
+          <td>${order.name}</td>
+          <td>${order.total_kg} kg</td>
+          <td>৳${order.total_amount}</td>
+          <td>${order.customer_number}</td>
+        </tr>
+      `).join('');
+    }
+
+    // ============ TABLE 2: LOCALSTORAGE ORDERS (WITH MARK AS DELIVERED) ============
+    // Load orders from localStorage (exactly like before)
+    function getLocalOrders() {
+      return JSON.parse(localStorage.getItem('orders')) || [];
+    }
+
+    function saveLocalOrders(orders) {
+      localStorage.setItem('orders', JSON.stringify(orders));
+    }
+
+    function renderLocalOrders() {
+      const orders = getLocalOrders();
+      const localOrderTableBody = document.getElementById('localOrderTableBody');
+      
+      if (!orders.length) {
+        localOrderTableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:#999;">No pending orders.</td></tr>';
+        return;
+      }
+      
+      localOrderTableBody.innerHTML = orders.map((order, idx) => `
         <tr>
           <td>${order.orderNumber}</td>
           <td>${order.orderType}</td>
-          <td>${order.orderKg}</td>
+          <td>${order.orderKg} kg</td>
           <td>৳${order.totalPrice}</td>
           <td>${order.date}</td>
           <td>
@@ -74,9 +139,12 @@
         </tr>
       `).join('');
     }
+
     function markAsDelivered(idx) {
-      let orders = getOrders();
+      let orders = getLocalOrders();
       const deliveredOrder = orders[idx];
+      
+      // Add to salesData in localStorage (exactly like before)
       let salesData = JSON.parse(localStorage.getItem('salesData')) || [];
       salesData.push({
         date: new Date().toISOString().split('T')[0],
@@ -85,18 +153,25 @@
         total: deliveredOrder.totalPrice
       });
       localStorage.setItem('salesData', JSON.stringify(salesData));
+      
+      // Remove from orders
       orders.splice(idx, 1);
-      saveOrders(orders);
-      renderOrders();
+      saveLocalOrders(orders);
+      
+      // Re-render
+      renderLocalOrders();
+      
       alert('Order marked as delivered and moved to Total Sales!');
     }
-    // Accept new order from customerpage.html
+
+    // Accept new order from checkout page (exactly like before)
     function acceptOrderFromCart() {
       const cartOrder = localStorage.getItem('cartOrder');
       if (cartOrder) {
         const cartData = JSON.parse(cartOrder);
-        const orders = getOrders();
+        const orders = getLocalOrders();
         const today = new Date().toISOString().split('T')[0];
+        
         cartData.forEach((item, idx) => {
           orders.push({
             orderNumber: `ORD-${orders.length+1}`,
@@ -107,13 +182,16 @@
             date: today
           });
         });
-        saveOrders(orders);
+        
+        saveLocalOrders(orders);
         localStorage.removeItem('cartOrder');
       }
     }
-    // On page load, accept new order and render
-    acceptOrderFromCart();
-    renderOrders();
+
+    // On page load, render BOTH tables
+    acceptOrderFromCart(); // Accept any new cart orders first
+    renderDatabaseOrders(); // Render database orders
+    renderLocalOrders(); // Render localStorage orders
   </script>
 </body>
 </html>

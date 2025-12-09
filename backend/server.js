@@ -35,6 +35,7 @@ app.use(express.static(frontendPath));
 
 app.use('/api/products', productRoutes); 
 app.use('/api/auth', authRoutes);
+app.use('/api/orders', orderRoutes);
 
 // START SERVER
 app.listen(PORT, () => {

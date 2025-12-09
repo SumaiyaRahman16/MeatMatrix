@@ -211,14 +211,14 @@
           if (res.status === 200) {
             showMessage('Login successful! Redirecting...', false);
 
-            // Redirect based on user role
+        
             const redirectUrl = data.role === 'manager' ? 'dashboard.html' : 'customerpage.html';
 
-            // Store user info in sessionStorage for future reference
+
             sessionStorage.setItem('userRole', data.role);
             sessionStorage.setItem('userEmail', email);
 
-            // Also save basic user object to localStorage so profile sidebar can read name/email
+
             try {
               const nameFromResponse = data.name || data.username || null;
               const derivedName = nameFromResponse || email.split('@')[0];
@@ -228,7 +228,7 @@
               console.warn('Could not save user to localStorage', e);
             }
 
-            // Small delay so user sees message
+
             setTimeout(() => { window.location.href = redirectUrl; }, 700);
           } else if (res.status === 401) {
             showMessage(data.message || 'Invalid email or password.');
