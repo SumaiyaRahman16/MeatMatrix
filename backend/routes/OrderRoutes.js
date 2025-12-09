@@ -31,10 +31,14 @@ router.get('/:id', async (req, res) => {
 // POST create new order
 router.post('/', async (req, res) => {
     try {
+        console.log('=== POST /api/orders ===');
+        console.log('Request body:', req.body);
+        
         const { customer_name, customer_phone, customer_address, items, total_amount, payment_method } = req.body;
         
         // Validate required fields
         if (!customer_name || !customer_phone || !customer_address || !items || !total_amount) {
+            console.log('Validation failed - missing fields');
             return res.status(400).json({ 
                 error: 'Missing required fields: customer_name, customer_phone, customer_address, items, total_amount' 
             });
@@ -42,14 +46,17 @@ router.post('/', async (req, res) => {
         
         // Validate items array
         if (!Array.isArray(items) || items.length === 0) {
+            console.log('Validation failed - invalid items array');
             return res.status(400).json({ error: 'Items must be a non-empty array' });
         }
 
         // Validate total_amount
         if (typeof total_amount !== 'number' || total_amount <= 0) {
+            console.log('Validation failed - invalid total_amount');
             return res.status(400).json({ error: 'Total amount must be a positive number' });
         }
 
+        console.log('Creating order with OrderModel...');
         const newOrder = await OrderModel.createOrder({
             customer_name,
             customer_phone,
@@ -59,6 +66,7 @@ router.post('/', async (req, res) => {
             payment_method
         });
         
+        console.log('Order created successfully:', newOrder);
         res.status(201).json({ 
             message: 'Order created successfully',
             order: newOrder

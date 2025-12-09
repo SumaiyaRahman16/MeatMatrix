@@ -803,53 +803,16 @@
         <div class="avatar-circle">
           <i class="fas fa-user"></i>
         </div>
-        <input id="profileNameInput" type="text" style="font-size:1.1rem;font-weight:600;color:#333;text-align:center;margin-bottom:0.5rem;border:none;background:transparent;width:100%;outline:none;" />
-        <input id="profileEmailInput" type="email" style="color:#666;font-size:0.9rem;text-align:center;border:none;background:transparent;width:100%;outline:none;" />
+        <!-- Name and email shown here -->
+        <div id="profileDisplayName" style="font-size:1.1rem;font-weight:600;color:#333;text-align:center;margin-bottom:0.25rem;"></div>
+        <div id="profileDisplayEmail" style="color:#666;font-size:0.9rem;text-align:center;margin-bottom:0.5rem;"></div>
       </div>
-      <div class="profile-details">
-        <div class="profile-item">
-          <div class="profile-item-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="profile-item-content">
-            <div class="profile-item-label">Phone Number</div>
-            <input id="profilePhoneInput" type="text" style="font-weight:600;color:#333;border:none;background:transparent;width:100%;outline:none;" />
-          </div>
-        </div>
-        <div class="profile-item">
-          <div class="profile-item-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="profile-item-content">
-            <div class="profile-item-label">Address</div>
-            <input id="profileAddressInput" type="text" style="font-weight:600;color:#333;border:none;background:transparent;width:100%;outline:none;" />
-          </div>
-        </div>
-        <div class="profile-item">
-          <div class="profile-item-icon">
-            <i class="fas fa-calendar"></i>
-          </div>
-          <div class="profile-item-content">
-            <div class="profile-item-label">Feedback</div>
-            <input id="profileMemberInput" type="text" style="font-weight:600;color:#333;border:none;background:transparent;width:100%;outline:none;" placeholder="Enter feedback" />
-          </div>
-        </div>
-        <div class="profile-item">
-          <div class="profile-item-icon">
-            <i class="fas fa-shopping-bag"></i>
-          </div>
-          <div class="profile-item-content">
-            <div class="profile-item-label">Total Orders</div>
-            <input id="profileOrdersInput" type="number" min="0" style="font-weight:600;color:#333;border:none;background:transparent;width:100%;outline:none;" />
-          </div>
-        </div>
-      </div>
+      <!-- <div class="profile-details">
+        only name and email shown per request
+      </div> -->
     </div>
     <div class="profile-actions">
-      <button class="profile-btn" onclick="saveProfile()">
-        <i class="fas fa-save"></i>
-        Save Profile
-      </button>
+      <!-- Keep only logout button; no save/profile editing here -->
       <button class="profile-btn secondary" onclick="logout()">
         <i class="fas fa-sign-out-alt"></i>
         Logout
@@ -1175,8 +1138,17 @@
 
     function logout() {
       if (confirm('Are you sure you want to logout?')) {
-        alert('Logging out...');
-
+        // Clear local user data and redirect to signup page
+        try {
+          localStorage.removeItem('user');
+          localStorage.removeItem('profileInfo');
+          // optional: clear checkout cart on logout
+          localStorage.removeItem('checkoutCart');
+        } catch (e) {
+          console.warn('Error clearing localStorage during logout', e);
+        }
+        // Redirect to signup page
+        window.location.href = 'signup.html';
       }
     }
 
@@ -1212,29 +1184,29 @@
 
 
     function loadProfile() {
-      const profile = JSON.parse(localStorage.getItem('profileInfo')) || {
+      // Priority: 'user' (from signup/login) -> 'profileInfo' -> defaults
+      const userFromAuth = JSON.parse(localStorage.getItem('user') || 'null');
+      const profileInfo = JSON.parse(localStorage.getItem('profileInfo') || 'null');
+      const profile = userFromAuth || profileInfo || {
         name: 'Sumaiya Rahman',
         email: 'rsumaiya1602@gmail.com',
-        phone: '+880-1740392161',
-        address: 'Mirpur, Dhaka',
-        member: '',
-        orders: 12
+        phone: '+880-1740392161'
       };
-      document.getElementById('profileNameInput').value = profile.name;
-      document.getElementById('profileEmailInput').value = profile.email;
-      document.getElementById('profilePhoneInput').value = profile.phone;
-      document.getElementById('profileAddressInput').value = profile.address;
-      document.getElementById('profileMemberInput').value = profile.member;
-      document.getElementById('profileOrdersInput').value = profile.orders;
+
+      // Populate display elements
+  const nameEl = document.getElementById('profileDisplayName');
+  const emailEl = document.getElementById('profileDisplayEmail');
+
+  if (nameEl) nameEl.textContent = profile.name || '';
+  if (emailEl) emailEl.textContent = profile.email || '';
     }
+
     function saveProfile() {
+      // No inline editing in this simplified sidebar. If called, update profileInfo from displayed values.
       const profile = {
-        name: document.getElementById('profileNameInput').value,
-        email: document.getElementById('profileEmailInput').value,
-        phone: document.getElementById('profilePhoneInput').value,
-        address: document.getElementById('profileAddressInput').value,
-        member: document.getElementById('profileMemberInput').value,
-        orders: parseInt(document.getElementById('profileOrdersInput').value) || 0
+        name: document.getElementById('profileDisplayName')?.textContent || '',
+        email: document.getElementById('profileDisplayEmail')?.textContent || '',
+        phone: document.getElementById('profileDisplayPhone')?.textContent || ''
       };
       localStorage.setItem('profileInfo', JSON.stringify(profile));
       alert('Profile saved!');

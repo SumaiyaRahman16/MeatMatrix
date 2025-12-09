@@ -218,6 +218,13 @@
 
           if (res.status === 201) {
             showMessage('Registration successful! Redirecting...', false);
+            // store basic user info locally so profile sidebar can show name/email
+            try {
+              const userObj = { name: username, email };
+              localStorage.setItem('user', JSON.stringify(userObj));
+            } catch (e) {
+              console.warn('Could not save user to localStorage', e);
+            }
             // small delay so user sees message
             setTimeout(() => { window.location.href = 'customerpage.html'; }, 700);
           } else if (res.status === 409) {
