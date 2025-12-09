@@ -1132,15 +1132,10 @@
         alert('Your cart is empty!');
         return;
       }
-      // Save cart data to localStorage for totalorder.html
-      localStorage.setItem('cartOrder', JSON.stringify(cart));
-      // Show confirmation message
-      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const orderSummary = cart.map(item => `${item.name} x ${item.quantity}kg = ৳${item.price * item.quantity}`).join('\n');
-      alert(`Order Placed!\n\n${orderSummary}\n\nTotal: ৳${total}\n\nYour order has been added to Total Orders.`);
-      // Optionally clear cart
-      cart = [];
-      updateCartUI();
+      // Save cart data to localStorage for checkout page
+      localStorage.setItem('checkoutCart', JSON.stringify(cart));
+      // Redirect to checkout page
+      window.location.href = 'checkout.html';
     }
 
     function toggleProfile() {

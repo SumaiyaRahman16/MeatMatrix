@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MeatMatrix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #b47e86 0%, #bf4f4f 50%, #f6f6f6 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(139, 38, 53, 0.2);
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .cart-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cart-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+        }
+
+        .checkout-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(139, 38, 53, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(139, 38, 53, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.1);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-details {
+            color: #8B2635;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #8B2635;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cart-total {
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.3);
+        }
+
+        .cart-total h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .total-amount {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(139, 38, 53, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #8B2635;
+            box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover {
+            border-color: rgba(139, 38, 53, 0.3);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #8B2635, #6B6B6B);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 8px 25px rgba(139, 38, 53, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 38, 53, 0.35);
+        }
+
+        .confirm-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 1rem;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .success-message h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .success-message p {
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-btn {
+            background: white;
+            color: #22c55e;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .dashboard-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #666;
+        }
+
+        .empty-cart-icon {
+            font-size: 4rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .payment-method {
+            background: rgba(139, 38, 53, 0.05);
+            border: 2px solid rgba(139, 38, 53, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #8B2635;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+            
+            .navbar {
+                margin: 10px;
+                padding: 1rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">MeatMatrix</div>
+            <a href="customerpage.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Shop
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Cart Summary Section -->
+        <div class="cart-section">
+            <h2 class="section-title">
+                <i class="fas fa-shopping-cart"></i>
+                Order Summary
+            </h2>
+            
+            <div id="cartItems">
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <p>No items in cart</p>
+                    <p>Please go back to shop and add items</p>
+                </div>
+            </div>
+            
+            <div class="cart-total" id="cartTotal" style="display: none;">
+                <h3>Total Amount</h3>
+                <div class="total-amount" id="totalAmount">৳0</div>
+            </div>
+        </div>
+
+        <!-- Checkout Form Section -->
+        <div class="checkout-section">
+            <h2 class="section-title">
+                <i class="fas fa-user"></i>
+                Delivery Information
+            </h2>
+
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">
+                        <i class="fas fa-user"></i> Full Name
+                    </label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fas fa-phone"></i> Phone Number
+                    </label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">
+                        <i class="fas fa-map-marker-alt"></i> Delivery Address
+                    </label>
+                    <textarea id="address" class="form-control" placeholder="Enter your complete delivery address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-credit-card"></i> Payment Method
+                    </label>
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Cash on Delivery
+                    </div>
+                </div>
+
+                <button type="button" class="confirm-btn" onclick="confirmOrder()">
+                    <i class="fas fa-check-circle"></i>
+                    Confirm Order
+                </button>
+            </form>
+
+            <div class="success-message" id="successMsg">
+                <h3>
+                    <i class="fas fa-check-circle"></i>
+                    Order Confirmed Successfully!
+                </h3>
+                <p>Thank you for your order. We will contact you shortly to confirm delivery details.</p>
+                <a href="customerpage.html" class="dashboard-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalAmount = 0;
+
+        // Load cart data and display order summary
+        function loadCartData() {
+            const cartData = localStorage.getItem('checkoutCart');
+            if (!cartData) {
+                // Show empty cart message
+                document.getElementById('cartItems').innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <p>No items in cart</p>
+                        <p>Please go back to shop and add items</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            cart = JSON.parse(cartData);
+            displayOrderSummary();
+        }
+
+        function displayOrderSummary() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const totalAmountDiv = document.getElementById('totalAmount');
+            
+            let html = '';
+            totalAmount = 0;
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <p>No items in cart</p>
+                        <p>Please go back to shop and add items</p>
+                    </div>
+                `;
+                cartTotal.style.display = 'none';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-details">${item.quantity}kg × ৳${item.price}/kg</div>
+                        </div>
+                        <div class="cart-item-price">৳${itemTotal}</div>
+                    </div>
+                `;
+            });
+            
+            cartItemsDiv.innerHTML = html;
+            totalAmountDiv.textContent = `৳${totalAmount}`;
+            cartTotal.style.display = 'block';
+        }
+
+        function confirmOrder() {
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
+
+            if (!name || !phone || !address) {
+                alert("Please fill in all required fields!");
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert("Your cart is empty! Please add items before placing an order.");
+                return;
+            }
+
+            // Create a single order with all items combined
+            const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Create a single order entry for the whole order
+            const orderNumber = `ORD-${existingOrders.length + 1}`;
+            const itemSummary = cart.map(item => `${item.name} x ${item.quantity}kg`).join(', ');
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const singleOrder = {
+                orderNumber: orderNumber,
+                orderType: itemSummary, // All items in one string
+                orderKg: totalQuantity, // Total quantity of all items
+                price: totalAmount / totalQuantity, // Average price per kg
+                totalPrice: totalAmount,
+                date: today,
+                customer_name: name,
+                customer_phone: phone,
+                customer_address: address,
+                items: cart // Keep full item details for reference
+            };
+            
+            existingOrders.push(singleOrder);
+            localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+            // Clear checkout cart
+            localStorage.removeItem('checkoutCart');
+
+            // Show success message
+            document.getElementById("successMsg").style.display = "block";
+            document.getElementById("checkoutForm").style.display = "none";
+        }
+
+        // Load cart data when page loads
+        window.onload = loadCartData;
+    </script>
+
+</body>
+</html>

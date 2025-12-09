@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const productRoutes = require('./routes/ProductRoutes'); 
 const authRoutes = require('./routes/AuthRoutes');
+const orderRoutes = require('./routes/OrderRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
