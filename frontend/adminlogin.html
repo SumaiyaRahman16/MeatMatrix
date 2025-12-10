@@ -319,7 +319,7 @@
     </form>
 
     <script>
-      // Admin login form submission - sends JSON to backend /api/auth/login
+
       (function(){
         const form = document.getElementById('adminLoginForm');
         const msg = document.getElementById('adminMessage');
@@ -355,18 +355,18 @@
             });
 
             const data = await res.json().catch(() => ({}));
-            console.log('Server response:', res.status, data); // Debug line
+            console.log('Server response:', res.status, data); 
 
             if (res.status === 200) {
-              // Check if user has manager/admin role
+      
               if (data.role === 'manager') {
                 showMessage('Admin login successful! Redirecting...', false);
                 
-                // Store admin info in sessionStorage
+               
                 sessionStorage.setItem('userRole', data.role);
                 sessionStorage.setItem('userEmail', email);
                 
-                // Redirect to dashboard
+               
                 setTimeout(() => { window.location.href = 'dashboard.html'; }, 700);
               } else {
                 showMessage('Access denied. Admin privileges required.');
@@ -382,7 +382,7 @@
           } catch (err) {
             console.error('Admin login error', err);
             showMessage('Network error. Please check if the server is running.');
-            console.log('Full error details:', err); // Debug line
+            console.log('Full error details:', err); 
           } finally {
             loginBtn.disabled = false;
           }

@@ -77,7 +77,10 @@
 
 
     .hero {
-      background: rgba(255, 255, 255, 0.1);
+      background: linear-gradient(rgba(139, 38, 53, 0.7), rgba(107, 107, 107, 0.7)), url('assets/Meat.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       backdrop-filter: blur(20px);
       padding: 3rem 2rem;
       text-align: center;
@@ -86,6 +89,7 @@
       max-width: 1200px;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     }
 
     .hero h1 {
@@ -757,6 +761,226 @@
       opacity: 1;
       visibility: visible;
     }
+
+    /* Footer Styles */
+    .about-section {
+      background: #f8f9fa;
+      padding: 4rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(139, 38, 53, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: #8B2635;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .subscribe-section {
+      background: linear-gradient(135deg, rgba(139, 38, 53, 0.05), rgba(248, 232, 232, 0.5));
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .subscribe-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .subscribe-content h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      min-width: 250px;
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .subscribe-btn {
+      background: linear-gradient(135deg, #FFC107, #FFA000);
+      color: #333;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .subscribe-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+    }
+
+    .footer {
+      background: #2d3748;
+      color: white;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #FFC107;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul li a {
+      color: #cbd5e0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: #FFC107;
+    }
+
+    .footer-brand {
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand h2 {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #FFC107, #8B2635);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-description {
+      color: #cbd5e0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      background: #FFC107;
+      color: #2d3748;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .subscribe-form {
+        flex-direction: column;
+      }
+      
+      .subscribe-input {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -765,6 +989,10 @@
     <div class="nav-content">
       <div class="logo">MeatMatrix</div>
       <div class="nav-buttons">
+        <button class="nav-btn" onclick="scrollToAbout()">
+          <i class="fas fa-info-circle"></i>
+          About Us
+        </button>
         <button class="nav-btn" onclick="toggleProfile()">
           <i class="fas fa-user"></i>
           Profile
@@ -1210,6 +1438,138 @@
       };
       localStorage.setItem('profileInfo', JSON.stringify(profile));
       alert('Profile saved!');
+    }
+
+    // Scroll to About Section
+    function scrollToAbout() {
+      const aboutSection = document.getElementById('aboutSection');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  </script>
+
+  <!-- About Us Section -->
+  <section class="about-section" id="aboutSection">
+    <div class="about-content">
+      <h2>Why MeatMatrix?</h2>
+      <p>At MeatMatrix, food safety is our top priority. Our meticulous process begins with responsible sourcing and encompasses every stage, including ante-mortem inspection, humane handling, and post-processing evaluation. Our skilled team ensures that every cut of meat is handled with care to preserve its quality. The final step is efficient distribution, delivering our products to customers with freshness intact. MeatMatrix is committed to maintaining the highest standards, ensuring safe, premium-quality meat from farm to table.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cow"></i>
+          </div>
+          <h3>Quality Sourcing</h3>
+          <p>Responsibly sourced from trusted farms with highest quality standards</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3>Halal Certified</h3>
+          <p>100% Halal certified meat processed with care and compassion</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-snowflake"></i>
+          </div>
+          <h3>Fresh & Chilled</h3>
+          <p>Maintained at optimal temperatures for maximum freshness</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h3>Fast Delivery</h3>
+          <p>Quick and efficient delivery right to your doorstep</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscribe Section -->
+  <section class="subscribe-section">
+    <div class="subscribe-content">
+      <h2>Subscribe and Get Regular Offers</h2>
+      <p>Stay updated with our latest deals and premium meat selections</p>
+      <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+        <input type="email" class="subscribe-input" placeholder="Write your email address" required>
+        <button type="submit" class="subscribe-btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-brand">
+          <h2>MeatMatrix</h2>
+          <p class="footer-description">MeatMatrix is a premium meat provider committed to delivering safe, wholesome meat products of the highest quality and standard for domestic and international markets.</p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Company Information</h3>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Our Outlets</a></li>
+          <li><a href="#">Our Customers</a></li>
+          <li><a href="#">Certifications</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="#">Customer Feedback</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">How To Order</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#">Recipes</a></li>
+          <li><a href="#">Expert Speaks</a></li>
+          <li><a href="#">Health Tips</a></li>
+          <li><a href="#">Cooking Guide</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Policies</h3>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund & Return Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 MeatMatrix. All rights reserved. | Delivering Quality & Freshness</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubscribe(event) {
+      event.preventDefault();
+      const email = event.target.querySelector('input[type="email"]').value;
+      alert(`Thank you for subscribing! We'll send updates to ${email}`);
+      event.target.reset();
     }
   </script>
 </body>

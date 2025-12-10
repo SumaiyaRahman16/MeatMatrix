@@ -88,6 +88,25 @@
     .back-btn i {
       margin-right: 8px;
     }
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .delete-btn:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    }
     @media (max-width: 768px) {
       .container {
         margin: 10px;
@@ -119,6 +138,7 @@
             <th>Item</th>
             <th>Kg</th>
             <th>Total Price</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="salesTable"></tbody>
@@ -138,18 +158,34 @@
       const salesData = JSON.parse(localStorage.getItem('salesData')) || [];
       const salesTable = document.getElementById('salesTable');
       if (!salesData.length) {
-        salesTable.innerHTML = `<tr><td colspan="4" class="empty-state">No delivered sales yet.</td></tr>`;
+        salesTable.innerHTML = `<tr><td colspan="5" class="empty-state">No delivered sales yet.</td></tr>`;
         return;
       }
-      salesTable.innerHTML = salesData.map(sale => `
+      salesTable.innerHTML = salesData.map((sale, index) => `
         <tr>
           <td>${formatDate(sale.date)}</td>
           <td>${sale.item}</td>
           <td>${sale.kg}</td>
           <td>৳${sale.total.toLocaleString()}</td>
+          <td>
+            <button class="delete-btn" onclick="deleteSale(${index})">
+              <i class="fas fa-trash"></i> Remove
+            </button>
+          </td>
         </tr>
       `).join('');
     }
+
+    function deleteSale(index) {
+      if (confirm('Are you sure you want to remove this sale record?')) {
+        let salesData = JSON.parse(localStorage.getItem('salesData')) || [];
+        salesData.splice(index, 1);
+        localStorage.setItem('salesData', JSON.stringify(salesData));
+        loadSales();
+        alert('Sale record removed successfully!');
+      }
+    }
+
     loadSales();
   </script>
 </body>

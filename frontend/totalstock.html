@@ -348,17 +348,17 @@
                     </tr>
                 </thead>
                 <tbody id="inventory-body">
-                    <!-- rows will be rendered here by JS -->
+
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        // Base API URL
+ 
         const API_BASE = 'http://localhost:3000/api/products';
 
-        // Fetch products from server and render
+  
         async function fetchProducts() {
             try {
                 const res = await fetch(API_BASE);
@@ -370,7 +370,7 @@
             }
         }
 
-        // Toggle add form visibility
+  
         document.getElementById('toggle-add-btn').addEventListener('click', () => {
             const form = document.getElementById('add-form');
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
@@ -446,7 +446,7 @@
                 `;
                 tbody.appendChild(tr);
 
-                // edit row (hidden)
+
                 const editTr = document.createElement('tr');
                 editTr.className = 'edit-form';
                 editTr.style.display = 'none';
@@ -468,7 +468,7 @@
             });
         }
 
-        // Helpers
+
         function formatDate(input) {
             if (!input) return '';
             const d = new Date(input);
@@ -490,13 +490,13 @@
                 .replace(/'/g, '&#039;');
         }
 
-        // Start editing a row (show edit row, hide view row)
+
         function startEdit(id) {
             const tbody = document.getElementById('inventory-body');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             rows.forEach(r => {
                 if (r.dataset.id == id) {
-                    // show next sibling (edit row)
+           
                     r.style.display = 'none';
                     const edit = r.nextElementSibling;
                     if (edit && edit.classList.contains('edit-form')) edit.style.display = 'table-row';
@@ -516,7 +516,7 @@
             });
         }
 
-        // Save changes to server via PUT
+
         async function saveItem(id) {
             try {
                 const tbody = document.getElementById('inventory-body');
@@ -547,7 +547,7 @@
             }
         }
 
-        // Delete
+
         async function deleteItem(id) {
             if (!confirm('Delete this product?')) return;
             try {
@@ -564,7 +564,7 @@
             }
         }
 
-        // Add new product (simple prompts) -> POST
+  
         async function addNewItem() {
             const name = prompt('Enter meat type:');
             if (!name) return;
@@ -593,7 +593,6 @@
             }
         }
 
-        // Recalculate dashboard statistics based on table data
         function updateStats() {
             const rows = document.querySelectorAll('#inventory-body > tr');
             let totalItems = 0;
@@ -601,7 +600,7 @@
             let lowStock = 0;
             let premiumCount = 0;
 
-            for (let i = 0; i < rows.length; i += 2) { // view row and edit row pairs
+            for (let i = 0; i < rows.length; i += 2) { 
                 const row = rows[i];
                 if (!row || row.classList.contains('edit-form')) continue;
                 const amountCell = row.querySelector('.amount');
@@ -610,7 +609,7 @@
                 totalItems++;
                 const amount = parseInt(amountCell.textContent) || 0;
                 totalStock += amount;
-                // low stock threshold same as before
+     
                 if (amount < 10) lowStock++;
                 if (premiumCell && premiumCell.textContent.trim().toLowerCase() === 'yes') premiumCount++;
             }
@@ -620,7 +619,7 @@
             document.querySelector('.stat-card:nth-child(3) .number').textContent = lowStock;
             document.querySelector('.stat-card:nth-child(4) .number').textContent = premiumCount;
 
-            // Alerts
+    
             const lowStockMeats = [];
             const expiredMeats = [];
             const bodyRows = document.querySelectorAll('#inventory-body > tr');
@@ -631,7 +630,7 @@
                 const statusAmt = parseInt(r.querySelector('.amount').textContent) || 0;
                 const name = nameCell ? nameCell.textContent.trim() : '';
                 if (statusAmt < 10) lowStockMeats.push(name);
-                // No expired field in this schema
+              
             }
 
             const lowStockMsg = lowStockMeats.length ? lowStockMeats.join(' and ') + (lowStockMeats.length === 1 ? ' is' : ' are') + ' running low on stock!' : 'All items are sufficiently stocked.';
@@ -641,10 +640,10 @@
             document.getElementById('expired-msg').textContent = expiredMsg;
         }
 
-        // Initial load
+
         fetchProducts();
 
-        // Auto-refresh every 30 seconds
+
         setInterval(fetchProducts, 30000);
     </script>
 </body>

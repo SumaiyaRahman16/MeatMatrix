@@ -1,9 +1,9 @@
-// /backend/routes/productRoutes.js
+
 const express = require('express');
 const router = express.Router(); 
 const ProductModel = require('../models/ProductModel'); 
 
-// GET /api/products
+
 router.get('/', async (req, res) => {
     try {
         const products = await ProductModel.getAllProducts(); 
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET /api/products/:id
+
 router.get('/:id', async (req, res) => {
     try {
         const product = await ProductModel.getProductById(req.params.id);
@@ -24,11 +24,11 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// POST /api/products
+
 router.post('/', async (req, res) => {
     try {
         const product = req.body;
-        // Basic validation
+
         if (!product || !product.name) return res.status(400).json({ message: 'Missing required field: name' });
         if (typeof product.price_per_kg === 'undefined') return res.status(400).json({ message: 'Missing required field: price_per_kg' });
         if (typeof product.stock_quantity === 'undefined') return res.status(400).json({ message: 'Missing required field: stock_quantity' });
@@ -37,13 +37,13 @@ router.post('/', async (req, res) => {
         res.status(201).json(created);
     } catch (error) {
         console.error('POST /api/products error:', error);
-        // If this is a SQL error, include some details to help debugging
+
         const errMsg = error && error.message ? error.message : String(error);
         res.status(500).json({ message: 'Failed to create product', error: errMsg });
     }
 });
 
-// PUT /api/products/:id
+
 router.put('/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE /api/products/:id
+
 router.delete('/:id', async (req, res) => {
     try {
         await ProductModel.deleteProduct(req.params.id);

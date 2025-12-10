@@ -10,14 +10,14 @@ const orderRoutes = require('./routes/OrderRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-require('./config/db'); // Initialize DB connection
+require('./config/db'); 
 
 
 app.use(cors()); 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-// Simple request logger for debugging (logs method, path and JSON body)
+
 app.use((req, res, next) => {
     try {
         console.log(`--> ${req.method} ${req.path}`);
@@ -37,7 +37,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 
-// START SERVER
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log(`*** Test API at: http://localhost:${PORT}/api/products ***`);

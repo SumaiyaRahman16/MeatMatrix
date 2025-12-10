@@ -1,26 +1,23 @@
 // /backend/models/UserModel.js
-const db = require('../config/db'); // Import the database connection pool
-const bcrypt = require('bcrypt');   // Import the bcrypt library
+const db = require('../config/db'); 
+const bcrypt = require('bcrypt');   
 
-// -------------------------------------------------------------------------
-// 1. Function to create a new user (used for customer sign-up)
-// -------------------------------------------------------------------------
 
-const SALT_ROUNDS = 10; // Standard number of salt rounds for bcrypt
+const SALT_ROUNDS = 10; 
 
 const createUser = async (username, email, password, role = 'customer') => {
     try {
-        // 1. Hash the password before storing it for security
+
         const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
         
-        // 2. SQL query to insert the new user (using the hashed password)
+     
         const sql = `
             INSERT INTO users (username, email, password_hash, role) 
             VALUES (?, ?, ?, ?)
         `;
         const [result] = await db.execute(sql, [username, email, passwordHash, role]);
         
-        // Return the ID of the newly created user
+     
         return result.insertId;
         
     } catch (error) {
@@ -29,9 +26,7 @@ const createUser = async (username, email, password, role = 'customer') => {
     }
 };
 
-// -------------------------------------------------------------------------
-// 2. Function to find a user by email (used for login check)
-// -------------------------------------------------------------------------
+
 
 const findUserByEmail = async (email) => {
     try {
@@ -42,7 +37,7 @@ const findUserByEmail = async (email) => {
         `;
         const [rows] = await db.execute(sql, [email]);
         
-        // Return the first row (the user data) or null if no user is found
+   
         return rows[0] || null;
         
     } catch (error) {

@@ -366,7 +366,7 @@
     </nav>
 
     <div class="container">
-        <!-- Cart Summary Section -->
+ 
         <div class="cart-section">
             <h2 class="section-title">
                 <i class="fas fa-shopping-cart"></i>
@@ -389,7 +389,7 @@
             </div>
         </div>
 
-        <!-- Checkout Form Section -->
+  
         <div class="checkout-section">
             <h2 class="section-title">
                 <i class="fas fa-user"></i>
@@ -452,11 +452,10 @@
         let cart = [];
         let totalAmount = 0;
 
-        // Load cart data and display order summary
         function loadCartData() {
             const cartData = localStorage.getItem('checkoutCart');
             if (!cartData) {
-                // Show empty cart message
+              
                 document.getElementById('cartItems').innerHTML = `
                     <div class="empty-cart">
                         <div class="empty-cart-icon">
@@ -529,35 +528,33 @@
                 return;
             }
 
-            // Create a single order with all items combined
+         
             const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
             const today = new Date().toISOString().split('T')[0];
             
-            // Create a single order entry for the whole order
             const orderNumber = `ORD-${existingOrders.length + 1}`;
             const itemSummary = cart.map(item => `${item.name} x ${item.quantity}kg`).join(', ');
             const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
             
             const singleOrder = {
                 orderNumber: orderNumber,
-                orderType: itemSummary, // All items in one string
-                orderKg: totalQuantity, // Total quantity of all items
-                price: totalAmount / totalQuantity, // Average price per kg
+                orderType: itemSummary, 
+                orderKg: totalQuantity, 
+                price: totalAmount / totalQuantity, 
                 totalPrice: totalAmount,
                 date: today,
                 name: name,
                 customer_number: phone,
                 customer_address: address,
-                items: cart // Keep full item details for reference
+                items: cart 
             };
             
             existingOrders.push(singleOrder);
             localStorage.setItem('orders', JSON.stringify(existingOrders));
 
-            // Clear checkout cart
             localStorage.removeItem('checkoutCart');
 
-            // Send order data to backend to store in DB (non-blocking, but we await to log result)
+            
             try {
                 const resp = await fetch('http://localhost:3000/api/orders', {
                     method: 'POST',
@@ -570,7 +567,7 @@
                     })
                 });
 
-                // Parse response safely: only attempt json() when content-type is JSON
+                
                 let json = null;
                 try {
                     const ct = resp.headers.get('content-type') || '';
@@ -595,12 +592,12 @@
                 console.error('Network or server error while saving order to DB', err);
             }
 
-            // Show success message
+           
             document.getElementById("successMsg").style.display = "block";
             document.getElementById("checkoutForm").style.display = "none";
         }
 
-        // Load cart data when page loads
+     
         window.onload = loadCartData;
     </script>
 

@@ -30,7 +30,7 @@
       <p>All recent orders placed by customers</p>
     </div>
 
-    <!-- TABLE 1: Orders from Database -->
+ 
     <h2 style="margin: 20px; color: #8B2635; font-size: 1.3rem;">📊 Orders from Database</h2>
     <table class="order-table" id="dbOrderTable">
       <thead>
@@ -43,11 +43,11 @@
         </tr>
       </thead>
       <tbody id="dbOrderTableBody">
-        <!-- Database orders will be injected here -->
+
       </tbody>
     </table>
 
-    <!-- TABLE 2: Pending Orders from localStorage (can mark as delivered) -->
+
     <h2 style="margin: 20px; color: #8B2635; font-size: 1.3rem;">📦 Pending Orders (Mark as Delivered)</h2>
     <table class="order-table" id="localOrderTable">
       <thead>
@@ -61,15 +61,14 @@
         </tr>
       </thead>
       <tbody id="localOrderTableBody">
-        <!-- localStorage orders will be injected here -->
+
       </tbody>
     </table>
 
     <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
   </div>
   <script>
-    // ============ TABLE 1: DATABASE ORDERS ============
-    // Fetch orders from backend database
+
     async function fetchDatabaseOrders() {
       try {
         const response = await fetch('http://localhost:3000/api/orders');
@@ -107,8 +106,6 @@
       `).join('');
     }
 
-    // ============ TABLE 2: LOCALSTORAGE ORDERS (WITH MARK AS DELIVERED) ============
-    // Load orders from localStorage (exactly like before)
     function getLocalOrders() {
       return JSON.parse(localStorage.getItem('orders')) || [];
     }
@@ -143,8 +140,7 @@
     function markAsDelivered(idx) {
       let orders = getLocalOrders();
       const deliveredOrder = orders[idx];
-      
-      // Add to salesData in localStorage (exactly like before)
+   
       let salesData = JSON.parse(localStorage.getItem('salesData')) || [];
       salesData.push({
         date: new Date().toISOString().split('T')[0],
@@ -154,17 +150,17 @@
       });
       localStorage.setItem('salesData', JSON.stringify(salesData));
       
-      // Remove from orders
+
       orders.splice(idx, 1);
       saveLocalOrders(orders);
       
-      // Re-render
+  
       renderLocalOrders();
       
       alert('Order marked as delivered and moved to Total Sales!');
     }
 
-    // Accept new order from checkout page (exactly like before)
+
     function acceptOrderFromCart() {
       const cartOrder = localStorage.getItem('cartOrder');
       if (cartOrder) {
@@ -188,10 +184,10 @@
       }
     }
 
-    // On page load, render BOTH tables
-    acceptOrderFromCart(); // Accept any new cart orders first
-    renderDatabaseOrders(); // Render database orders
-    renderLocalOrders(); // Render localStorage orders
+    
+    acceptOrderFromCart(); 
+    renderDatabaseOrders(); 
+    renderLocalOrders(); 
   </script>
 </body>
 </html>

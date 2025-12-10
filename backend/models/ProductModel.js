@@ -23,7 +23,7 @@ const getProductById = async (id) => {
 
 const createProduct = async (product) => {
     try {
-        // Match actual DB columns: name, price_per_kg, stock_quantity, is_premium, is_popular, is_special, is_deluxe, description
+
         const { name, stock_quantity = 0, price_per_kg = 0, is_premium = 0, is_popular = 0, is_special = 0, is_deluxe = 0, description = null } = product;
         const [result] = await db.execute(
             `INSERT INTO products (name, price_per_kg, stock_quantity, is_premium, is_popular, is_special, is_deluxe, description)
@@ -39,7 +39,7 @@ const createProduct = async (product) => {
 
 const updateProduct = async (id, product) => {
     try {
-        // Update columns that exist in the DB
+
         const { name, stock_quantity, price_per_kg, is_premium, is_popular, is_special = 0, is_deluxe = 0, description } = product;
         await db.execute(
             `UPDATE products SET name = ?, price_per_kg = ?, stock_quantity = ?, is_premium = ?, is_popular = ?, is_special = ?, is_deluxe = ?, description = ? WHERE id = ?`,

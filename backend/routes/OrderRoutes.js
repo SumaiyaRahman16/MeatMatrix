@@ -1,10 +1,10 @@
-// /backend/routes/orderRoutes.js (FINAL VERSION)
+
 const express = require('express');
 const router = express.Router();
-// NOTE: Must import the full transaction function, NOT just insertOrder
+
 const OrderModel = require('../models/OrderModel'); 
 
-// GET /api/orders - Fetch all orders
+
 router.get('/', async (req, res) => {
     try {
         const orders = await OrderModel.getAllOrders();
@@ -21,12 +21,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-// POST /api/orders - Simple Order Placement
+
 router.post('/', async (req, res) => {
-    // We only need the 4 main fields
+  
     const { name, customer_number, total_amount, total_kg } = req.body;
 
-    // Validate required fields
+
     if (!name || !customer_number || !total_amount || !total_kg) {
         return res.status(400).json({ success: false, message: "Missing required order details." });
     }
@@ -34,10 +34,10 @@ router.post('/', async (req, res) => {
     try {
         const orderDetails = { name, customer_number, total_amount, total_kg };
         
-        // Insert the order
+ 
         const orderId = await OrderModel.placeOrderTransaction(orderDetails);
         
-        // Success response
+    
         res.status(201).json({ 
             success: true, 
             message: "Order confirmed successfully.", 
